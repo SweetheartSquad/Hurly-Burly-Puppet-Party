@@ -32,7 +32,7 @@ VictoryScene::VictoryScene(PuppetGame * _game, std::vector<PuppetCharacter *> _p
 		static_cast<PuppetGame *>(game)->puppetControllers.at(i)->setPuppetCharacter(players.at(i));
 	}
 
-	std::sort(sortedPlayers.begin(), sortedPlayers.end(), PuppetCharacter::compareByScore);
+	std::sort(sortedPlayers.begin(), sortedPlayers.end(), PuppetCharacter::compareByScoreGreater);
 	podium(sortedPlayers);
 }
 

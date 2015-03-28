@@ -15,8 +15,8 @@
 #include <SoundManager.h>
 #include <RaidTheCastleResourceManager.h>
 
-bool PuppetCharacter::compareByScore(PuppetCharacter * _a, PuppetCharacter * _b){
-	return (_a->score < _b->score);
+bool PuppetCharacter::compareByScoreGreater(PuppetCharacter * _a, PuppetCharacter * _b){
+	return (_a->score > _b->score);
 }
 
 PuppetCharacter::PuppetCharacter(PuppetTexturePack * _texturePack, bool _ai, Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex):
