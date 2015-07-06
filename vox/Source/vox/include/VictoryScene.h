@@ -10,9 +10,4 @@ public:
 	VictoryScene(PuppetGame * _game, std::vector<PuppetCharacter *> players);
 
 	virtual void update(Step * _step) override;
-	virtual void render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions) override;
-	virtual void load() override;
-	virtual void unload() override;
-
-	virtual void doCountDown() override;
 };

@@ -14,7 +14,3 @@ Structure::Structure(Box2DWorld * _world, int16 _categoryBits, int16 _maskBits, 
 {
 	componentScale = 0.0025f;
 }
-
-Structure::~Structure(){
-	
-}

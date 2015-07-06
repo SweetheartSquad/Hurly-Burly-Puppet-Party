@@ -162,11 +162,6 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	gameCam->minBounds.height = sceneHeight/2.f;
 }
 
-SlayTheDragon::~SlayTheDragon(){
-	delete stageFloor; // have to do this here because the ground is never added and therefore not deleted as one of the scene children
-	delete stageFront; // have to do this here because the ground is never added and therefore not deleted as one of the scene children
-}
-
 void SlayTheDragon::update(Step* _step){
 	PuppetScene::update(_step);
 
@@ -192,16 +187,4 @@ void SlayTheDragon::update(Step* _step){
             triggerVictoryState();
         }
     }
-}
-
-void SlayTheDragon::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	PuppetScene::render(_matrixStack, _renderOptions);
-}
-
-void SlayTheDragon::load(){
-	PuppetScene::load();
-}
-
-void SlayTheDragon::unload(){
-	PuppetScene::unload();
 }

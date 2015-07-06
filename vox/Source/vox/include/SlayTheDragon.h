@@ -21,10 +21,6 @@ public:
 	PuppetCharacter * playerCharacter4;
 
 	explicit SlayTheDragon(PuppetGame * _game);
-	~SlayTheDragon();
 
 	virtual void update(Step * _step) override;
-	virtual void render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions) override;
-	virtual void load() override;
-	virtual void unload() override;
 };

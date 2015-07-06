@@ -48,6 +48,7 @@ Castle::Castle(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _
 	rootComponent->setTranslationPhysical(0.f, rootComponent->getCorrectedHeight(), 0.f);
 	rootComponent->mesh->uvEdgeMode = GL_MIRRORED_REPEAT_ARB;
 
+	// increase mesh size to add some padding between the sprite edge and the collider
 	for(unsigned long int i = 0; i < rootComponent->mesh->vertices.size(); ++i){
 		rootComponent->mesh->vertices.at(i).x *= 1.1f;
 		rootComponent->mesh->vertices.at(i).y *= 1.1f;
@@ -63,15 +64,15 @@ void Castle::takeDamage(float _damage){
 	RaidTheCastleResourceManager::catapultHitSounds->playRandomSound();
 	StructureBreakable::takeDamage(_damage);
 	switch (state){
-	default:
-	case StructureBreakable::kNORMAL:
-		rootComponent->currentAnimation->currentFrame = 0;
-		break;
-	case StructureBreakable::kDAMAGED:
-		rootComponent->currentAnimation->currentFrame = 1;
-		break;
-	case StructureBreakable::kDEAD:
-		rootComponent->currentAnimation->currentFrame = 3;
-		break;
+		default:
+		case StructureBreakable::kNORMAL:
+			rootComponent->currentAnimation->currentFrame = 0;
+			break;
+		case StructureBreakable::kDAMAGED:
+			rootComponent->currentAnimation->currentFrame = 1;
+			break;
+		case StructureBreakable::kDEAD:
+			rootComponent->currentAnimation->currentFrame = 3;
+			break;
 	}
 }

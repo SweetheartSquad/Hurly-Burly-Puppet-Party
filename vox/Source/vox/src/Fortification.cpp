@@ -17,14 +17,6 @@
 Fortification::Fortification(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex) :
 	StructureBreakable(250.f, _world, _categoryBits, _maskBits, _groupIndex)
 {
-
-	/*
-	//fortBackground = new Sprite();
-	fortBackground->mesh->pushTexture2D(SlayTheDragonResourceManager::fortBackground->texture);
-	fortBackground->setShader(shader, true);
-	fortBackground->transform->translate(glm::vec3(0, 30, 0));
-	*/
-
 	componentScale = 0.025f;
 
 	TextureSampler * roofTex = SlayTheDragonResourceManager::fortStructure;

@@ -308,7 +308,7 @@ void PuppetScene::assignControllers(){
 		chars.at(ch)->id = c;
 		static_cast<PuppetGame *>(game)->puppetControllers.at(c)->setPuppetCharacter(chars.at(ch));
 		chars.erase(chars.begin() + ch);
-		c++;
+		++c;
 	}
 }
 
@@ -397,7 +397,7 @@ void PuppetScene::update(Step * _step){
 		Item * item = items.at(i);
 		
 		if (item->destroy){
-			for (signed long int j = 0; j < std::rand() % 5 + 1; ++j){
+			for(unsigned long int j = 0; j < std::rand() % 5 + 1; ++j){
 				particleSystem->addParticle(item->rootComponent->getWorldPos(false), PuppetResourceManager::dustParticle);
 			}
 			destroyItem(item);
@@ -497,6 +497,9 @@ void PuppetScene::update(Step * _step){
 	if(keyboard->keyJustUp(GLFW_KEY_F11)){
 		game->toggleFullScreen();
 	}
+
+
+	
 	if(keyboard->keyJustUp(GLFW_KEY_2)){
 		if(box2DDebugDrawer != nullptr){
 			world->b2world->SetDebugDraw(nullptr);

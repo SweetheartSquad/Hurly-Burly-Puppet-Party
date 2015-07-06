@@ -50,13 +50,13 @@ Item * ItemProjectileWeapon::getProjectile(bool _forceDrop){
 	projectile->addComponent(test);
 
 	b2Filter sf;
-	sf.categoryBits = projectile->categoryBits;
-	if(projectile->maskBits != (int16)-1){
-		sf.maskBits = projectile->maskBits;
+	sf.categoryBits = categoryBits;
+	if(maskBits != (int16)-1){
+		sf.maskBits = maskBits;
 	}else{
 		sf.maskBits = 0;
 	}
-	sf.groupIndex = projectile->groupIndex;
+	sf.groupIndex = groupIndex;
 	
 	for(Box2DSprite ** c : projectile->components){
 		(*c)->createFixture(sf);
@@ -72,7 +72,6 @@ Item * ItemProjectileWeapon::getProjectile(bool _forceDrop){
 	projectile->setShader(static_cast<PuppetScene *>(scene)->shader, true);
 
 	projectile->snapComponents(this->rootComponent);
-	//projectile->translateComponents(glm::vec3(20,20,0));
 
 	projectile->owner = owner;
 	projectile->thrown = true;

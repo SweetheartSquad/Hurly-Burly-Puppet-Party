@@ -51,11 +51,6 @@ StartupScene::StartupScene(PuppetGame * _game) :
 	playerCharacter4->behaviourManager->addBehaviour(new BehaviourAttack(playerCharacter3, 3, PuppetGame::kPLAYER));
 	playerCharacter4->ai = true;
 
-	/*gameCam->addTarget(playerCharacter1->torso);
-	gameCam->addTarget(playerCharacter2->torso);
-	gameCam->addTarget(playerCharacter3->torso);
-	gameCam->addTarget(playerCharacter4->torso);*/
-
 	playerCharacter1->translateComponents(glm::vec3(0.5f * sceneWidth*0.25f, 35, 0.f));
 	playerCharacter2->translateComponents(glm::vec3(1.5f * sceneWidth*0.25f, 35, 0.f));
 	playerCharacter3->translateComponents(glm::vec3(2.5f * sceneWidth*0.25f, 35, 0.f));

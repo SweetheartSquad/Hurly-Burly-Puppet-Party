@@ -149,7 +149,7 @@ void PuppetCharacterDragon::render(vox::MatrixStack* _matrixStack, RenderOptions
 	fireParticles->setShader(shader, true);
 	fireParticles->render(_matrixStack, _renderOptions);
 
-    if (fireball != nullptr){
+    if(fireball != nullptr){
         fireball->render(_matrixStack, _renderOptions);
     }
 
@@ -213,12 +213,7 @@ void PuppetCharacterDragon::update(Step * _step){
 void PuppetCharacterDragon::action(bool _forceDrop){
 	if(heldItem != nullptr){
 		if(itemJoint != nullptr){
-			/*try{
-				static_cast<PuppetScene *>(scene)->particleSystem->addParticle(PuppetResourceManager::dustParticle, fireball->getWorldPos(false));
-			}catch (std::exception){
-				fireball = nullptr;
-			}*/
-			if (fireball == nullptr){
+			if(fireball == nullptr){
 				SlayTheDragonResourceManager::dragonSounds->playRandomSound();
 				fireball = heldItem->getProjectile(_forceDrop);
 				if (fireball == heldItem){
