@@ -70,7 +70,6 @@ PuppetCharacter * PuppetCharacter::clone(Box2DWorld * _world, PuppetScene * _sce
 
 PuppetCharacter::~PuppetCharacter(){
 	delete behaviourManager;
-	delete indicator;
 }
 
 void PuppetCharacter::init(){
@@ -278,6 +277,7 @@ void PuppetCharacter::init(){
 }
 
 void PuppetCharacter::createIndicator(signed long _id){
+	assert(indicator == nullptr && scoreIndicator == nullptr);
 	// headgear
 	if(_id == -1){
 		_id = 0;
@@ -294,6 +294,7 @@ void PuppetCharacter::createIndicator(signed long _id){
 	f->SetSensor(true);
 	
 	indicator->setShader(shader, true);
+	childTransform->addChild(indicator);
 
 	// score indicator
 	scoreIndicator = new ScoreIndicator(_id, world);
