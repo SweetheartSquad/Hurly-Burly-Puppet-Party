@@ -11,51 +11,51 @@
 #include <TextureSampler.h>
 #include <NumberUtils.h>
 
-Texture * PuppetResourceManager::startupSplash = new Texture("../assets/hurly-burly/SplashMessages/Startup.png", 2096, 2096, true, true);
-Texture * PuppetResourceManager::blank = new Texture("../assets/hurly-burly/blank.png", 1, 1, true, true);
-TextureSampler * PuppetResourceManager::itemNone = new TextureSampler(new Texture("../assets/hurly-burly/blank.png", 1, 1, true, true), 1, 1);
+Texture * PuppetResourceManager::startupSplash = new Texture("../assets/hurly-burly/SplashMessages/Startup.png", 2096, 2096, true, false);
+Texture * PuppetResourceManager::blank = new Texture("../assets/hurly-burly/blank.png", 1, 1, true, false);
+TextureSampler * PuppetResourceManager::itemNone = new TextureSampler(new Texture("../assets/hurly-burly/blank.png", 1, 1, true, false), 1, 1);
 
-Texture * PuppetResourceManager::stageFloor = new Texture("../assets/hurly-burly/StageFloor.png", 1024, 1024, true, true);
-Texture * PuppetResourceManager::stageFront = new Texture("../assets/hurly-burly/StageFront.png", 1024, 1024, true, true);
-Texture * PuppetResourceManager::sky		= new Texture("../assets/hurly-burly/Sky.png", 1024, 1024, true, true);
-TextureSampler * PuppetResourceManager::paper	= new TextureSampler("../assets/hurly-burly/", "paper.png.def");
+Texture * PuppetResourceManager::stageFloor = new Texture("../assets/hurly-burly/StageFloor.png", 1024, 1024, true, false);
+Texture * PuppetResourceManager::stageFront = new Texture("../assets/hurly-burly/StageFront.png", 1024, 1024, true, false);
+Texture * PuppetResourceManager::sky		= new Texture("../assets/hurly-burly/Sky.png", 1024, 1024, true, false);
+TextureSampler * PuppetResourceManager::paper	= new TextureSampler("../assets/hurly-burly/", "paper.png.def", false);
 
-Texture * PuppetResourceManager::tree1  = new Texture("../assets/hurly-burly/Foliage/Tree1.png", 1024, 1024, true, true);
-Texture * PuppetResourceManager::tree2	= new Texture("../assets/hurly-burly/Foliage/Tree2.png", 1024, 1024, true, true);
-Texture * PuppetResourceManager::bush1	= new Texture("../assets/hurly-burly/Foliage/Bush1.png", 1024, 1024, true, true);
-Texture * PuppetResourceManager::bush2	= new Texture("../assets/hurly-burly/Foliage/Bush2.png", 1024, 1024, true, true);
-Texture * PuppetResourceManager::sun	= new Texture("../assets/hurly-burly/Sun.png", 1024, 1024, true, true);
+Texture * PuppetResourceManager::tree1  = new Texture("../assets/hurly-burly/Foliage/Tree1.png", 1024, 1024, true, false);
+Texture * PuppetResourceManager::tree2	= new Texture("../assets/hurly-burly/Foliage/Tree2.png", 1024, 1024, true, false);
+Texture * PuppetResourceManager::bush1	= new Texture("../assets/hurly-burly/Foliage/Bush1.png", 1024, 1024, true, false);
+Texture * PuppetResourceManager::bush2	= new Texture("../assets/hurly-burly/Foliage/Bush2.png", 1024, 1024, true, false);
+Texture * PuppetResourceManager::sun	= new Texture("../assets/hurly-burly/Sun.png", 1024, 1024, true, false);
 
-Texture * PuppetResourceManager::cloud1 = new Texture("../assets/hurly-burly/Clouds/Cloud1.png", 1024, 1024, true, true);
-Texture * PuppetResourceManager::cloud2 = new Texture("../assets/hurly-burly/Clouds/Cloud2.png", 1024, 1024, true, true);
-Texture * PuppetResourceManager::cloud3 = new Texture("../assets/hurly-burly/Clouds/Cloud3.png", 1024, 1024, true, true);
-Texture * PuppetResourceManager::cloud4 = new Texture("../assets/hurly-burly/Clouds/Cloud4.png", 1024, 1024, true, true);
+Texture * PuppetResourceManager::cloud1 = new Texture("../assets/hurly-burly/Clouds/Cloud1.png", 1024, 1024, true, false);
+Texture * PuppetResourceManager::cloud2 = new Texture("../assets/hurly-burly/Clouds/Cloud2.png", 1024, 1024, true, false);
+Texture * PuppetResourceManager::cloud3 = new Texture("../assets/hurly-burly/Clouds/Cloud3.png", 1024, 1024, true, false);
+Texture * PuppetResourceManager::cloud4 = new Texture("../assets/hurly-burly/Clouds/Cloud4.png", 1024, 1024, true, false);
 
 
-TextureSampler * PuppetResourceManager::stageCurtain		= new TextureSampler("../assets/hurly-burly/StageAssets/", "curtain.png.def");
-TextureSampler * PuppetResourceManager::stageCurtainCenter	= new TextureSampler("../assets/hurly-burly/StageAssets/", "curtainCenter.png.def");
-TextureSampler * PuppetResourceManager::stageCurtainTop		= new TextureSampler("../assets/hurly-burly/StageAssets/", "topCurtain.png.def");
-TextureSampler * PuppetResourceManager::stageSpotlight		= new TextureSampler("../assets/hurly-burly/StageAssets/", "spotlight.png.def");
+TextureSampler * PuppetResourceManager::stageCurtain		= new TextureSampler("../assets/hurly-burly/StageAssets/", "curtain.png.def", false);
+TextureSampler * PuppetResourceManager::stageCurtainCenter	= new TextureSampler("../assets/hurly-burly/StageAssets/", "curtainCenter.png.def", false);
+TextureSampler * PuppetResourceManager::stageCurtainTop		= new TextureSampler("../assets/hurly-burly/StageAssets/", "topCurtain.png.def", false);
+TextureSampler * PuppetResourceManager::stageSpotlight		= new TextureSampler("../assets/hurly-burly/StageAssets/", "spotlight.png.def", false);
 
-TextureSampler * PuppetResourceManager::dustParticle = new TextureSampler("../assets/hurly-burly/", "dustParticle.png.def");
+TextureSampler * PuppetResourceManager::dustParticle = new TextureSampler("../assets/hurly-burly/", "dustParticle.png.def", false);
 std::vector<TextureSampler *> PuppetResourceManager::scoreParticles;
 
-TextureSampler * PuppetResourceManager::head = new TextureSampler("../assets/hurly-burly/", "Head1.png.def"); 
-TextureSampler * PuppetResourceManager::hand = new TextureSampler("../assets/hurly-burly/", "Hand1.png.def");
-TextureSampler * PuppetResourceManager::popsicleStick = new TextureSampler("../assets/hurly-burly/", "popsicleStick.png.def");
+TextureSampler * PuppetResourceManager::head = new TextureSampler("../assets/hurly-burly/", "Head1.png.def", false); 
+TextureSampler * PuppetResourceManager::hand = new TextureSampler("../assets/hurly-burly/", "Hand1.png.def", false);
+TextureSampler * PuppetResourceManager::popsicleStick = new TextureSampler("../assets/hurly-burly/", "popsicleStick.png.def", false);
 std::vector<TextureSampler *> PuppetResourceManager::faces;
 
 
-TextureSampler * PuppetResourceManager::whiteHead = new TextureSampler("../assets/hurly-burly/white/", "head.png.def"); 
-TextureSampler * PuppetResourceManager::whiteTorso = new TextureSampler("../assets/hurly-burly/white/", "torso.png.def"); 
-TextureSampler * PuppetResourceManager::whiteArm = new TextureSampler("../assets/hurly-burly/white/", "arm.png.def"); 
+TextureSampler * PuppetResourceManager::whiteHead = new TextureSampler("../assets/hurly-burly/white/", "head.png.def", false); 
+TextureSampler * PuppetResourceManager::whiteTorso = new TextureSampler("../assets/hurly-burly/white/", "torso.png.def", false); 
+TextureSampler * PuppetResourceManager::whiteArm = new TextureSampler("../assets/hurly-burly/white/", "arm.png.def", false); 
 
-TextureSampler * PuppetResourceManager::countDown0 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/0.png", 1024, 1024, true, true), 1024, 1024);
-TextureSampler * PuppetResourceManager::countDown1 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/1.png", 1024, 1024, true, true), 1024, 1024);
-TextureSampler * PuppetResourceManager::countDown2 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/2.png", 1024, 1024, true, true), 1024, 1024);
-TextureSampler * PuppetResourceManager::countDown3 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/3.png", 1024, 1024, true, true), 1024, 1024);
-TextureSampler * PuppetResourceManager::countDown4 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/4.png", 1024, 1024, true, true), 1024, 1024);
-TextureSampler * PuppetResourceManager::countDown5 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/5.png", 1024, 1024, true, true), 1024, 1024);
+TextureSampler * PuppetResourceManager::countDown0 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/0.png", 1024, 1024, true, false), 1024, 1024);
+TextureSampler * PuppetResourceManager::countDown1 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/1.png", 1024, 1024, true, false), 1024, 1024);
+TextureSampler * PuppetResourceManager::countDown2 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/2.png", 1024, 1024, true, false), 1024, 1024);
+TextureSampler * PuppetResourceManager::countDown3 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/3.png", 1024, 1024, true, false), 1024, 1024);
+TextureSampler * PuppetResourceManager::countDown4 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/4.png", 1024, 1024, true, false), 1024, 1024);
+TextureSampler * PuppetResourceManager::countDown5 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/5.png", 1024, 1024, true, false), 1024, 1024);
 
 
 std::vector<TextureSampler *> PuppetResourceManager::indicators;
@@ -105,9 +105,9 @@ void PuppetResourceManager::init(){
 	
 	resources.push_back(dustParticle);
 	
-	scoreParticles.push_back(new TextureSampler("../assets/hurly-burly/Score/", "plusOne1.png.def"));
-	scoreParticles.push_back(new TextureSampler("../assets/hurly-burly/Score/", "plusOne2.png.def"));
-	scoreParticles.push_back(new TextureSampler("../assets/hurly-burly/Score/", "plusOne3.png.def"));
+	scoreParticles.push_back(new TextureSampler("../assets/hurly-burly/Score/", "plusOne1.png.def", false));
+	scoreParticles.push_back(new TextureSampler("../assets/hurly-burly/Score/", "plusOne2.png.def", false));
+	scoreParticles.push_back(new TextureSampler("../assets/hurly-burly/Score/", "plusOne3.png.def", false));
 	for(auto i : scoreParticles){
 		resources.push_back(i);
 	}
@@ -120,14 +120,14 @@ void PuppetResourceManager::init(){
 	resources.push_back(whiteTorso);
 	resources.push_back(whiteArm);
 	
-	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face1.png.def"));
-	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face2.png.def"));
-	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face3.png.def"));
-	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face4.png.def"));
-	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face5.png.def"));
-	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face6.png.def"));
-	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face7.png.def"));
-	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "blondeHairBigger.png.def"));
+	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face1.png.def", false));
+	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face2.png.def", false));
+	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face3.png.def", false));
+	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face4.png.def", false));
+	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face5.png.def", false));
+	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face6.png.def", false));
+	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "Face7.png.def", false));
+	faces.push_back(new TextureSampler("../assets/hurly-burly/Face/", "blondeHairBigger.png.def", false));
 	for(auto i : faces){
 		resources.push_back(i);
 	}
@@ -139,47 +139,47 @@ void PuppetResourceManager::init(){
 	resources.push_back(countDown4);
 	resources.push_back(countDown5);
 	
-	indicators.push_back(new TextureSampler("../assets/hurly-burly/PlayerIndicators/", "indicator1.png.def"));
-	indicators.push_back(new TextureSampler("../assets/hurly-burly/PlayerIndicators/", "indicator2.png.def"));
-	indicators.push_back(new TextureSampler("../assets/hurly-burly/PlayerIndicators/", "indicator3.png.def"));
-	indicators.push_back(new TextureSampler("../assets/hurly-burly/PlayerIndicators/", "indicator4.png.def"));
+	indicators.push_back(new TextureSampler("../assets/hurly-burly/PlayerIndicators/", "indicator1.png.def", false));
+	indicators.push_back(new TextureSampler("../assets/hurly-burly/PlayerIndicators/", "indicator2.png.def", false));
+	indicators.push_back(new TextureSampler("../assets/hurly-burly/PlayerIndicators/", "indicator3.png.def", false));
+	indicators.push_back(new TextureSampler("../assets/hurly-burly/PlayerIndicators/", "indicator4.png.def", false));
 	for(auto i : indicators){
 		resources.push_back(i);
 	}
 
 	
-	scoreIndicators.push_back(new Texture("../assets/hurly-burly/PlayerIndicators/indicator1-circle.png", 1024, 1024, true, true));
-	scoreIndicators.push_back(new Texture("../assets/hurly-burly/PlayerIndicators/indicator2-circle.png", 1024, 1024, true, true));
-	scoreIndicators.push_back(new Texture("../assets/hurly-burly/PlayerIndicators/indicator3-circle.png", 1024, 1024, true, true));
-	scoreIndicators.push_back(new Texture("../assets/hurly-burly/PlayerIndicators/indicator4-circle.png", 1024, 1024, true, true));
+	scoreIndicators.push_back(new Texture("../assets/hurly-burly/PlayerIndicators/indicator1-circle.png", 1024, 1024, true, false));
+	scoreIndicators.push_back(new Texture("../assets/hurly-burly/PlayerIndicators/indicator2-circle.png", 1024, 1024, true, false));
+	scoreIndicators.push_back(new Texture("../assets/hurly-burly/PlayerIndicators/indicator3-circle.png", 1024, 1024, true, false));
+	scoreIndicators.push_back(new Texture("../assets/hurly-burly/PlayerIndicators/indicator4-circle.png", 1024, 1024, true, false));
 	for(auto i : scoreIndicators){
 		resources.push_back(i);
 	}
 
-	winSplashes.push_back(new TextureSampler(new Texture("../assets/hurly-burly/VictorySplashMessages/yellowWins.png", 1024, 1024, true, true), 1024, 1024));
-	winSplashes.push_back(new TextureSampler(new Texture("../assets/hurly-burly/VictorySplashMessages/greenWins.png", 1024, 1024, true, true), 1024, 1024));
-	winSplashes.push_back(new TextureSampler(new Texture("../assets/hurly-burly/VictorySplashMessages/blueWins.png", 1024, 1024, true, true), 1024, 1024));
-	winSplashes.push_back(new TextureSampler(new Texture("../assets/hurly-burly/VictorySplashMessages/redWins.png", 1024, 1024, true, true), 1024, 1024));
+	winSplashes.push_back(new TextureSampler(new Texture("../assets/hurly-burly/VictorySplashMessages/yellowWins.png", 1024, 1024, true, false), 1024, 1024));
+	winSplashes.push_back(new TextureSampler(new Texture("../assets/hurly-burly/VictorySplashMessages/greenWins.png", 1024, 1024, true, false), 1024, 1024));
+	winSplashes.push_back(new TextureSampler(new Texture("../assets/hurly-burly/VictorySplashMessages/blueWins.png", 1024, 1024, true, false), 1024, 1024));
+	winSplashes.push_back(new TextureSampler(new Texture("../assets/hurly-burly/VictorySplashMessages/redWins.png", 1024, 1024, true, false), 1024, 1024));
 	for(auto i : winSplashes){
 		resources.push_back(i);
 	}
 	
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "Axe.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "Club.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "Mace.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "Sword.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "Scimitar.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "Katana.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "SingleAxe.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "eggplant.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "carrot.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "hamBone.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "stringHam.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "mandolin.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "broom.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "foldingChair.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "plunger.png.def"));
-	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "lamp.png.def"));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "Axe.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "Club.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "Mace.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "Sword.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "Scimitar.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "Katana.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "SingleAxe.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "eggplant.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "carrot.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "hamBone.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "stringHam.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "mandolin.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "broom.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "foldingChair.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "plunger.png.def", false));
+	itemMeleeWeapons.push_back(new TextureSampler("../assets/hurly-burly/WeaponAssets/", "lamp.png.def", false));
 	for(auto i : itemMeleeWeapons){
 		resources.push_back(i);
 	}

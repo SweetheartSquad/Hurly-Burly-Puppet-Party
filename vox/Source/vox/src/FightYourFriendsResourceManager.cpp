@@ -4,10 +4,10 @@
 #include <TextureSampler.h>
 #include <SoundManager.h>
 
-TextureSampler * FightYourFriendsResourceManager::splashMessage	= new TextureSampler(new Texture("../assets/hurly-burly/SplashMessages/FYFSplash.png", 1024, 1024, true, true), 1024, 1024);
-Texture * FightYourFriendsResourceManager::arena1	= new Texture("../assets/hurly-burly/fyfArenas/arena1.png", 1024, 1024, true, true);
-Texture * FightYourFriendsResourceManager::arena2Bg	= new Texture("../assets/hurly-burly/fyfArenas/arena2-bg.png", 1024, 1024, true, true);
-TextureSampler * FightYourFriendsResourceManager::arena2Fg	= new TextureSampler("../assets/hurly-burly/fyfArenas/", "arena2-fg.png.def");
+TextureSampler * FightYourFriendsResourceManager::splashMessage	= new TextureSampler(new Texture("../assets/hurly-burly/SplashMessages/FYFSplash.png", 1024, 1024, true, false), 1024, 1024);
+Texture * FightYourFriendsResourceManager::arena1	= new Texture("../assets/hurly-burly/fyfArenas/arena1.png", 1024, 1024, true, false);
+Texture * FightYourFriendsResourceManager::arena2Bg	= new Texture("../assets/hurly-burly/fyfArenas/arena2-bg.png", 1024, 1024, true, false);
+TextureSampler * FightYourFriendsResourceManager::arena2Fg	= new TextureSampler("../assets/hurly-burly/fyfArenas/", "arena2-fg.png.def", false);
 
 void FightYourFriendsResourceManager::init(){
 	resources.push_back(splashMessage);
