@@ -88,6 +88,13 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	sun(nullptr),
 	uiLayer(new UILayer(this, 0,0,0,0))
 {
+	screenSurfaceShader->unload();
+	screenSurfaceShader->load();
+	screenSurface->scaleModeMag = GL_NEAREST;
+	screenSurface->load();
+	screenSurface->configureDefaultVertexAttributes(screenSurfaceShader);
+
+
 	world->b2world->SetContactListener(cl);
 	shader->addComponent(new ShaderComponentTexture(shader));
 	shader->addComponent(new ShaderComponentHsv(shader, 0.f, 1.25f, 1.25f));
@@ -174,7 +181,6 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	sf.categoryBits = PuppetGame::kBOUNDARY;
 	sf.maskBits = -1;
 	for(auto b : boundaries){
-		addChild(b, 2);
 		b->setShader(shader, true);
 		world->addToWorld(b);
 		b->body->GetFixtureList()->SetFilterData(sf);
@@ -185,22 +191,6 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	boundaries.at(3)->body->GetFixtureList()->SetFriction(1);
 	boundaries.at(3)->body->GetFixtureList()->SetRestitution(0);
 
-
-	//ground->body->SetTransform(b2Vec2(0, -250), 0);
-	/*ground->mesh->vertices.at(0).z -= 250;
-	ground->mesh->vertices.at(1).z -= 250;
-	ground->mesh->vertices.at(2).z -= 250;
-	ground->mesh->vertices.at(3).z -= 250;
-	ground->mesh->dirty = true;*/
-
-	//Set UVs so the texture isn't stretched
-	/*ground->mesh->setUV(0, 0.0,  0.0);
-	ground->mesh->setUV(1, 0.0,  4.0);
-	ground->mesh->setUV(2, 40.0, 4.0);
-	ground->mesh->setUV(3, 40.0, 0.0);*/
-
-	//world->addToWorld(ground, 2);
-	
 	addChild(background, 0);
 	background->setShader(shader, true);
 	background->parents.at(0)->translate(-sceneWidth/2.f, sceneHeight/2.f, -15.f/2.f);
@@ -222,10 +212,6 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	groundFixture->SetSensor(false);
 	groundFixture->SetUserData(this);
 	*/
-
-	//randomGround->mesh->uvEdgeMode = GL_REPEAT;
-
-	//world->addToWorld(randomGround);
 	
 	//Set up cameras
 	Transform * t = new Transform();
@@ -241,7 +227,7 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 
 	t = new Transform();
 	gameCam = new FollowCamera(15, glm::vec3(0, 0, 0), 0, 0);
-	t->addChild(mouseCamera, false);
+	t->addChild(gameCam, false);
 	cameras.push_back(gameCam);
 	gameCam->farClip = 1000.f;
 	t->rotate(90, 0, 1, 0, kWORLD);
@@ -298,11 +284,8 @@ PuppetScene::~PuppetScene(){
 		delete countDownNumbers.back();
 		countDownNumbers.pop_back();
 	}
-
-	/*while(children.size() > 0){
-		delete children.back();
-		children.pop_back();
-	}*/
+	
+	deleteChildTransform();
 
 	delete soundManager;
 	delete countdownSoundManager;
@@ -427,15 +410,7 @@ void PuppetScene::update(Step * _step){
 		items.push_back(g);
 	}
 
-
-	Scene::update(_step);
-
-    //Box2DSprite * test = new Box2DSprite(world);
-    //test->setShader(shader, this);
-    //particleSystem->addComponent(test);
-    //particleSystem->addParticle();
-
-
+	LayeredScene::update(_step);
 	if(splashMessage != nullptr){
 		if(currentTime < splashDuration){
 			if(displayingSplash){
@@ -459,11 +434,6 @@ void PuppetScene::update(Step * _step){
 			splashMessage = nullptr;
 		}
 	}
-
-	/*for(Sprite * n : countDownNumbers){
-		n->transform->translate(activeCamera->transform->getTranslationVector(), false);
-		n->transform->translate(glm::vec3(0,0,-10));
-	}*/
 	
 	// destroy used up items
 	for(signed long int i = items.size()-1; i >= 0; --i){
@@ -505,7 +475,6 @@ void PuppetScene::update(Step * _step){
 
 	if(sun != nullptr){
 		sun->parents.at(0)->rotate(_step->deltaTimeCorrection*0.05f, 0, 0, 1, kOBJECT);
-//		sun->transform->setOrientation(glm::quat(glm::angleAxis(sin(currentTime)*6.28f, glm::vec3(0, 0, 1))));
 	}
 
 	// camera control
