@@ -58,7 +58,7 @@ public:
 
 	PuppetContactListener * cl;
 	Box2DWorld * world;
-	Box2DDebugDrawer * drawer;
+	Box2DDebugDrawer * box2DDebugDrawer;
 
 	std::vector<PuppetCharacter *> players;
 
