@@ -83,11 +83,7 @@ public:
 
     ParticleSystem * particleSystem;
 
-	Shader * screenSurfaceShader;
-	RenderSurface * screenSurface;
-	StandardFrameBuffer * screenFBO;
 	MeshEntity * sun;
-	float screenShaderSetting;
 
 	UILayer * uiLayer;
 

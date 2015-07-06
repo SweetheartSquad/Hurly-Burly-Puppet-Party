@@ -80,22 +80,12 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	mouseCam(false),
 	victoryTriggered(false),
 	sceneStart(vox::step.time),
-	screenShaderSetting(3),
-	screenSurfaceShader(new Shader("../assets/RenderSurfacePlus", false, true)),
-	screenSurface(new RenderSurface(screenSurfaceShader)),
-	screenFBO(new StandardFrameBuffer(true)),
 	ghostPosition(0),
 	sun(nullptr),
 	uiLayer(new UILayer(this, 0,0,0,0))
 {
-	screenSurfaceShader->unload();
-	screenSurfaceShader->load();
-	screenSurface->scaleModeMag = GL_NEAREST;
-	screenSurface->load();
-	screenSurface->configureDefaultVertexAttributes(screenSurfaceShader);
-
-
 	world->b2world->SetContactListener(cl);
+
 	shader->addComponent(new ShaderComponentTexture(shader));
 	shader->addComponent(new ShaderComponentHsv(shader, 0.f, 1.25f, 1.25f));
 	shader->addComponent(new ShaderComponentTint(shader, 0.f, 0.f, 0.f));
@@ -288,9 +278,6 @@ PuppetScene::~PuppetScene(){
 
 	delete world;
 	delete cl;
-	delete screenSurface;
-	delete screenSurfaceShader;
-	delete screenFBO;
 }
 
 
@@ -325,9 +312,6 @@ void PuppetScene::load(){
 	for(Sprite * s : countDownNumbers){
 		s->load();
 	}
-
-	screenSurface->load();
-	screenFBO->load();
 }
 
 void PuppetScene::unload(){
@@ -336,27 +320,11 @@ void PuppetScene::unload(){
 	for(Sprite * s : countDownNumbers){
 		s->unload();
 	}
-
-	screenSurface->unload();
-	screenFBO->unload();
 }
 
 void PuppetScene::update(Step * _step){
     PuppetGame * pg = static_cast<PuppetGame *>(game);
-	if(game->kc_just_active){
-		screenShaderSetting = currentTime;
-	}
-	glUseProgram(screenSurfaceShader->getProgramId());
-	if(game->kc_active){
-		if(currentTime > screenShaderSetting){
-			screenShaderSetting = currentTime + std::rand() % 5 + 1;
-			glUniform1i(glGetUniformLocation(screenSurfaceShader->getProgramId(), "distortion"), std::rand() % 6 + 1);
-		}
-	}else{
-		glUniform1i(glGetUniformLocation(screenSurfaceShader->getProgramId(), "distortion"), 0);
-	}
-	glUniform1f(glGetUniformLocation(screenSurfaceShader->getProgramId(), "time"), (float)vox::lastTimestamp);
-
+	
 	// player controls
 	if (players.size() > 0){
 		if (keyboard->keyDown(GLFW_KEY_W)){
