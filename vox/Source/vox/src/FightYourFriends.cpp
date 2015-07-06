@@ -205,19 +205,19 @@ void FightYourFriends::populateBackground(){
 		arenaBg->setShader(shader, true);
 
 		Box2DSprite * arenaFg = new Box2DSprite(world, FightYourFriendsResourceManager::arena2Fg, b2_staticBody, false, nullptr, 0.03f);
-		arenaFg->setTranslationPhysical(arenaFg->getCorrectedWidth()/2.f + 12.f, sceneHeight*0.25f, 0);
+		addChild(arenaFg, 1);
 		
-	b2Filter sf;
-    sf.categoryBits = PuppetGame::kGROUND;
-    sf.groupIndex = 0;
-    sf.maskBits = PuppetGame::kITEM | PuppetGame::kPLAYER;
+		b2Filter sf;
+		sf.categoryBits = PuppetGame::kGROUND;
+		sf.groupIndex = 0;
+		sf.maskBits = PuppetGame::kITEM | PuppetGame::kPLAYER;
 		arenaFg->createFixture(sf);
 		arenaFg->setShader(shader, true);
-		addChild(arenaFg, 1);
 
 		for(unsigned long int i = 0; i < arenaFg->mesh->vertices.size(); ++i){
 			arenaFg->mesh->vertices.at(i).y += 2.5f;
 		}
 		arenaFg->mesh->dirty = true;
+		arenaFg->setTranslationPhysical(arenaFg->getCorrectedWidth()/2.f + 12.f, sceneHeight*0.25f, 0);
 	}
 }

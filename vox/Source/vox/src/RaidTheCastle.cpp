@@ -98,20 +98,11 @@ RaidTheCastle::RaidTheCastle(PuppetGame* _game):
 	addChild(catapult, 1);
 	catapult->translateComponents(glm::vec3(14.0f, 0.f, 0.f));
 	
-	//playerCharacter3->behaviourManager->addBehaviour(new BehaviourPatrol(glm::vec3(50,0,0), glm::vec3(100,0,0), playerCharacter3, 10));
-	//playerCharacter3->behaviourManager->addBehaviour(new BehaviourAttack(playerCharacter3, 3, PuppetGame::kPLAYER));
-	//playerCharacter3->ai = true;
-
-	//playerCharacter4->behaviourManager->addBehaviour(new BehaviourPatrol(glm::vec3(50,0,0), glm::vec3(100,0,0), playerCharacter4, 10));
-	//playerCharacter4->behaviourManager->addBehaviour(new BehaviourAttack(playerCharacter4, 3, PuppetGame::kPLAYER));
-	//playerCharacter4->ai = true;
-
 	for(PuppetCharacter * p : players){
 		TextureSampler * weaponTex = PuppetResourceManager::getRandomMeleeWeapon();
 		TextureSampler * projTex = PuppetResourceManager::getRandomMeleeWeapon();
 		
-		//ItemProjectileWeapon * weapon = new ItemProjectileWeapon(projTex, weaponTex, world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kSTRUCTURE | PuppetGame::kBOUNDARY | PuppetGame::kGROUND, p->groupIndex, 0, 0, -weaponTex->height);
-        ItemSimpleWeapon * weapon = new ItemSimpleWeapon(weaponTex, false, world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kBOUNDARY | PuppetGame::kGROUND | PuppetGame::kSTRUCTURE, p->groupIndex, 1, 0, -weaponTex->height);
+		ItemSimpleWeapon * weapon = new ItemSimpleWeapon(weaponTex, false, world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kBOUNDARY | PuppetGame::kGROUND | PuppetGame::kSTRUCTURE, p->groupIndex, 1, 0, -weaponTex->height);
 
         weapon->addToLayeredScene(this, 1);
 		weapon->setShader(shader, true);
@@ -148,14 +139,8 @@ RaidTheCastle::RaidTheCastle(PuppetGame* _game):
 	gameCam->minBounds.height = sceneHeight;
 }
 
-RaidTheCastle::~RaidTheCastle(){
-}
-
 void RaidTheCastle::update(Step* _step){
 	PuppetScene::update(_step);
-	/*if(keyboard->keyDown(GLFW_KEY_F)){
-		catapult->fireCatapult();
-	}*/
 
 	if(!camTargetsRemoved && _step->time - sceneStart > 15.0) {
 		gameCam->removeTarget(castle);
@@ -171,9 +156,6 @@ void RaidTheCastle::update(Step* _step){
 
 	if(castle->state == Castle::state_t::kDEAD){
 		gameCam->addTarget(castle->rootComponent);
-		/*if(gameCam->targets.size() != 1){
-			gameCam->targets.clear();
-		}*/
 		
 		triggerVictoryState();
 	}

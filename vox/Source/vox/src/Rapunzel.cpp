@@ -107,11 +107,6 @@ Rapunzel::Rapunzel(PuppetGame* _game):
 	
 	assignControllers();
 
-	// create indicators and add to followcam
-	for(PuppetCharacter * p : players){
-		p->createIndicator(p->id);
-		gameCam->addTarget(p->indicator);
-	}
 
 	for(PuppetCharacter * p : players){
 		if(p != playerCharacter4){
@@ -131,7 +126,14 @@ Rapunzel::Rapunzel(PuppetGame* _game):
 		}
 		p->setShader(shader, true);
 	}
+	// create indicators and add to followcam
+	for(PuppetCharacter * p : players){
+		p->createIndicator(p->id);
+		gameCam->addTarget(p->indicator);
+	}
 	
+	
+    addChild(castleCatwalk, 1);
 	tower->setTranslationPhysical(glm::vec3(glm::vec3(60.f, tower->getCorrectedHeight(), 0.f)));
     castleCatwalk->setTranslationPhysical(glm::vec3(tower->getWorldPos().x - castleCatwalk->getCorrectedWidth() - 3.5f, tower->getWorldPos().y - tower->getCorrectedHeight() * 0.08, 0));
 	
@@ -192,8 +194,6 @@ Rapunzel::Rapunzel(PuppetGame* _game):
 	gameCam->minBounds.width = sceneWidth-8;
 	gameCam->minimumZoom = 30;
 	gameCam->buffer = 0;
-	
-    addChild(castleCatwalk, 1);
 }
 
 void Rapunzel::update(Step* _step){

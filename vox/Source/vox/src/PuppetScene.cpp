@@ -580,9 +580,8 @@ void PuppetScene::destroyItem(Item * _item){
 void PuppetScene::doCountDown(){
 	// Remove previous number
 	if (countDown <= countDownNumbers.size() - 1){
-		// make things get
+		// make things get less saturated as the countdown progresses
 		static_cast<ShaderComponentHsv *>(shader->getComponentAt(1))->setSaturation(static_cast<ShaderComponentHsv *>(shader->getComponentAt(1))->getSaturation() - 0.15f);
-		//static_cast<ShaderComponentHsv *>(shader->components.at(1))->setValue(static_cast<ShaderComponentHsv *>(shader->components.at(1))->getValue() + 0.2f);
 		
 		uiLayer->childTransform->removeChild(countDownNumbers.back());
 		delete countDownNumbers.back();
@@ -596,13 +595,13 @@ void PuppetScene::doCountDown(){
 		// Display countdown
 		std::cout << "=========================" << std::endl;
 		std::cout << countDown << std::endl;
-		std::cout << "idx: " << countDown << std::endl;
+		std::cout << "idx: " << countDownNumbers.size()-1 << std::endl;
 		std::cout << "=========================" << std::endl;
 
-		countdownSoundManager->play(std::to_string(countDown));
+		countdownSoundManager->play(std::to_string(countDownNumbers.size()-1));
 
 		// Add new number to scene
-		uiLayer->childTransform->addChild(countDownNumbers.at(countDown), false);
+		uiLayer->childTransform->addChild(countDownNumbers.back(), false);
 	}
 }
 
