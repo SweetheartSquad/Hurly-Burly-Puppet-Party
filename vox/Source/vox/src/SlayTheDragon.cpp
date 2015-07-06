@@ -49,8 +49,6 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	cl = new SlayTheDragonContactListener(this);
 	cl->damageScoreMult = 1;
 	
-	populateBackground();
-	
 	Sprite * fortBg = new Sprite();
 	fort->addToLayeredScene(this, 1);
 	addChild(fortBg, 0);
@@ -208,7 +206,4 @@ void SlayTheDragon::load(){
 
 void SlayTheDragon::unload(){
 	PuppetScene::unload();
-}
-
-void SlayTheDragon::populateBackground(){
 }
