@@ -73,6 +73,7 @@ PuppetCharacter::~PuppetCharacter(){
 }
 
 void PuppetCharacter::init(){
+	componentScale = 0.0025f;
 	bool defaultTex = false;
 	if(texPack == nullptr){
 		defaultTex = true;

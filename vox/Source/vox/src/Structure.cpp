@@ -12,6 +12,7 @@
 Structure::Structure(Box2DWorld * _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex) :
 	Box2DSuperSprite(_world, _categoryBits, _maskBits, _groupIndex)
 {
+	componentScale = 0.0025f;
 }
 
 Structure::~Structure(){
