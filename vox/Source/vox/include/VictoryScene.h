@@ -8,7 +8,6 @@ class VictoryScene : public PuppetScene{
 public:
 	unsigned long int winner;
 	VictoryScene(PuppetGame * _game, std::vector<PuppetCharacter *> players);
-	~VictoryScene();
 
 	virtual void update(Step * _step) override;
 	virtual void render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions) override;

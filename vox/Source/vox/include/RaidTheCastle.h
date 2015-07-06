@@ -24,7 +24,6 @@ public:
 	PuppetCharacterKnight * playerCharacter4;
 
 	explicit RaidTheCastle(PuppetGame * _game);
-	~RaidTheCastle();
 
 	virtual void update(Step * _step) override;
 	virtual void render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions) override;

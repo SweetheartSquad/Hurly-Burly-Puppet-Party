@@ -29,7 +29,6 @@ public:
 	StructureBoxingGlove * glove;
 
 	explicit Rapunzel(PuppetGame * _game);
-	~Rapunzel();
 
 	virtual void update(Step * _step) override;
 	virtual void render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions) override;

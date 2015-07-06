@@ -109,9 +109,6 @@ FightYourFriends::FightYourFriends(PuppetGame* _game):
 	gameCam->minBounds.height = sceneHeight;
 }
 
-FightYourFriends::~FightYourFriends(){
-}
-
 void FightYourFriends::update(Step* _step){
 	PuppetScene::update(_step);
 

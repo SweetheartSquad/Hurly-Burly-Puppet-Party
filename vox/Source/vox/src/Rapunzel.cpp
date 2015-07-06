@@ -196,9 +196,6 @@ Rapunzel::Rapunzel(PuppetGame* _game):
     addChild(castleCatwalk, 1);
 }
 
-Rapunzel::~Rapunzel(){
-}
-
 void Rapunzel::update(Step* _step){
 	PuppetScene::update(_step);
 
