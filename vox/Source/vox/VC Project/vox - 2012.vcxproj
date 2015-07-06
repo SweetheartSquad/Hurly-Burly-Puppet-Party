@@ -67,6 +67,7 @@
     <ClCompile Include="..\src\FightYourFriendsResourceManager.cpp" />
     <ClCompile Include="..\src\ScoreIndicator.cpp" />
     <ClCompile Include="..\src\StartupScene.cpp" />
+    <ClCompile Include="..\src\Tower.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="../include/Behaviour.h" />
@@ -124,6 +125,7 @@
     <ClInclude Include="..\include\FightYourFriendsResourceManager.h" />
     <ClInclude Include="..\include\ScoreIndicator.h" />
     <ClInclude Include="..\include\StartupScene.h" />
+    <ClInclude Include="..\include\Tower.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B6AFC105-EAF0-41B3-BD41-75D4570CD35A}</ProjectGuid>

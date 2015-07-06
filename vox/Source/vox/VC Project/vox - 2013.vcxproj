@@ -75,6 +75,7 @@
     <ClCompile Include="../src/FightYourFriendsResourceManager.cpp" />
     <ClCompile Include="../src/ScoreIndicator.cpp" />
     <ClCompile Include="../src/StartupScene.cpp" />
+    <ClCompile Include="../src/Tower.cpp" />
 <<<<<<< HEAD
     <ClCompile Include="../src/Behaviour.cpp" />
     <ClCompile Include="../src/BehaviourAttack.cpp" />
@@ -132,6 +133,7 @@
     <ClCompile Include="../src/FightYourFriendsResourceManager.cpp" />
     <ClCompile Include="../src/ScoreIndicator.cpp" />
     <ClCompile Include="../src/StartupScene.cpp" />
+    <ClCompile Include="../src/Tower.cpp" />
 =======
     <ClCompile Include="../src/Behaviour.cpp" />
     <ClCompile Include="../src/BehaviourAttack.cpp" />
@@ -189,6 +191,7 @@
     <ClCompile Include="../src/FightYourFriendsResourceManager.cpp" />
     <ClCompile Include="../src/ScoreIndicator.cpp" />
     <ClCompile Include="../src/StartupScene.cpp" />
+    <ClCompile Include="../src/Tower.cpp" />
 >>>>>>> ecadd1d294afbb7e9d747eda757c631d31385df3
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +250,7 @@
     <ClInclude Include="../include/FightYourFriendsResourceManager.h" />
     <ClInclude Include="../include/ScoreIndicator.h" />
     <ClInclude Include="../include/StartupScene.h" />
+    <ClInclude Include="../include/Tower.h" />
 <<<<<<< HEAD
     <ClInclude Include="../include/Behaviour.h" />
     <ClInclude Include="../include/BehaviourAttack.h" />
@@ -303,6 +307,7 @@
     <ClInclude Include="../include/FightYourFriendsResourceManager.h" />
     <ClInclude Include="../include/ScoreIndicator.h" />
     <ClInclude Include="../include/StartupScene.h" />
+    <ClInclude Include="../include/Tower.h" />
 =======
     <ClInclude Include="../include/Behaviour.h" />
     <ClInclude Include="../include/BehaviourAttack.h" />
@@ -359,6 +364,7 @@
     <ClInclude Include="../include/FightYourFriendsResourceManager.h" />
     <ClInclude Include="../include/ScoreIndicator.h" />
     <ClInclude Include="../include/StartupScene.h" />
+    <ClInclude Include="../include/Tower.h" />
 >>>>>>> ecadd1d294afbb7e9d747eda757c631d31385df3
   </ItemGroup>
   <PropertyGroup Label="Globals">
