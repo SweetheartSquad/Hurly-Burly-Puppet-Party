@@ -69,7 +69,7 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	splashDuration(2.f),
 	cl(nullptr),
 	world(new Box2DWorld(b2Vec2(0.f, -98.0f))),
-	drawer(nullptr),
+	box2DDebugDrawer(nullptr),
 	stageFloor(nullptr),
 	stageFront(nullptr),
 	background(new MeshEntity(MeshFactory::getPlaneMesh())),
@@ -535,21 +535,21 @@ void PuppetScene::update(Step * _step){
 		game->toggleFullScreen();
 	}
 	if(keyboard->keyJustUp(GLFW_KEY_2)){
-		if(drawer != nullptr){
+		if(box2DDebugDrawer != nullptr){
 			world->b2world->SetDebugDraw(nullptr);
-			removeChild(drawer);
-			delete drawer;
-			drawer = nullptr;
+			removeChild(box2DDebugDrawer);
+			delete box2DDebugDrawer;
+			box2DDebugDrawer = nullptr;
 		}else{
-			drawer = new Box2DDebugDrawer(world);
-			world->b2world->SetDebugDraw(drawer);
-			drawer->drawing = true;
-			//drawer->AppendFlags(b2Draw::e_aabbBit);
-			drawer->AppendFlags(b2Draw::e_shapeBit);
-			drawer->AppendFlags(b2Draw::e_centerOfMassBit);
-			drawer->AppendFlags(b2Draw::e_jointBit);
+			box2DDebugDrawer = new Box2DDebugDrawer(world);
+			world->b2world->SetDebugDraw(box2DDebugDrawer);
+			box2DDebugDrawer->drawing = true;
+			//box2DDebugDrawer->AppendFlags(b2Draw::e_aabbBit);
+			box2DDebugDrawer->AppendFlags(b2Draw::e_shapeBit);
+			box2DDebugDrawer->AppendFlags(b2Draw::e_centerOfMassBit);
+			box2DDebugDrawer->AppendFlags(b2Draw::e_jointBit);
 			//drawer->AppendFlags(b2Draw::e_pairBit);
-			addChild(drawer, 2);
+			addChild(box2DDebugDrawer, 3, false);
 		}
 	}
 
