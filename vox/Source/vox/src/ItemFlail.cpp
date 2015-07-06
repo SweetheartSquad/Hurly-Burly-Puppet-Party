@@ -16,9 +16,9 @@ ItemFlail::ItemFlail(Box2DWorld * _world, int16 _categoryBits, int16 _maskBits, 
 	rootComponent = handle = new Box2DSprite(_world, weapon, b2_dynamicBody, false, nullptr, componentScale);
 	joint = new Box2DSprite(_world, weapon2, b2_dynamicBody, false, nullptr, componentScale);
 	head = new Box2DSprite(_world, weapon3, b2_dynamicBody, false, nullptr, componentScale);
-	components.push_back(&rootComponent);
-	components.push_back(&joint);
-	components.push_back(&head);
+	addComponent(&rootComponent);
+	addComponent(&joint);
+	addComponent(&head);
 	
 	b2Filter sf;
 	sf.categoryBits = categoryBits;

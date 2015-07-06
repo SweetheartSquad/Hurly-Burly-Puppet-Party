@@ -21,7 +21,7 @@ StructureGoldPile::StructureGoldPile(Box2DWorld* _world):
 	Texture * baseSpriteSheetTex = RapunzelResourceManager::goldSpriteSheet;
 
 	rootComponent = new Box2DSprite(_world, baseTex, b2_staticBody, false, nullptr, componentScale);
-	components.push_back(&rootComponent);
+	addComponent(&rootComponent);
 	
 	b2Filter sf;
 	sf.categoryBits = categoryBits;

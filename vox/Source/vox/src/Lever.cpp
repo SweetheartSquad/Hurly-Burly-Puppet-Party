@@ -29,8 +29,8 @@ Lever::Lever(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _gr
 	rootComponent = base = new Box2DSprite(_world, RapunzelResourceManager::leverBase, b2_staticBody, false, nullptr, componentScale);
 	handle = new Box2DSprite(_world, RapunzelResourceManager::leverHandle, b2_dynamicBody, false, nullptr, componentScale);
 	
-	components.push_back(&base);
-	components.push_back(&handle);
+	addComponent(&base);
+	addComponent(&handle);
 	
 	b2Filter sf;
 	sf.categoryBits = categoryBits;
@@ -102,7 +102,7 @@ void Lever::actuallyInteract(){
 		Box2DSprite ** test = new Box2DSprite*[1];
 		test[0] = projectile->rootComponent = new Box2DSprite(world, RapunzelResourceManager::itemSpear, b2_dynamicBody, false, nullptr, componentScale);
 		projectile->rootComponent->body->SetTransform(projectile->rootComponent->body->GetPosition(), glm::radians(80.f));
-		projectile->components.push_back(test);
+		projectile->addComponent(test);
 
 		projectile->translateComponents(towerPos - glm::vec3(0.f, 15.f, 0.f));
 

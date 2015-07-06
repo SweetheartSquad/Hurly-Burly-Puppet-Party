@@ -16,7 +16,7 @@ Hair::Hair(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _grou
 
 	rootComponent = new Box2DSprite(_world, hairLinkTex, b2_staticBody, false, nullptr, componentScale);
 
-	components.push_back(&rootComponent);
+	addComponent(&rootComponent);
 
 	unsigned int numLinks = 5;
 
@@ -25,7 +25,7 @@ Hair::Hair(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _grou
 		Box2DSprite ** hairLink = new Box2DSprite*[1];
 		hairLink[0] = new Box2DSprite(_world, tex, b2_dynamicBody, false, nullptr, componentScale);
 
-		components.push_back(hairLink);
+		addComponent(hairLink);
 	}
 
 	b2Filter sf;

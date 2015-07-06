@@ -14,8 +14,8 @@ StructureBoxingGlove::StructureBoxingGlove(Box2DWorld * _world) :
 	glove = new Box2DSprite(world, RapunzelResourceManager::glove, b2_dynamicBody, false, nullptr, componentScale/4.f);
 	spring = new Box2DSprite(world, PuppetResourceManager::itemNone, b2_staticBody, false, nullptr, componentScale);
 	
-	components.push_back(&glove);
-	components.push_back(&spring);
+	addComponent(&glove);
+	addComponent(&spring);
 	rootComponent = spring;
 	
 	b2Filter sf;

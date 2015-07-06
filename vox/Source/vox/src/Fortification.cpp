@@ -31,7 +31,7 @@ Fortification::Fortification(Box2DWorld* _world, int16 _categoryBits, int16 _mas
 
 	rootComponent = new Box2DSprite(_world, roofTex, b2_staticBody, false, nullptr, componentScale);
 
-	components.push_back(&rootComponent);
+	addComponent(&rootComponent);
 	
 	b2Filter sf;
 	sf.categoryBits = categoryBits;

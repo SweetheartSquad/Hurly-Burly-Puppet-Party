@@ -31,8 +31,8 @@ Catapult::Catapult(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int
 	base = new Box2DSprite(_world, RaidTheCastleResourceManager::catapultBody, b2_staticBody, false, nullptr, componentScale);
 	arm = new Box2DSprite(_world, RaidTheCastleResourceManager::catapultArm, b2_dynamicBody, false, nullptr, componentScale);
 	
-	components.push_back(&arm);
-	components.push_back(&base);
+	addComponent(&arm);
+	addComponent(&base);
 	rootComponent = base;
 	
 	b2Filter sf;

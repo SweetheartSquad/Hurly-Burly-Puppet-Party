@@ -24,7 +24,7 @@ Castle::Castle(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _
 	Texture * baseSpriteSheetTex = RaidTheCastleResourceManager::castleSpriteSheet;
 
 	rootComponent = new Box2DSprite(_world, baseTex, b2_staticBody, false, nullptr, componentScale);
-	components.push_back(&rootComponent);
+	addComponent(&rootComponent);
 	
 	b2Filter sf;
 	sf.categoryBits = categoryBits;

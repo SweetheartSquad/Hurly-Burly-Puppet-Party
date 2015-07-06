@@ -103,20 +103,20 @@ void PuppetCharacter::init(){
 	
 
 	
-	components.push_back(&whiteHead);
-	components.push_back(&whiteTorso);
-	components.push_back(&whiteArmLeft);
-	components.push_back(&whiteArmRight);
+	addComponent(&whiteHead);
+	addComponent(&whiteTorso);
+	addComponent(&whiteArmLeft);
+	addComponent(&whiteArmRight);
 	
-	components.push_back(&popsicleStick);
-	components.push_back(&armLeft);
-	components.push_back(&armRight);
-	components.push_back(&handLeft);
-	components.push_back(&handRight);
-	components.push_back(&torso);
-	components.push_back(&head);
-	components.push_back(&face);
-	components.push_back(&headgear);
+	addComponent(&popsicleStick);
+	addComponent(&armLeft);
+	addComponent(&armRight);
+	addComponent(&handLeft);
+	addComponent(&handRight);
+	addComponent(&torso);
+	addComponent(&head);
+	addComponent(&face);
+	addComponent(&headgear);
 
 	rootComponent = torso;
 
@@ -409,11 +409,6 @@ void PuppetCharacter::update(Step* _step){
 		}
 	}
 	Box2DSuperSprite::update(_step);
-	for(Box2DSprite ** c : components){
-		if(*c != nullptr){
-			(*c)->update(_step);
-		}
-	}
     if (control < 0.5f){
         targetRoll = glm::radians(90.f);
         action(true);

@@ -18,7 +18,7 @@ Boulder::Boulder(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16
 	
 	boulder = new Box2DSprite(_world, boulderTexSampler, b2_dynamicBody, false, nullptr, componentScale);
 	rootComponent = boulder;
-	components.push_back(&boulder);
+	addComponent(&boulder);
 	
 	b2Filter sf;
 	sf.categoryBits = categoryBits;

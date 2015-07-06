@@ -8,7 +8,7 @@ ItemSimpleWeapon::ItemSimpleWeapon(TextureSampler * _tex, bool _singleUse, Box2D
 	Item(_singleUse, _world, _categoryBits, _maskBits, _groupIndex, _damage, _handleX, _handleY)
 {
 	rootComponent = new Box2DSprite(_world, _tex, b2_dynamicBody, false, nullptr, componentScale);
-	components.push_back(&rootComponent);
+	addComponent(&rootComponent);
 	
 	b2Filter sf;
 	sf.categoryBits = categoryBits;

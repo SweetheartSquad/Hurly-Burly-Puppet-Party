@@ -14,18 +14,15 @@
 #include <RapunzelResourceManager.h>
 
 Tower::Tower(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex):
-	Structure(_world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable()
+	Structure(_world, _categoryBits, _maskBits, _groupIndex)
 {
 	componentScale = 0.03f;
 	
 	TextureSampler * towerTex = RapunzelResourceManager::towerTower;
 
-	rootComponent = new Box2DSprite(_world, towerTex, b2_staticBody, false, nullptr, new Transform(), componentScale);
+	rootComponent = new Box2DSprite(_world, towerTex, b2_staticBody, false, nullptr, componentScale);
 
-	components.push_back(&rootComponent);
+	addComponent(&rootComponent);
 	
 	b2Filter sf;
 	sf.categoryBits = categoryBits;

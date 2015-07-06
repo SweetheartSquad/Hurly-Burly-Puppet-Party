@@ -28,7 +28,7 @@ Item * ItemFireballLauncher::getProjectile(bool _forceDrop){
 	Box2DSprite ** test = new Box2DSprite*[1];
 	test[0] = projectile->rootComponent = new Box2DSprite(world, projectileTex, b2_dynamicBody, false, nullptr, componentScale);
 
-	projectile->components.push_back(test);
+	projectile->addComponent(test);
 
 	b2Filter sf;
 	sf.categoryBits = projectile->categoryBits;
