@@ -672,7 +672,7 @@ void PuppetScene::populateBackground(){
 				break;
 		}
 		if(i == 3){
-			RandomGround * randomGround = new RandomGround(world, 100, 0.4f, PuppetResourceManager::paper->texture, 3, 1);
+			RandomGround * randomGround = new RandomGround(world, 100, 0.4f, PuppetResourceManager::puppetScenario->getTextureSampler("PAPER")->textureSampler->texture, 3, 1);
 			addChild(randomGround, 0);
 			randomGround->setTranslationPhysical(0.0f, 0.0f, max(-9, -(float)(numFoliage-i)/numFoliage)*8.f - 1.f);
 			randomGround->setShader(shader, true);

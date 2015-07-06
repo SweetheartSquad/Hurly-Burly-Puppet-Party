@@ -11,6 +11,8 @@
 #include <TextureSampler.h>
 #include <NumberUtils.h>
 
+Scenario * PuppetResourceManager::puppetScenario = new Scenario("../assets/puppetScenario.json");
+
 Texture * PuppetResourceManager::startupSplash = new Texture("../assets/hurly-burly/SplashMessages/Startup.png", 2096, 2096, true, false);
 Texture * PuppetResourceManager::blank = new Texture("../assets/hurly-burly/blank.png", 1, 1, true, false);
 TextureSampler * PuppetResourceManager::itemNone = new TextureSampler(new Texture("../assets/hurly-burly/blank.png", 1, 1, true, false), 1, 1);
@@ -18,7 +20,6 @@ TextureSampler * PuppetResourceManager::itemNone = new TextureSampler(new Textur
 Texture * PuppetResourceManager::stageFloor = new Texture("../assets/hurly-burly/StageFloor.png", 1024, 1024, true, false);
 Texture * PuppetResourceManager::stageFront = new Texture("../assets/hurly-burly/StageFront.png", 1024, 1024, true, false);
 Texture * PuppetResourceManager::sky		= new Texture("../assets/hurly-burly/Sky.png", 1024, 1024, true, false);
-TextureSampler * PuppetResourceManager::paper	= new TextureSampler("../assets/hurly-burly/", "paper.png.def", false);
 
 Texture * PuppetResourceManager::tree1  = new Texture("../assets/hurly-burly/Foliage/Tree1.png", 1024, 1024, true, false);
 Texture * PuppetResourceManager::tree2	= new Texture("../assets/hurly-burly/Foliage/Tree2.png", 1024, 1024, true, false);
@@ -86,7 +87,6 @@ void PuppetResourceManager::init(){
 	resources.push_back(stageFloor);
 	resources.push_back(stageFront);
 	resources.push_back(sky);
-	resources.push_back(paper);
 	resources.push_back(tree1);
 	resources.push_back(tree2);
 	resources.push_back(bush1);

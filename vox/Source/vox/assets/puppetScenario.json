@@ -1,0 +1,17 @@
+{
+    "assets": [
+		{
+            "id": "PAPER",
+            "type": "textureSampler",
+            "src": "paper.png",
+            "width": 1024,
+            "height": 1024,
+            "u": 0,
+            "v": 0,
+            "w": 513,
+            "h": 513
+        }
+    ],
+    "characters": [],
+    "conversations": []
+}

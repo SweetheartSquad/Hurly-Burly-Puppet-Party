@@ -2,6 +2,8 @@
 
 #include <ResourceManager.h>
 
+#include <scenario\Scenario.h>
+
 class SoundManager;
 class Texture;
 class TextureSampler;
@@ -15,7 +17,6 @@ public:
 	static Texture * stageFloor;
 	static Texture * stageFront;
 	static Texture * sky;
-	static TextureSampler * paper;
 	static Texture * tree1; 
 	static Texture * tree2;	
 	static Texture * bush1;
@@ -72,6 +73,8 @@ public:
 
 	static SoundManager * cheerSounds;
 	static std::vector<SoundManager *> miscCheerSounds;
+
+	static Scenario * puppetScenario;
 	
 	static void init();
 };
