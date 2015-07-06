@@ -346,6 +346,7 @@ void PuppetScene::update(Step * _step){
 	if(game->kc_just_active){
 		screenShaderSetting = currentTime;
 	}
+	glUseProgram(screenSurfaceShader->getProgramId());
 	if(game->kc_active){
 		if(currentTime > screenShaderSetting){
 			screenShaderSetting = currentTime + std::rand() % 5 + 1;
