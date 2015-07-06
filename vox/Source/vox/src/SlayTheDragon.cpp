@@ -18,7 +18,7 @@
 #include <MeshEntity.h>
 #include <MeshInterface.h>
 #include <MeshFactory.h>
-#include <shader/BaseComponentShader.h>
+#include <shader/ComponentShaderBase.h>
 #include <keyboard.h>
 #include <Texture.h>
 #include <TextureSampler.h>
@@ -39,7 +39,7 @@
 SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	PuppetScene(_game, 30, 170.f, 120.f),
 	fort(new Fortification(world, PuppetGame::kSTRUCTURE, PuppetGame::kITEM | PuppetGame::kPLAYER)),
-    fortForeground(new Box2DSprite(world, SlayTheDragonResourceManager::fortForeground, b2_staticBody, false, nullptr, new Transform(), 0.03f)),
+    fortForeground(new Box2DSprite(world, SlayTheDragonResourceManager::fortForeground, b2_staticBody, false, nullptr, 0.03f)),
 	playerCharacter1(new PuppetCharacterArcher(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY | PuppetGame::kDEAD_ZONE, -1)),
 	playerCharacter2(new PuppetCharacterArcher(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY | PuppetGame::kDEAD_ZONE, -2)),
 	playerCharacter3(new PuppetCharacterArcher(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY | PuppetGame::kDEAD_ZONE, -3)),
@@ -56,13 +56,13 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	addChild(fortBg, 0);
 	fortBg->setShader(shader, true);
 	fortBg->pushTextureSampler(SlayTheDragonResourceManager::fortBackground);
-	fortBg->transform->translate(65.0f, 20.0f, 0.0f);
-	fortBg->transform->scale(2.6f, 2.6f, 1.0f);
+	fortBg->parents.at(0)->translate(65.0f, 20.0f, 0.0f);
+	fortBg->parents.at(0)->scale(2.6f, 2.6f, 1.0f);
 
-	splashMessage = new Sprite(nullptr, new Transform());
+	splashMessage = new Sprite();
 	splashMessage->mesh->pushTexture2D(SlayTheDragonResourceManager::splashMessage->texture);
 	splashMessage->setShader(shader, true);
-	splashMessage->transform->translate(1920.f*0.5, 1080.f*0.5f, 0);
+	splashMessage->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0);
 	
 	// dragon needs to be first bc the fire particles should draw underneath other players
 	
@@ -140,14 +140,14 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
     fortForeground->setTranslationPhysical(glm::vec3(80.0f, 0.f, 0.f), true);
 
 	Box2DMeshEntity * deathBounds = new Box2DMeshEntity(world, MeshFactory::getPlaneMesh(), b2_staticBody);
-	deathBounds->transform->scale(100.f, 18.f, 1.f);
+	addChild(deathBounds, 2);
+	deathBounds->parents.at(0)->scale(100.f, 18.f, 1.f);
 	deathBounds->setTranslationPhysical(60.f, -18.f, 0.f);
 	world->addToWorld(deathBounds);
 	b2Filter sfd;
 	sfd.categoryBits = PuppetGame::kDEAD_ZONE;
 	//sfd.maskBits = -1;
 	deathBounds->body->GetFixtureList()->SetFilterData(sfd);
-	addChild(deathBounds, 2);
 	deathBounds->setShader(shader, true);
 
 	playRandomBackgroundMusic();
@@ -199,7 +199,7 @@ void SlayTheDragon::update(Step* _step){
 }
 
 void SlayTheDragon::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	PuppetScene::render(_matrixStack, renderOptions);
+	PuppetScene::render(_matrixStack, _renderOptions);
 }
 
 void SlayTheDragon::load(){

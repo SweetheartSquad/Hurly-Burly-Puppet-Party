@@ -10,16 +10,13 @@
 
 Boulder::Boulder(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex) :
 	Item(true, _world, _categoryBits, _maskBits, _groupIndex, 25.f, 50.f, 56.f),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable(),
 	catapult(nullptr)
 {
 	componentScale = 0.016f;
 
 	TextureSampler * boulderTexSampler = RaidTheCastleResourceManager::boulder;
 	
-	boulder = new Box2DSprite(_world, boulderTexSampler, b2_dynamicBody, false, nullptr, new Transform(), componentScale);
+	boulder = new Box2DSprite(_world, boulderTexSampler, b2_dynamicBody, false, nullptr, componentScale);
 	rootComponent = boulder;
 	components.push_back(&boulder);
 	
@@ -57,7 +54,7 @@ void Boulder::update(Step* _step){
 	Item::update(_step);
 
 	// in case the boulder misses
-	glm::vec3 tv = rootComponent->transform->getTranslationVector();
+	glm::vec3 tv = rootComponent->parents.at(0)->getTranslationVector();
 	if(tv.x > 200 || tv.y < 0){
 		destroy = true;
 	}

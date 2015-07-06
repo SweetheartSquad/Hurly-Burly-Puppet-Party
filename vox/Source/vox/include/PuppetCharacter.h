@@ -2,16 +2,15 @@
 
 #include <Box2D/Box2D.h>
 
-#include "Box2DSuperSprite.h"
-#include "PuppetGame.h"
 #include <vector>
+#include <Box2DSuperSprite.h>
+#include <Box2DSprite.h>
+
+#include "PuppetGame.h"
 
 class PuppetTexturePack;
-class Box2DSprite;
-class Box2DWorld;
 class Item;
 class BehaviourManager;
-class Sprite;
 class PuppetScene;
 class ScoreIndicator;
 

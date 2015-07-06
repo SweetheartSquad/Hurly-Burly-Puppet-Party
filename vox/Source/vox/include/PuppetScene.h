@@ -15,7 +15,7 @@ class PuppetContactListener;
 class DialogHandler;
 class AccelerometerParser;
 class Box2DMeshEntity;
-class Box2DDebugDraw;
+class Box2DDebugDrawer;
 class SpriteSheetAnimation;
 class Box2DSprite;
 class SoundManager;
@@ -58,14 +58,14 @@ public:
 
 	PuppetContactListener * cl;
 	Box2DWorld * world;
-	Box2DDebugDraw * drawer;
+	Box2DDebugDrawer * drawer;
 
 	std::vector<PuppetCharacter *> players;
 
 	MeshEntity * stageFloor;
 	MeshEntity * stageFront;
 	MeshEntity * background;
-	BaseComponentShader * shader;
+	ComponentShaderBase * shader;
 
 	std::vector<Box2DMeshEntity *> boundaries;
 
@@ -88,6 +88,8 @@ public:
 	StandardFrameBuffer * screenFBO;
 	MeshEntity * sun;
 	float screenShaderSetting;
+
+	UILayer * uiLayer;
 
 	explicit PuppetScene(PuppetGame * _game, float time, float _width = 170.f, float _height = 50.f, float _size = 100.f, bool _fullCurtains = false);
 	virtual ~PuppetScene();

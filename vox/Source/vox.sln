@@ -13,25 +13,15 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
-		LibDebug|Win32 = LibDebug|Win32
-		LibRelease|Win32 = LibRelease|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B6AFC105-EAF0-41B3-BD41-75D4570CD35A}.Debug|Win32.ActiveCfg = Debug|Win32
 		{B6AFC105-EAF0-41B3-BD41-75D4570CD35A}.Debug|Win32.Build.0 = Debug|Win32
-		{B6AFC105-EAF0-41B3-BD41-75D4570CD35A}.LibDebug|Win32.ActiveCfg = LibDebug|Win32
-		{B6AFC105-EAF0-41B3-BD41-75D4570CD35A}.LibDebug|Win32.Build.0 = LibDebug|Win32
-		{B6AFC105-EAF0-41B3-BD41-75D4570CD35A}.LibRelease|Win32.ActiveCfg = LibRelease|Win32
-		{B6AFC105-EAF0-41B3-BD41-75D4570CD35A}.LibRelease|Win32.Build.0 = LibRelease|Win32
 		{B6AFC105-EAF0-41B3-BD41-75D4570CD35A}.Release|Win32.ActiveCfg = Release|Win32
 		{B6AFC105-EAF0-41B3-BD41-75D4570CD35A}.Release|Win32.Build.0 = Release|Win32
 		{E178CAF8-5E96-478C-812C-DCBA942FC878}.Debug|Win32.ActiveCfg = Debug|Win32
 		{E178CAF8-5E96-478C-812C-DCBA942FC878}.Debug|Win32.Build.0 = Debug|Win32
-		{E178CAF8-5E96-478C-812C-DCBA942FC878}.LibDebug|Win32.ActiveCfg = LibDebug|Win32
-		{E178CAF8-5E96-478C-812C-DCBA942FC878}.LibDebug|Win32.Build.0 = LibDebug|Win32
-		{E178CAF8-5E96-478C-812C-DCBA942FC878}.LibRelease|Win32.ActiveCfg = LibRelease|Win32
-		{E178CAF8-5E96-478C-812C-DCBA942FC878}.LibRelease|Win32.Build.0 = LibRelease|Win32
 		{E178CAF8-5E96-478C-812C-DCBA942FC878}.Release|Win32.ActiveCfg = Release|Win32
 		{E178CAF8-5E96-478C-812C-DCBA942FC878}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection

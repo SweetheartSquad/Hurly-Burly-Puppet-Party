@@ -2,8 +2,7 @@
 
 #include "PuppetController.h"
 #include "PuppetCharacter.h"
-#include "Accelerometer.h"
-#include "CharacterComponent.h"
+#include <Accelerometer.h>
 
 std::vector<bool> PuppetController::idsAvailable = std::vector<bool>(4, true);
 

@@ -15,9 +15,7 @@ PuppetCharacterThief::PuppetCharacterThief(bool _ai, Box2DWorld * _world, int16 
 		RapunzelResourceManager::thiefTorso,
 		RapunzelResourceManager::thiefArm,
 		RapunzelResourceManager::thiefHelmet
-	), _ai, _world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr)
+	), _ai, _world, _categoryBits, _maskBits, _groupIndex)
 {
 
 }

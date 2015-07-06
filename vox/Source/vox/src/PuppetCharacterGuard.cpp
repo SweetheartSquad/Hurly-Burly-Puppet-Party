@@ -9,7 +9,7 @@
 #include <shader\ShaderComponentTint.h>
 #include <shader\ShaderComponentAlpha.h>
 #include <RenderOptions.h>
-#include <shader\BaseComponentShader.h>
+#include <shader\ComponentShaderBase.h>
 
 #include <Item.h>
 
@@ -18,9 +18,7 @@ PuppetCharacterGuard::PuppetCharacterGuard(bool _ai, Box2DWorld * _world, int16 
 	std::rand()%2 == 0 ? RapunzelResourceManager::guard1Torso : RapunzelResourceManager::guard2Torso,
 	std::rand()%2 == 0 ? RapunzelResourceManager::guard1Arm : RapunzelResourceManager::guard2Arm,
 	std::rand()%2 == 0 ? RapunzelResourceManager::guard1Helmet : RapunzelResourceManager::guard2Helmet
-	), _ai, _world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr)
+	), _ai, _world, _categoryBits, _maskBits, _groupIndex)
 {
 	//itemHolder = armLeft;
 	behaviourManager->addBehaviour(new BehaviourPatrol(glm::vec3(0, 0, 0), glm::vec3(70.f, 0, 0), this, 10));
@@ -33,17 +31,17 @@ PuppetCharacterGuard::~PuppetCharacterGuard(){
 
 void PuppetCharacterGuard::render(vox::MatrixStack * _matrixStack, RenderOptions * _renderOptions){
 	// save the current shader settings
-	float red = static_cast<ShaderComponentTint *>(static_cast<BaseComponentShader *>(_renderOptions->shader)->components.at(2))->getRed();
-	float green = static_cast<ShaderComponentTint *>(static_cast<BaseComponentShader *>(_renderOptions->shader)->components.at(2))->getGreen();
-	float blue = static_cast<ShaderComponentTint *>(static_cast<BaseComponentShader *>(_renderOptions->shader)->components.at(2))->getBlue();
-	float alpha = static_cast<ShaderComponentAlpha *>(static_cast<BaseComponentShader *>(_renderOptions->shader)->components.at(3))->getAlpha();
+	float red = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->getRed();
+	float green = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->getGreen();
+	float blue = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->getBlue();
+	float alpha = static_cast<ShaderComponentAlpha *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(3))->getAlpha();
 
-	static_cast<ShaderComponentTint *>(static_cast<BaseComponentShader *>(_renderOptions->shader)->components.at(2))->setRed(red + (1 - control) * 3);
-	static_cast<ShaderComponentTint *>(static_cast<BaseComponentShader *>(_renderOptions->shader)->components.at(2))->setGreen(green - (1 - control) * 3);
-	static_cast<ShaderComponentTint *>(static_cast<BaseComponentShader *>(_renderOptions->shader)->components.at(2))->setBlue(blue - (1 - control) * 3);
+	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->setRed(red + (1 - control) * 3);
+	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->setGreen(green - (1 - control) * 3);
+	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->setBlue(blue - (1 - control) * 3);
 
 	if (dead){
-		static_cast<ShaderComponentAlpha *>(static_cast<BaseComponentShader *>(_renderOptions->shader)->components.at(3))->setAlpha(0.5f);
+		static_cast<ShaderComponentAlpha *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(3))->setAlpha(0.5f);
 	}
 
 	popsicleStick->render(_matrixStack, _renderOptions);
@@ -66,8 +64,8 @@ void PuppetCharacterGuard::render(vox::MatrixStack * _matrixStack, RenderOptions
 	if (indicator != nullptr){
 		indicator->render(_matrixStack, _renderOptions);
 	}
-	static_cast<ShaderComponentTint *>(static_cast<BaseComponentShader *>(_renderOptions->shader)->components.at(2))->setRed(red);
-	static_cast<ShaderComponentTint *>(static_cast<BaseComponentShader *>(_renderOptions->shader)->components.at(2))->setGreen(green);
-	static_cast<ShaderComponentTint *>(static_cast<BaseComponentShader *>(_renderOptions->shader)->components.at(2))->setBlue(blue);
-	static_cast<ShaderComponentAlpha *>(static_cast<BaseComponentShader *>(_renderOptions->shader)->components.at(3))->setAlpha(alpha);
+	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->setRed(red);
+	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->setGreen(green);
+	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->setBlue(blue);
+	static_cast<ShaderComponentAlpha *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(3))->setAlpha(alpha);
 }

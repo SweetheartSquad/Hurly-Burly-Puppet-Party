@@ -10,10 +10,7 @@
 
 
 RandomGround::RandomGround(Box2DWorld * _world, unsigned long int _numPoints, float _threshold, Texture * _texture, float _width, float _height):
-	 Box2DMeshEntity(_world, new MeshInterface(GL_QUADS, GL_STATIC_DRAW), b2_staticBody, false),
-	 NodeTransformable(new Transform()),
-	 NodeRenderable(),
-	 NodeChild(nullptr)
+	 Box2DMeshEntity(_world, new MeshInterface(GL_QUADS, GL_STATIC_DRAW), b2_staticBody, false)
 {
 	float slope = 0;
 	b2Vec2 * p = static_cast<b2Vec2 *>(calloc(_numPoints, sizeof (b2Vec2)));

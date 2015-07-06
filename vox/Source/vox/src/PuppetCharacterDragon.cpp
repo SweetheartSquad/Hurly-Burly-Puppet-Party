@@ -8,7 +8,7 @@
 #include <Box2DWorld.h>
 #include <shader\ShaderComponentHsv.h>
 #include <shader\ShaderComponentTint.h>
-#include <shader\BaseComponentShader.h>
+#include <shader\ComponentShaderBase.h>
 #include <shader\Shader.h>
 #include <RenderOptions.h>
 #include <Item.h>
@@ -29,8 +29,6 @@ PuppetCharacterDragon::PuppetCharacterDragon(bool _ai, Box2DWorld * _world, int1
 		PuppetResourceManager::getRandomFace(),
 		4.f
 	), _ai, _world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
 	fireball(nullptr),
 	playerOnFire(nullptr),
 	fireParticles(new ParticleSystem(SlayTheDragonResourceManager::itemFireParticle, _world, 0, 0, _groupIndex)),
@@ -92,8 +90,8 @@ PuppetCharacterDragon::~PuppetCharacterDragon(){
 }
 
 void PuppetCharacterDragon::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	ShaderComponentHsv * hsvShader = static_cast<ShaderComponentHsv *>(static_cast<BaseComponentShader *>(getShader())->components.at(1));
-	ShaderComponentTint * tintShader = static_cast<ShaderComponentTint *>(static_cast<BaseComponentShader *>(getShader())->components.at(2));
+	ShaderComponentHsv * hsvShader = static_cast<ShaderComponentHsv *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(1));
+	ShaderComponentTint * tintShader = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2));
 	// save the current shader settings
 	float hue = hsvShader->getHue();
 	float sat = hsvShader->getSaturation();
@@ -144,7 +142,7 @@ void PuppetCharacterDragon::render(vox::MatrixStack* _matrixStack, RenderOptions
 	tintShader->setGreen(green);
 	tintShader->setBlue(blue);
 
-	fireParticles->setShader(getShader(), true);
+	fireParticles->setShader(shader, true);
 	fireParticles->render(_matrixStack, _renderOptions);
 
     if (fireball != nullptr){
@@ -190,7 +188,7 @@ void PuppetCharacterDragon::update(Step * _step){
 	}*/
 	fireParticles->update(_step);
     if (fireball != nullptr){
-        Particle * p = fireParticles->addParticle(fireball->rootComponent->getPos(false));
+        Particle * p = fireParticles->addParticle(fireball->rootComponent->getWorldPos(false));
         p->body->SetGravityScale(-0.1f);
         p->applyAngularImpulse(vox::NumberUtils::randomFloat(-25.0f, 25.0f));
         p->setTranslationPhysical(glm::vec3(vox::NumberUtils::randomFloat(-2.f, 2.f), vox::NumberUtils::randomFloat(0.75f, 1.25f), vox::NumberUtils::randomFloat(-2.f, 2.f)), true);
@@ -198,7 +196,7 @@ void PuppetCharacterDragon::update(Step * _step){
         fireball->update(_step);
     }
 	if(playerOnFire != nullptr && !playerOnFire->dead){
-        Particle * p = fireParticles->addParticle(playerOnFire->rootComponent->getPos(false));
+        Particle * p = fireParticles->addParticle(playerOnFire->rootComponent->getWorldPos(false));
         p->body->SetGravityScale(-0.1f);
         p->applyAngularImpulse(vox::NumberUtils::randomFloat(-25.0f, 25.0f));
         p->setTranslationPhysical(glm::vec3(vox::NumberUtils::randomFloat(-2.f, 2.f), vox::NumberUtils::randomFloat(0.75f, 1.25f), vox::NumberUtils::randomFloat(-2.f, 2.f)), true);
@@ -210,7 +208,7 @@ void PuppetCharacterDragon::action(bool _forceDrop){
 	if(heldItem != nullptr){
 		if(itemJoint != nullptr){
 			/*try{
-				static_cast<PuppetScene *>(scene)->particleSystem->addParticle(PuppetResourceManager::dustParticle, fireball->getPos(false));
+				static_cast<PuppetScene *>(scene)->particleSystem->addParticle(PuppetResourceManager::dustParticle, fireball->getWorldPos(false));
 			}catch (std::exception){
 				fireball = nullptr;
 			}*/

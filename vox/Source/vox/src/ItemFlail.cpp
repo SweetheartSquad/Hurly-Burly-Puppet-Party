@@ -7,18 +7,15 @@
 #include <TextureSampler.h>
 
 ItemFlail::ItemFlail(Box2DWorld * _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex, int _damage, float _handleX, float _handleY):
-	Item(false, _world, _categoryBits, _maskBits, _groupIndex, _damage, _handleX, _handleY),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable()
+	Item(false, _world, _categoryBits, _maskBits, _groupIndex, _damage, _handleX, _handleY)
 {
 	TextureSampler * weapon = RaidTheCastleResourceManager::itemFlailGrip;
 	TextureSampler * weapon2 = RaidTheCastleResourceManager::itemFlailJoint;
 	TextureSampler * weapon3 = RaidTheCastleResourceManager::itemFlailHead;
 
-	rootComponent = handle = new Box2DSprite(_world, weapon, b2_dynamicBody, false, nullptr, new Transform(), componentScale);
-	joint = new Box2DSprite(_world, weapon2, b2_dynamicBody, false, nullptr, new Transform(), componentScale);
-	head = new Box2DSprite(_world, weapon3, b2_dynamicBody, false, nullptr, new Transform(), componentScale);
+	rootComponent = handle = new Box2DSprite(_world, weapon, b2_dynamicBody, false, nullptr, componentScale);
+	joint = new Box2DSprite(_world, weapon2, b2_dynamicBody, false, nullptr, componentScale);
+	head = new Box2DSprite(_world, weapon3, b2_dynamicBody, false, nullptr, componentScale);
 	components.push_back(&rootComponent);
 	components.push_back(&joint);
 	components.push_back(&head);

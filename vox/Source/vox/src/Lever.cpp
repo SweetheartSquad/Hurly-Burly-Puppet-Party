@@ -11,7 +11,7 @@
 #include <BehaviourManager.h>
 #include <BehaviourAttack.h>
 #include <BehaviourPatrol.h>
-#include <shader\BaseComponentShader.h>
+#include <shader\ComponentShaderBase.h>
 #include <StructureBoxingGlove.h>
 #include <SoundManager.h>
 #include <ItemSimpleWeapon.h>
@@ -21,16 +21,13 @@
 glm::vec3 Lever::towerPos;
 
 Lever::Lever(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex):
-	StructureInteractable(_world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable()
+	StructureInteractable(_world, _categoryBits, _maskBits, _groupIndex)
 {
 	componentScale = 0.005f;
 	type = -1;
 
-	rootComponent = base = new Box2DSprite(_world, RapunzelResourceManager::leverBase, b2_staticBody, false, nullptr, new Transform(), componentScale);
-	handle = new Box2DSprite(_world, RapunzelResourceManager::leverHandle, b2_dynamicBody, false, nullptr, new Transform(), componentScale);
+	rootComponent = base = new Box2DSprite(_world, RapunzelResourceManager::leverBase, b2_staticBody, false, nullptr, componentScale);
+	handle = new Box2DSprite(_world, RapunzelResourceManager::leverHandle, b2_dynamicBody, false, nullptr, componentScale);
 	
 	components.push_back(&base);
 	components.push_back(&handle);
@@ -103,7 +100,7 @@ void Lever::actuallyInteract(){
 		Item * projectile = new Item(true, world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kBOUNDARY, groupIndex);
 	
 		Box2DSprite ** test = new Box2DSprite*[1];
-		test[0] = projectile->rootComponent = new Box2DSprite(world, RapunzelResourceManager::itemSpear, b2_dynamicBody, false, nullptr, new Transform(), componentScale);
+		test[0] = projectile->rootComponent = new Box2DSprite(world, RapunzelResourceManager::itemSpear, b2_dynamicBody, false, nullptr, componentScale);
 		projectile->rootComponent->body->SetTransform(projectile->rootComponent->body->GetPosition(), glm::radians(80.f));
 		projectile->components.push_back(test);
 
@@ -147,7 +144,7 @@ void Lever::actuallyInteract(){
 		PuppetScene * ps = static_cast<PuppetScene *>(scene);
 		ItemSimpleWeapon * weapon = new ItemSimpleWeapon(weaponTex, false, world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kSTRUCTURE | PuppetGame::kBOUNDARY | PuppetGame::kGROUND, g->groupIndex, 1, 0, -weaponTex->height);
 		weapon->addToLayeredScene(ps, 1);
-		weapon->setShader(getShader(), true);
+		weapon->setShader(shader, true);
 		g->itemToPickup = weapon;
 		ps->addChild(weapon, 1);
 		weapon->snapComponents(g->itemHolder);

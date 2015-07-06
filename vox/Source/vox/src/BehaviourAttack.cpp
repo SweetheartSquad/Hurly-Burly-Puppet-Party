@@ -37,7 +37,7 @@ void BehaviourAttack::update(Step * _step){
 	float closestDist = 99999999.f;
 	glm::vec3 closestDir(0,0,0);
 	for(Box2DSuperSprite * t : targets){
-		glm::vec3 dir = source->rootComponent->getPos(false) - t->rootComponent->getPos(false);
+		glm::vec3 dir = source->rootComponent->getWorldPos(false) - t->rootComponent->getWorldPos(false);
 		float distance = dir.x * dir.x + dir.y * dir.y;
 		if(distance < closestDist){
 			closestDist = distance;

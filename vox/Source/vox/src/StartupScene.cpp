@@ -5,11 +5,10 @@
 #include <PuppetResourceManager.h>
 #include <Sprite.h>
 #include <MeshInterface.h>
-#include <shader\BaseComponentShader.h>
+#include <shader\ComponentShaderBase.h>
 #include <SoundManager.h>
 #include <PuppetController.h>
 #include <FollowCamera.h>
-#include <node/ShiftKiddie.h>
 #include <PuppetCharacterKnight.h>
 #include <Box2DSprite.h>
 #include <BehaviourAttack.h>
@@ -22,10 +21,10 @@ StartupScene::StartupScene(PuppetGame * _game) :
 	playerCharacter3(new PuppetCharacterKnight(false, 2, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY, -3)),
 	playerCharacter4(new PuppetCharacterKnight(false, 3, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY, -4))
 {
-	splashMessage = new Sprite(nullptr, new Transform());
+	splashMessage = new Sprite();
 	splashMessage->mesh->pushTexture2D(PuppetResourceManager::startupSplash);
 	splashMessage->setShader(shader, true);
-	splashMessage->transform->translate(1920.f*0.5, 1080.f*0.5f, 0);
+	splashMessage->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0);
 
 	populateBackground();
 

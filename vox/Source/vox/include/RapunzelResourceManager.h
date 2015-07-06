@@ -2,7 +2,6 @@
 
 #include "ResourceManager.h"
 #include "Texture.h"
-#include "CharacterComponent.h"
 
 class TextureSampler;
 class Texture;

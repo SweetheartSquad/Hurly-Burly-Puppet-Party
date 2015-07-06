@@ -4,22 +4,21 @@
 #include <PuppetResourceManager.h>
 #include <MeshInterface.h>
 #include <TextureSampler.h>
-#include <shader\BaseComponentShader.h>
+#include <shader\ComponentShaderBase.h>
 #include <shader\ShaderComponentHsv.h>
 #include <RenderOptions.h>
 #include <ParticleSystem.h>
 
-ScoreIndicator::ScoreIndicator(unsigned long int _id, Box2DWorld * _world) : 
-	Sprite(nullptr, transform),
-	NodeChild(nullptr),
-	NodeTransformable(new Transform()),
+ScoreIndicator::ScoreIndicator(unsigned long int _id, Box2DWorld * _world) :
 	id(_id),
 	scoreParticles(new ParticleSystem(PuppetResourceManager::scoreParticles.at(0), _world, 0, 0, 0))
 {
 	float pixels = 100;
-	transform->scale(pixels, pixels, 1);
-	transform->translate((3.5f-id) * 1920.f*0.25f, pixels*1.1f, 10.f);
-	//scoreIndicator->transform->rotate(90, 0, 1, 0, kOBJECT);
+
+	 // this might be wrong
+	childTransform->scale(pixels, pixels, 1);
+	childTransform->translate((3.5f-id) * 1920.f*0.25f, pixels*1.1f, 10.f);
+
 	mesh->pushTexture2D(PuppetResourceManager::scoreIndicators.at(id));
 }
 
@@ -28,7 +27,7 @@ ScoreIndicator::~ScoreIndicator(){
 }
 
 void ScoreIndicator::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	ShaderComponentHsv * hsvShader = static_cast<ShaderComponentHsv *>(static_cast<BaseComponentShader *>(getShader())->components.at(1));
+	ShaderComponentHsv * hsvShader = static_cast<ShaderComponentHsv *>(static_cast<ComponentShaderBase *>(getShader())->getComponentAt(1));
 	float hue = hsvShader->getHue();
 	float sat = hsvShader->getSaturation();
 	float newHue = hue, newSat = 1;

@@ -19,7 +19,7 @@
 #include <MeshEntity.h>
 #include <MeshInterface.h>
 #include <MeshFactory.h>
-#include <shader/BaseComponentShader.h>
+#include <shader/ComponentShaderBase.h>
 #include <keyboard.h>
 #include <Texture.h>
 #include <TextureSampler.h>
@@ -59,10 +59,10 @@ RaidTheCastle::RaidTheCastle(PuppetGame* _game):
 	addChild(castle, 0);
 
 	TextureSampler * splashMessageTextureSampler = RaidTheCastleResourceManager::splashMessage;
-	splashMessage = new Sprite(nullptr, new Transform());
+	splashMessage = new Sprite();
 	splashMessage->mesh->pushTexture2D(splashMessageTextureSampler->texture);
 	splashMessage->setShader(shader, true);
-	splashMessage->transform->translate(1920.f*0.5, 1080.f*0.5f, 0);
+	splashMessage->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0);
 
 	players.push_back(playerCharacter1);
 	players.push_back(playerCharacter2);
@@ -180,7 +180,7 @@ void RaidTheCastle::update(Step* _step){
 }
 
 void RaidTheCastle::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	PuppetScene::render(_matrixStack, renderOptions);
+	PuppetScene::render(_matrixStack, _renderOptions);
 }
 
 void RaidTheCastle::load(){

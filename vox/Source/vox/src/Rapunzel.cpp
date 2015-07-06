@@ -19,7 +19,7 @@
 #include <MeshEntity.h>
 #include <MeshInterface.h>
 #include <MeshFactory.h>
-#include <shader/BaseComponentShader.h>
+#include <shader/ComponentShaderBase.h>
 #include <keyboard.h>
 #include <Texture.h>
 #include <TextureSampler.h>
@@ -44,8 +44,8 @@
 
 Rapunzel::Rapunzel(PuppetGame* _game):
 	PuppetScene(_game, 50.f, 68.f),
-	tower(new Box2DSprite(world, RapunzelResourceManager::towerTower, b2_staticBody, false, nullptr, new Transform(), 0.03f)),
-	castleCatwalk(new Box2DSprite(world, RapunzelResourceManager::towerCatwalk, b2_staticBody, false, nullptr, new Transform(), 0.03f)),
+	tower(new Box2DSprite(world, RapunzelResourceManager::towerTower, b2_staticBody, false, nullptr, 0.03f)),
+	castleCatwalk(new Box2DSprite(world, RapunzelResourceManager::towerCatwalk, b2_staticBody, false, nullptr, 0.03f)),
 	playerCharacter1(new PuppetCharacterThief(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY, -1)),
 	playerCharacter2(new PuppetCharacterThief(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY, -2)),
 	playerCharacter3(new PuppetCharacterThief(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY, -3)),
@@ -56,17 +56,17 @@ Rapunzel::Rapunzel(PuppetGame* _game):
 	populateBackground();
 	cl = new RapunzelContactListener(this);
 
-	splashMessage = new Sprite(nullptr, new Transform());
+	splashMessage = new Sprite();
 	splashMessage->mesh->pushTexture2D(RapunzelResourceManager::splashMessage->texture);
 	splashMessage->setShader(shader, true);
-	splashMessage->transform->translate(1920.f*0.5, 1080.f*0.5f, 0.f);
+	splashMessage->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0.f);
 
 	Sprite * towerBg = new Sprite();
 	addChild(towerBg, 0);
 	towerBg->setShader(shader, true);
 	towerBg->pushTextureSampler(RapunzelResourceManager::towerBackground);
-	towerBg->transform->translate(2.f, 0.f, 0.f);
-	towerBg->transform->scale(2.6f, 2.6f, 1.f);
+	towerBg->parents.at(0)->translate(2.f, 0.f, 0.f);
+	towerBg->parents.at(0)->scale(2.6f, 2.6f, 1.f);
 
 	players.push_back(playerCharacter1);
 	players.push_back(playerCharacter2);
@@ -133,16 +133,16 @@ Rapunzel::Rapunzel(PuppetGame* _game):
 	}
 	
 	tower->setTranslationPhysical(glm::vec3(glm::vec3(60.f, tower->getCorrectedHeight(), 0.f)));
-    castleCatwalk->setTranslationPhysical(glm::vec3(tower->getPos().x - castleCatwalk->getCorrectedWidth() - 3.5f, tower->getPos().y - tower->getCorrectedHeight() * 0.08, 0));
+    castleCatwalk->setTranslationPhysical(glm::vec3(tower->getWorldPos().x - castleCatwalk->getCorrectedWidth() - 3.5f, tower->getWorldPos().y - tower->getCorrectedHeight() * 0.08, 0));
 	
-	glm::vec3 catwalkPos = glm::vec3(castleCatwalk->getPos().x, castleCatwalk->getPos().y + castleCatwalk->getCorrectedHeight(), 0.f);
+	glm::vec3 catwalkPos = glm::vec3(castleCatwalk->getWorldPos().x, castleCatwalk->getWorldPos().y + castleCatwalk->getCorrectedHeight(), 0.f);
 
 	playerCharacter1->translateComponents(glm::vec3(10.f, 5.f, 0.f));
 	playerCharacter2->translateComponents(glm::vec3(20.f, 5.f, 0.f));
 	playerCharacter3->translateComponents(glm::vec3(30.f, 5.f, 0.f));
 	playerCharacter4->translateComponents(catwalkPos + glm::vec3(0.f, 5.f, 0.f));
 	
-	Lever::towerPos = tower->getPos(false);
+	Lever::towerPos = tower->getWorldPos(false);
 
 	Hair * hair = new Hair(world, PuppetGame::kGROUND, PuppetGame::kPLAYER, 0);
 	addChild(hair, 1);
@@ -181,7 +181,7 @@ Rapunzel::Rapunzel(PuppetGame* _game):
 	goldPile->setShader(shader, true);
 	goldPile->translateComponents(catwalkPos - glm::vec3(20.f, -1.5f, 0.f));
 	goldPile->addToLayeredScene(this, 1);
-	goldPile->rootComponent->transform->scale(10.0f, 10.0f, 1.0f);
+	goldPile->rootComponent->parents.at(0)->scale(10.0f, 10.0f, 1.0f);
 	gameCam->addTarget(goldPile);
 	playRandomBackgroundMusic();
 	
@@ -229,7 +229,7 @@ void Rapunzel::update(Step* _step){
 }
 
 void Rapunzel::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	PuppetScene::render(_matrixStack, renderOptions);
+	PuppetScene::render(_matrixStack, _renderOptions);
 }
 
 void Rapunzel::load(){

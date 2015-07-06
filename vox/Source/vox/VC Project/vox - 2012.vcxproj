@@ -5,108 +5,27 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="LibDebug|Win32">
-      <Configuration>LibDebug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="LibRelease|Win32">
-      <Configuration>LibRelease</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="../src/Accelerometer.cpp" />
-    <ClCompile Include="../src/AccelerometerParser.cpp" />
-    <ClCompile Include="../src/Arduino.cpp" />
     <ClCompile Include="../src/Behaviour.cpp" />
     <ClCompile Include="../src/BehaviourAttack.cpp" />
     <ClCompile Include="../src/BehaviourFollow.cpp" />
     <ClCompile Include="../src/BehaviourManager.cpp" />
     <ClCompile Include="../src/BehaviourPatrol.cpp" />
-    <ClCompile Include="../src/BitmapFont.cpp" />
     <ClCompile Include="../src/Boulder.cpp" />
-    <ClCompile Include="../src/Box2DDebugDraw.cpp" />
-    <ClCompile Include="../src/Box2DJoint.cpp" />
-    <ClCompile Include="../src/Box2DMeshEntity.cpp" />
-    <ClCompile Include="../src/Box2DSprite.cpp" />
-    <ClCompile Include="../src/Box2DSuperSprite.cpp" />
-    <ClCompile Include="../src/Box2DWorld.cpp" />
-    <ClCompile Include="../src/Camera.cpp" />
     <ClCompile Include="../src/Castle.cpp" />
     <ClCompile Include="../src/Catapult.cpp" />
-    <ClCompile Include="../src/Character.cpp" />
-    <ClCompile Include="../src/Character1.cpp" />
-    <ClCompile Include="../src/Character2.cpp" />
-    <ClCompile Include="../src/Character3.cpp" />
-    <ClCompile Include="../src/Character4.cpp" />
-    <ClCompile Include="../src/CharacterComponent.cpp" />
-    <ClCompile Include="../src/ControllableOrthographicCamera.cpp" />
-    <ClCompile Include="../src/Cube.cpp" />
-    <ClCompile Include="../src/CylinderScreen.cpp" />
-    <ClCompile Include="../src/DepthFrameBuffer.cpp" />
-    <ClCompile Include="../src/DialogAction.cpp" />
-    <ClCompile Include="../src/DialogEvent.cpp" />
-    <ClCompile Include="../src/DialogHandler.cpp" />
-    <ClCompile Include="../src/DirectionalLight.cpp" />
-    <ClCompile Include="../src/Entity.cpp" />
-    <ClCompile Include="../src/FakeAnimation.cpp" />
-    <ClCompile Include="../src/FileUtils.cpp" />
-    <ClCompile Include="../src/FrameBufferChannel.cpp" />
-    <ClCompile Include="../src/FrameBufferInterface.cpp" />
-    <ClCompile Include="../src/Game.cpp" />
-    <ClCompile Include="../src/GameJamCharacter.cpp" />
-    <ClCompile Include="../src/GameJamContactListener.cpp" />
-    <ClCompile Include="../src/GameJamGame.cpp" />
-    <ClCompile Include="../src/GameJamScene.cpp" />
-    <ClCompile Include="../src/GameJamSceneIndoor.cpp" />
-    <ClCompile Include="../src/GameJamSceneOutdoor.cpp" />
-    <ClCompile Include="../src/GLUtils.cpp" />
-    <ClCompile Include="../src/FollowCamera.cpp" />
     <ClCompile Include="../src/Hair.cpp" />
     <ClCompile Include="../src/Item.cpp" />
     <ClCompile Include="../src/ItemFlail.cpp" />
     <ClCompile Include="../src/ItemProjectileWeapon.cpp" />
     <ClCompile Include="../src/ItemSimpleWeapon.cpp" />
-    <ClCompile Include="../src/jsoncpp.cpp" />
-    <ClCompile Include="../src/Keyboard.cpp" />
-    <ClCompile Include="../src/LayeredScene.cpp" />
     <ClCompile Include="../src/Lever.cpp" />
-    <ClCompile Include="../src/Light.cpp" />
-    <ClCompile Include="../src/ListenAction.cpp" />
     <ClCompile Include="../src/Main.cpp" />
-    <ClCompile Include="../src/Material.cpp" />
-    <ClCompile Include="../src/MatrixStack.cpp" />
-    <ClCompile Include="../src/MeshEntity.cpp" />
-    <ClCompile Include="../src/MeshFactory.cpp" />
-    <ClCompile Include="../src/MeshInterface.cpp" />
-    <ClCompile Include="../src/Mouse.cpp" />
-    <ClCompile Include="../src/MousePerspectiveCamera.cpp" />
-    <ClCompile Include="../src/node/Node.cpp" />
-    <ClCompile Include="../src/node/NodeBox2DBody.cpp" />
-    <ClCompile Include="../src/node/NodeChild.cpp" />
-    <ClCompile Include="../src/node/NodeHierarchical.cpp" />
-    <ClCompile Include="../src/node/NodeLoadable.cpp" />
-    <ClCompile Include="../src/node/NodeParent.cpp" />
-    <ClCompile Include="../src/node/NodeRenderable.cpp" />
-    <ClCompile Include="../src/node/NodeResource.cpp" />
-    <ClCompile Include="../src/node/NodeSelectable.cpp" />
-    <ClCompile Include="../src/node/ShiftKiddie.cpp" />
-    <ClCompile Include="../src/NumberUtils.cpp" />
-    <ClCompile Include="../src/OrthographicCamera.cpp" />
-    <ClCompile Include="../src/ParticleSystem.cpp" />
-    <ClCompile Include="../src/PerspectiveCamera.cpp" />
-    <ClCompile Include="../src/Plane.cpp" />
-    <ClCompile Include="../src/Point.cpp" />
-    <ClCompile Include="../src/PointLight.cpp" />
-    <ClCompile Include="../src/poly2Tri/common/shapes.cc" />
-    <ClCompile Include="../src/poly2Tri/sweep/advancing_front.cc" />
-    <ClCompile Include="../src/poly2Tri/sweep/cdt.cc" />
-    <ClCompile Include="../src/poly2Tri/sweep/sweep.cc" />
-    <ClCompile Include="../src/poly2Tri/sweep/sweep_context.cc" />
     <ClCompile Include="../src/PuppetCharacter.cpp" />
     <ClCompile Include="../src/PuppetCharacterArcher.cpp" />
     <ClCompile Include="../src/PuppetCharacterCastleChampion.cpp" />
@@ -123,70 +42,21 @@
     <ClCompile Include="../src/RaidTheCastle.cpp" />
     <ClCompile Include="../src/RaidTheCastleContactListener.cpp" />
     <ClCompile Include="../src/RaidTheCastleResourceManager.cpp" />
-    <ClCompile Include="../src/RandomCharacter.cpp" />
     <ClCompile Include="../src/RandomGround.cpp" />
     <ClCompile Include="../src/Rapunzel.cpp" />
     <ClCompile Include="../src/RapunzelContactListener.cpp" />
     <ClCompile Include="../src/RapunzelResourceManager.cpp" />
-    <ClCompile Include="../src/Rectangle.cpp" />
-    <ClCompile Include="../src/RenderOptions.cpp" />
-    <ClCompile Include="../src/RenderSurface.cpp" />
-    <ClCompile Include="../src/Resource.cpp" />
-    <ClCompile Include="../src/ResourceManager.cpp" />
-    <ClCompile Include="../src/SayAction.cpp" />
-    <ClCompile Include="../src/Scene.cpp" />
-    <ClCompile Include="../src/Scene2D.cpp" />
-    <ClCompile Include="../src/SceneRoot.cpp" />
-    <ClCompile Include="../src/shader/BaseComponentShader.cpp" />
-    <ClCompile Include="../src/shader/ShaderComponentBlinn.cpp" />
-    <ClCompile Include="../src/shader/BlurShader.cpp" />
-    <ClCompile Include="../src/shader/DepthMapShader.cpp" />
-    <ClCompile Include="../src/shader/ShaderComponentDiffuse.cpp" />
-    <ClCompile Include="../src/shader/GeometryComponent.cpp" />
-    <ClCompile Include="../src/shader/ShaderComponentHsv.cpp" />
-    <ClCompile Include="../src/shader/ShaderComponentPhong.cpp" />
-    <ClCompile Include="../src/shader/Shader.cpp" />
-    <ClCompile Include="../src/shader/ShaderComponent.cpp" />
-    <ClCompile Include="../src/shader/ShaderLoader.cpp" />
-    <ClCompile Include="../src/shader/ShaderComponentShadow.cpp" />
-    <ClCompile Include="../src/shader/SharedComponentShaderMethods.cpp" />
-    <ClCompile Include="../src/shader/ShaderComponentTexture.cpp" />
-    <ClCompile Include="../src/shader/VoxelComponent.cpp" />
     <ClCompile Include="../src/SlayTheDragon.cpp" />
     <ClCompile Include="../src/SlayTheDragonContactListener.cpp" />
     <ClCompile Include="../src/SlayTheDragonResourceManager.cpp" />
-    <ClCompile Include="../src/Sound.cpp" />
-    <ClCompile Include="../src/SoundManager.cpp" />
-    <ClCompile Include="../src/Sprite.cpp" />
-    <ClCompile Include="../src/SpriteMesh.cpp" />
-    <ClCompile Include="../src/SpriteSheet.cpp" />
-    <ClCompile Include="../src/SpriteSheetAnimation.cpp" />
-    <ClCompile Include="../src/StandardFrameBuffer.cpp" />
-    <ClCompile Include="../src/Step.cpp" />
-    <ClCompile Include="../src/StringUtils.cpp" />
     <ClCompile Include="../src/Structure.cpp" />
-    <ClCompile Include="../src/System.cpp" />
-    <ClCompile Include="../src/TestCharacter.cpp" />
     <ClCompile Include="../src/PuppetGame.cpp" />
-    <ClCompile Include="../src/TestScene2D.cpp" />
-    <ClCompile Include="../src/TextChunk.cpp" />
-    <ClCompile Include="../src/Texture.cpp" />
-    <ClCompile Include="../src/Transform.cpp" />
     <ClCompile Include="../src/VictoryScene.cpp" />
-    <ClCompile Include="../src/Vox.cpp" />
-    <ClCompile Include="../src/VoxelJoint.cpp" />
-    <ClCompile Include="../src/VoxelMesh.cpp" />
-    <ClCompile Include="../src/VoxMatrices.cpp" />
-    <ClCompile Include="../src/VoxRenderOptions.cpp" />
-    <ClCompile Include="../src/Particle.cpp" />
     <ClCompile Include="../src/Fortification.cpp" />
     <ClCompile Include="../src/BehaviourAttackThrow.cpp" />
     <ClCompile Include="../src/ItemFireball.cpp" />
     <ClCompile Include="../src/ItemFireballLauncher.cpp" />
-    <ClCompile Include="../src/shader/ShaderComponentAlpha.cpp" />
-    <ClCompile Include="../src/shader/ShaderComponentTint.cpp" />
     <ClCompile Include="../src/StructureBreakable.cpp" />
-    <ClCompile Include="../src/TextureSampler.cpp" />
     <ClCompile Include="../src/StructureBoxingGlove.cpp" />
     <ClCompile Include="../src/ItemGold.cpp" />
     <ClCompile Include="../src/StructureGold.cpp" />
@@ -199,102 +69,20 @@
     <ClCompile Include="..\src\StartupScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="../include/Accelerometer.h" />
-    <ClInclude Include="../include/AccelerometerParser.h" />
-    <ClInclude Include="../include/Animation.h" />
-    <ClInclude Include="../include/Arduino.h" />
     <ClInclude Include="../include/Behaviour.h" />
     <ClInclude Include="../include/BehaviourAttack.h" />
     <ClInclude Include="../include/BehaviourFollow.h" />
     <ClInclude Include="../include/BehaviourManager.h" />
     <ClInclude Include="../include/BehaviourPatrol.h" />
-    <ClInclude Include="../include/BitmapFont.h" />
     <ClInclude Include="../include/Boulder.h" />
-    <ClInclude Include="../include/Box2DDebugDraw.h" />
-    <ClInclude Include="../include/Box2DJoint.h" />
-    <ClInclude Include="../include/Box2DMeshEntity.h" />
-    <ClInclude Include="../include/Box2DSprite.h" />
-    <ClInclude Include="../include/Box2DSuperSprite.h" />
-    <ClInclude Include="../include/Box2DWorld.h" />
-    <ClInclude Include="../include/Camera.h" />
     <ClInclude Include="../include/Castle.h" />
     <ClInclude Include="../include/Catapult.h" />
-    <ClInclude Include="../include/Character.h" />
-    <ClInclude Include="../include/Character1.h" />
-    <ClInclude Include="../include/Character2.h" />
-    <ClInclude Include="../include/Character3.h" />
-    <ClInclude Include="../include/Character4.h" />
-    <ClInclude Include="../include/CharacterComponent.h" />
-    <ClInclude Include="../include/ControllableOrthographicCamera.h" />
-    <ClInclude Include="../include/Cube.h" />
-    <ClInclude Include="../include/CylinderScreen.h" />
-    <ClInclude Include="../include/DepthFrameBuffer.h" />
-    <ClInclude Include="../include/DialogAction.h" />
-    <ClInclude Include="../include/DialogEvent.h" />
-    <ClInclude Include="../include/DialogHandler.h" />
-    <ClInclude Include="../include/Dimension.h" />
-    <ClInclude Include="../include/DirectionalLight.h" />
-    <ClInclude Include="../include/Easing.h" />
-    <ClInclude Include="../include/Entity.h" />
-    <ClInclude Include="../include/FakeAnimation.h" />
-    <ClInclude Include="../include/FileUtils.h" />
-    <ClInclude Include="../include/FrameBufferChannel.h" />
-    <ClInclude Include="../include/FrameBufferInterface.h" />
-    <ClInclude Include="../include/FrameBufferVertex.h" />
-    <ClInclude Include="../include/Game.h" />
-    <ClInclude Include="../include/GameJamCategory.h" />
-    <ClInclude Include="../include/GameJamCharacter.h" />
-    <ClInclude Include="../include/GameJamContactListener.h" />
-    <ClInclude Include="../include/GameJamGame.h" />
-    <ClInclude Include="../include/GameJamScene.h" />
-    <ClInclude Include="../include/GameJamSceneOutdoor.h" />
-    <ClInclude Include="../include/GLUtils.h" />
-    <ClInclude Include="../include/FollowCamera.h" />
     <ClInclude Include="../include/Hair.h" />
     <ClInclude Include="../include/Item.h" />
     <ClInclude Include="../include/ItemFlail.h" />
     <ClInclude Include="../include/ItemProjectileWeapon.h" />
     <ClInclude Include="../include/ItemSimpleWeapon.h" />
-    <ClInclude Include="../include/json/json-forwards.h" />
-    <ClInclude Include="../include/json/json.h" />
-    <ClInclude Include="../include/Keyboard.h" />
-    <ClInclude Include="../include/LayeredScene.h" />
     <ClInclude Include="../include/Lever.h" />
-    <ClInclude Include="../include/Light.h" />
-    <ClInclude Include="../include/ListenAction.h" />
-    <ClInclude Include="../include/Material.h" />
-    <ClInclude Include="../include/MatrixStack.h" />
-    <ClInclude Include="../include/MeshEntity.h" />
-    <ClInclude Include="../include/MeshFactory.h" />
-    <ClInclude Include="../include/MeshInterface.h" />
-    <ClInclude Include="../include/Mouse.h" />
-    <ClInclude Include="../include/MousePerspectiveCamera.h" />
-    <ClInclude Include="../include/node/Node.h" />
-    <ClInclude Include="../include/node/NodeBox2DBody.h" />
-    <ClInclude Include="../include/node/NodeChild.h" />
-    <ClInclude Include="../include/node/NodeHierarchical.h" />
-    <ClInclude Include="../include/node/NodeLoadable.h" />
-    <ClInclude Include="../include/node/NodeParent.h" />
-    <ClInclude Include="../include/node/NodeRenderable.h" />
-    <ClInclude Include="../include/node/NodeResource.h" />
-    <ClInclude Include="../include/node/NodeSelectable.h" />
-    <ClInclude Include="../include/node/NodeTransformable.h" />
-    <ClInclude Include="../include/node/NodeUpdatable.h" />
-    <ClInclude Include="../include/node/ShiftKiddie.h" />
-    <ClInclude Include="../include/NumberUtils.h" />
-    <ClInclude Include="../include/OrthographicCamera.h" />
-    <ClInclude Include="../include/ParticleSystem.h" />
-    <ClInclude Include="../include/PerspectiveCamera.h" />
-    <ClInclude Include="../include/Plane.h" />
-    <ClInclude Include="../include/Point.h" />
-    <ClInclude Include="../include/PointLight.h" />
-    <ClInclude Include="../include/poly2Tri/common/shapes.h" />
-    <ClInclude Include="../include/poly2Tri/common/utils.h" />
-    <ClInclude Include="../include/poly2Tri/poly2tri.h" />
-    <ClInclude Include="../include/poly2Tri/sweep/advancing_front.h" />
-    <ClInclude Include="../include/poly2Tri/sweep/cdt.h" />
-    <ClInclude Include="../include/poly2Tri/sweep/sweep.h" />
-    <ClInclude Include="../include/poly2Tri/sweep/sweep_context.h" />
     <ClInclude Include="../include/PuppetCharacter.h" />
     <ClInclude Include="../include/PuppetCharacterArcher.h" />
     <ClInclude Include="../include/PuppetCharacterCastleChampion.h" />
@@ -311,74 +99,21 @@
     <ClInclude Include="../include/RaidTheCastle.h" />
     <ClInclude Include="../include/RaidTheCastleContactListener.h" />
     <ClInclude Include="../include/RaidTheCastleResourceManager.h" />
-    <ClInclude Include="../include/RandomCharacter.h" />
     <ClInclude Include="../include/RandomGround.h" />
     <ClInclude Include="../include/Rapunzel.h" />
     <ClInclude Include="../include/RapunzelContactListener.h" />
     <ClInclude Include="../include/RapunzelResourceManager.h" />
-    <ClInclude Include="../include/Rectangle.h" />
-    <ClInclude Include="../include/RenderOptions.h" />
-    <ClInclude Include="../include/RenderSurface.h" />
-    <ClInclude Include="../include/Resource.h" />
-    <ClInclude Include="../include/ResourceManager.h" />
-    <ClInclude Include="../include/SayAction.h" />
-    <ClInclude Include="../include/Scene.h" />
-    <ClInclude Include="../include/Scene2D.h" />
-    <ClInclude Include="../include/SceneRoot.h" />
-    <ClInclude Include="../include/shader/BaseComponentShader.h" />
-    <ClInclude Include="../include/shader/ShaderComponentBlinn.h" />
-    <ClInclude Include="../include/shader/BlurShader.h" />
-    <ClInclude Include="../include/shader/DepthMapShader.h" />
-    <ClInclude Include="../include/shader/ShaderComponentDiffuse.h" />
-    <ClInclude Include="../include/shader/GeometryComponent.h" />
-    <ClInclude Include="../include/shader/ShaderComponentHsv.h" />
-    <ClInclude Include="../include/shader/ShaderComponentPhong.h" />
-    <ClInclude Include="../include/shader/Shader.h" />
-    <ClInclude Include="../include/shader/ShaderComponent.h" />
-    <ClInclude Include="../include/shader/ShaderLoader.h" />
-    <ClInclude Include="../include/shader/ShaderVariables.h" />
-    <ClInclude Include="../include/shader/ShaderComponentShadow.h" />
-    <ClInclude Include="../include/shader/SharedComponentShaderMethods.h" />
-    <ClInclude Include="../include/shader/ShaderComponentTexture.h" />
-    <ClInclude Include="../include/shader/VoxelComponent.h" />
     <ClInclude Include="../include/SlayTheDragon.h" />
     <ClInclude Include="../include/SlayTheDragonContactListener.h" />
     <ClInclude Include="../include/SlayTheDragonResourceManager.h" />
-    <ClInclude Include="../include/Sound.h" />
-    <ClInclude Include="../include/SoundManager.h" />
-    <ClInclude Include="../include/Sprite.h" />
-    <ClInclude Include="../include/SpriteMesh.h" />
-    <ClInclude Include="../include/SpriteSheet.h" />
-    <ClInclude Include="../include/SpriteSheetAnimation.h" />
-    <ClInclude Include="../include/StandardFrameBuffer.h" />
-    <ClInclude Include="../include/Step.h" />
-    <ClInclude Include="../include/StringUtils.h" />
     <ClInclude Include="../include/Structure.h" />
-    <ClInclude Include="../include/System.h" />
-    <ClInclude Include="../include/TestCharacter.h" />
     <ClInclude Include="../include/PuppetGame.h" />
-    <ClInclude Include="../include/TestScene2D.h" />
-    <ClInclude Include="../include/TextChunk.h" />
-    <ClInclude Include="../include/Texture.h" />
-    <ClInclude Include="../include/Transform.h" />
-    <ClInclude Include="../include/Tween.h" />
-    <ClInclude Include="../include/Vertex.h" />
     <ClInclude Include="../include/VictoryScene.h" />
-    <ClInclude Include="../include/Vox.h" />
-    <ClInclude Include="../include/VoxelJoint.h" />
-    <ClInclude Include="../include/VoxelMesh.h" />
-    <ClInclude Include="../include/VoxMatrices.h" />
-    <ClInclude Include="../include/VoxRenderOptions.h" />
-    <ClInclude Include="../src/GameJamSceneIndoor.h" />
     <ClInclude Include="../include/Fortification.h" />
     <ClInclude Include="../include/BehaviourAttackThrow.h" />
     <ClInclude Include="../include/ItemFireball.h" />
     <ClInclude Include="../include/ItemFireballLauncher.h" />
-    <ClInclude Include="../include/Particle.h" />
     <ClInclude Include="../include/StructureBreakable.h" />
-    <ClInclude Include="../include/shader/ShaderComponentAlpha.h" />
-    <ClInclude Include="../include/shader/ShaderComponentTint.h" />
-    <ClInclude Include="../include/TextureSampler.h" />
     <ClInclude Include="../include/StructureBoxingGlove.h" />
     <ClInclude Include="../include/ItemGold.h" />
     <ClInclude Include="../include/StructureGold.h" />
@@ -403,23 +138,10 @@
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LibDebug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LibRelease|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -430,55 +152,28 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\voxSettings.props" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='LibDebug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\voxSettings.props" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\voxSettings.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='LibRelease|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\voxSettings.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\include;$(SOIL_DIR)\src;$(GLEW_DIR)\include;$(GLFW_DIR)\include;$(GLM_DIR);$(ZPLAY_DIR);$(BOX2D_DIR);$(IncludePath)</IncludePath>
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(ENGINE_DIR)\Source\S-Tengine2\include;..\include;$(SOIL_DIR)\src;$(GLEW_DIR)\include;$(GLFW_DIR)\include;$(GLM_DIR);$(FREETYPE_DIR)\include;$(OPENAL_DIR)\include;$(CPPREST_DIR)\Release\include;$(BOX2D_DIR);$(BULLET_DIR)\src;$(IncludePath)</IncludePath>
     <SourcePath>..\src;$(SourcePath)</SourcePath>
     <OutDir>..\..\..\Output\$(ProjectName)-$(Configuration)\</OutDir>
     <IntDir>..\..\..\Output\junk\$(ProjectName)-$(Configuration)\</IntDir>
-    <LibraryPath>$(GLEW_DIR)\lib\Release\Win32;$(GLFW_DIR)\lib-msvc110;$(SOIL_DIR)\projects\VC9\Debug;$(ZPLAY_DIR);$(BOX2D_DIR)\Build\vs2013\bin\x32\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(GLEW_DIR)\lib\Release\Win32;$(GLFW_DIR)\src\Debug;$(SOIL_DIR)\projects\VC9\Debug;$(OPENAL_DIR)\libs\Win32;$(CPPREST_DIR)\Binaries\Win32\Debug;$(BOX2D_DIR)\Build\vs2013\bin\x32\Debug;$(FREETYPE_DIR)\objs\vc2012\Win32;$(BULLET_DIR)\lib;$(LibraryPath)</LibraryPath>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LibDebug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
-    <IncludePath>..\include;$(SOIL_DIR)\src;$(GLEW_DIR)\include;$(GLFW_DIR)\include;$(GLM_DIR);$(IncludePath)</IncludePath>
-    <SourcePath>..\src;$(SourcePath)</SourcePath>
-    <OutDir>..\..\..\Output\$(ProjectName)-$(Configuration)\</OutDir>
-    <IntDir>..\..\..\Output\junk\$(ProjectName)-$(Configuration)\</IntDir>
-    <LibraryPath>$(GLEW_DIR)\lib\Release\Win32;$(GLFW_DIR)\lib-msvc110;$(SOIL_DIR)\lib;$(ZPLAY_DIR);$(BOX2D_DIR)\Build\vs2013\bin\x32\Debug;$(LibraryPath)</LibraryPath>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <RunCodeAnalysis>false</RunCodeAnalysis>
-    <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\include;$(SOIL_DIR)\src;$(GLEW_DIR)\include;$(GLFW_DIR)\include;$(GLM_DIR);$(ZPLAY_DIR);$(BOX2D_DIR);$(IncludePath)</IncludePath>
+    <IncludePath>$(ENGINE_DIR)\Source\S-Tengine2\include;..\include;$(SOIL_DIR)\src;$(GLEW_DIR)\include;$(GLFW_DIR)\include;$(GLM_DIR);$(OPENAL_DIR)\include;$(BOX2D_DIR);$(FREETYPE_DIR)\include;$(CPPREST_DIR)\Release\include;$(BULLET_DIR)\src;$(IncludePath)</IncludePath>
     <SourcePath>..\src;$(SourcePath)</SourcePath>
     <OutDir>..\..\..\Output\$(ProjectName)-$(Configuration)\</OutDir>
     <IntDir>..\..\..\Output\junk\$(ProjectName)-$(Configuration)\</IntDir>
-    <LibraryPath>$(GLEW_DIR)\lib\Release\Win32;$(GLFW_DIR)\lib-msvc110;$(SOIL_DIR)\projects\VC9\Release;$(ZPLAY_DIR);$(BOX2D_DIR)\Build\vs2013\bin\x32\Release;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='LibRelease|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-    <IncludePath>..\include;$(SOIL_DIR)\src;$(GLEW_DIR)\include;$(GLFW_DIR)\include;$(GLM_DIR);$(IncludePath)</IncludePath>
-    <SourcePath>..\src;$(SourcePath)</SourcePath>
-    <OutDir>..\..\..\Output\$(ProjectName)-$(Configuration)\</OutDir>
-    <IntDir>..\..\..\Output\junk\$(ProjectName)-$(Configuration)\</IntDir>
-    <LibraryPath>$(GLEW_DIR)\lib\Release\Win32;$(GLFW_DIR)\lib-msvc110;$(SOIL_DIR)\lib;$(ZPLAY_DIR);$(BOX2D_DIR)\Build\vs2013\bin\x32\Release;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(GLEW_DIR)\lib\Release\Win32;$(GLFW_DIR)\src\Release;$(SOIL_DIR)\projects\VC9\Release;$(OPENAL_DIR)\libs\Win32;$(CPPREST_DIR)\Binaries\Win32\Release;$(BOX2D_DIR)\Build\vs2013\bin\x32\Release;$(FREETYPE_DIR)\objs\vc2012\Win32;$(BULLET_DIR)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -491,15 +186,15 @@
       <EnablePREfast>false</EnablePREfast>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <MinimalRebuild>true</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;SOIL.lib;glew32.lib;libzplay.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;SOIL.lib;glew32.lib;libsndfile-1.lib;OpenAL32.lib;freetype255MTd.lib;cpprest110d_2_5.lib;Box2D.lib;BulletSoftBody_vs2010_debug.lib;BulletDynamics_vs2010_debug.lib;BulletCollision_vs2010_debug.lib;LinearMath_vs2010_debug.lib;S-Tengine2 - 2012d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <PerUserRedirection>true</PerUserRedirection>
-      <IgnoreSpecificDefaultLibraries>
-      </IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>C:\dev\glfw\lib-msvc110;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcrt.lib;</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>$(ENGINE_DIR)\Output\S-Tengine2 - 2012-LibDebug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <Profile>true</Profile>
     </Link>
     <Bscmake>
@@ -513,41 +208,7 @@ copy /Y "$(ZPLAY_DIR)\..\libzplay.dll" "$(TargetDir)\libzplay.dll"
     </PreBuildEvent>
     <PostBuildEvent />
     <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='LibDebug|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <BrowseInformation>true</BrowseInformation>
-      <EnablePREfast>false</EnablePREfast>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;SOIL.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <PerUserRedirection>true</PerUserRedirection>
-      <IgnoreSpecificDefaultLibraries>
-      </IgnoreSpecificDefaultLibraries>
-      <AdditionalLibraryDirectories>C:\dev\glfw\lib-msvc110;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-    </Link>
-    <Bscmake>
-      <PreserveSbr>true</PreserveSbr>
-    </Bscmake>
-    <PreBuildEvent>
-      <Command>copy /Y "$(GLEW_DIR)\bin\Release\Win32\glew32.dll" "$(TargetDir)\glew32.dll"
-copy /Y "$(GLFW_DIR)\lib-msvc120\glfw3.dll" "$(TargetDir)\glfw3.dll"
-copy /Y "$(ZPLAY_DIR)\..\libzplay.dll" "$(TargetDir)\libzplay.dll"
-..\..\..\..\VCProjer\dist\VCProjer.exe "vox - 2012.vcxproj" "vox - 2013.vcxproj"</Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy /Y "$(GLEW_DIR)\bin\Release\Win32\glew32.dll" "$(TargetDir)\glew32.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -559,13 +220,16 @@ copy /Y "$(ZPLAY_DIR)\..\libzplay.dll" "$(TargetDir)\libzplay.dll"
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;SOIL.lib;glew32.lib;libzplay.lib;Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;SOIL.lib;glew32.lib;libsndfile-1.lib;OpenAL32.lib;Box2D.lib;freetype255MT.lib;cpprest110_2_5.lib;BulletSoftBody_vs2010.lib;BulletDynamics_vs2010.lib;BulletCollision_vs2010.lib;LinearMath_vs2010.lib;S-Tengine2 - 2012.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ENGINE_DIR)\Output\S-Tengine2 - 2012-LibRelease;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcrt.lib;</IgnoreSpecificDefaultLibraries>
     </Link>
     <PreBuildEvent>
       <Command>copy /Y "$(GLEW_DIR)\bin\Release\Win32\glew32.dll" "$(TargetDir)\glew32.dll"
@@ -574,36 +238,7 @@ copy /Y "$(ZPLAY_DIR)\..\libzplay.dll" "$(TargetDir)\libzplay.dll"
 ..\..\..\..\VCProjer\dist\VCProjer.exe "vox - 2012.vcxproj" "vox - 2013.vcxproj"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>
-      </Command>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='LibRelease|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;SOIL.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Link>
-    <PreBuildEvent>
-      <Command>copy /Y "$(GLEW_DIR)\bin\Release\Win32\glew32.dll" "$(TargetDir)\glew32.dll"
-copy /Y "$(GLFW_DIR)\lib-msvc120\glfw3.dll" "$(TargetDir)\glfw3.dll"
-copy /Y "$(ZPLAY_DIR)\..\libzplay.dll" "$(TargetDir)\libzplay.dll"
-..\..\..\..\VCProjer\dist\VCProjer.exe "vox - 2012.vcxproj" "vox - 2013.vcxproj"</Command>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>copy /Y "$(GLEW_DIR)\bin\Release\Win32\glew32.dll" "$(TargetDir)\glew32.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

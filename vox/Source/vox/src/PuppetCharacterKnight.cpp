@@ -15,9 +15,7 @@ PuppetCharacterKnight::PuppetCharacterKnight(bool _ai, unsigned long int _id, Bo
 		RaidTheCastleResourceManager::knightTorso,
 		RaidTheCastleResourceManager::knightArm,
 		RaidTheCastleResourceManager::knightHelmet
-	), _ai, _world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr)
+	), _ai, _world, _categoryBits, _maskBits, _groupIndex)
 {
 
 }

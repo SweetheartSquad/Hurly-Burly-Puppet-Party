@@ -3,14 +3,13 @@
 #include "PuppetCharacter.h"
 #include <Box2DSprite.h>
 #include <Texture.h>
-#include <GameJamCharacter.h>
 #include "Box2DWorld.h"
 #include "Item.h"
 #include "Behaviour.h"
 #include <PuppetTexturePack.h>
 #include <shader\ShaderComponentHsv.h>
 #include <shader\ShaderComponentTint.h>
-#include <shader\BaseComponentShader.h>
+#include <shader\ComponentShaderBase.h>
 #include <shader\Shader.h>
 #include <RenderOptions.h>
 #include <SoundManager.h>
@@ -33,9 +32,6 @@ bool PuppetCharacter::compareByScore(PuppetCharacter * _a, PuppetCharacter * _b)
 
 PuppetCharacter::PuppetCharacter(PuppetTexturePack * _texturePack, bool _ai, Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex):
 	Box2DSuperSprite(_world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable(),
 	texPack(_texturePack),
 	ai(_ai),
 	canJump(false),
@@ -87,23 +83,23 @@ void PuppetCharacter::init(){
 		);
 	}
 	
-	popsicleStick = new Box2DSprite(world, PuppetResourceManager::popsicleStick, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale);
-	head = new Box2DSprite(world, texPack->headTex, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale);
+	popsicleStick = new Box2DSprite(world, PuppetResourceManager::popsicleStick, b2_dynamicBody, false, nullptr, componentScale*texPack->scale);
+	head = new Box2DSprite(world, texPack->headTex, b2_dynamicBody, false, nullptr, componentScale*texPack->scale);
 	
 	
-	face = new Box2DSprite(world, texPack->faceTex, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale*0.5f);
-	handLeft = new Box2DSprite(world, texPack->handTex, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale);
-	handRight = new Box2DSprite(world, texPack->handTex, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale);
+	face = new Box2DSprite(world, texPack->faceTex, b2_dynamicBody, false, nullptr, componentScale*texPack->scale*0.5f);
+	handLeft = new Box2DSprite(world, texPack->handTex, b2_dynamicBody, false, nullptr, componentScale*texPack->scale);
+	handRight = new Box2DSprite(world, texPack->handTex, b2_dynamicBody, false, nullptr, componentScale*texPack->scale);
 
-	torso = new Box2DSprite(world, texPack->torsoTex, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale);
-	armLeft = new Box2DSprite(world, texPack->armTex, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale);
-	armRight = itemHolder = new Box2DSprite(world, texPack->armTex, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale);
-	headgear = new Box2DSprite(world, texPack->headgearTex, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale);
+	torso = new Box2DSprite(world, texPack->torsoTex, b2_dynamicBody, false, nullptr, componentScale*texPack->scale);
+	armLeft = new Box2DSprite(world, texPack->armTex, b2_dynamicBody, false, nullptr, componentScale*texPack->scale);
+	armRight = itemHolder = new Box2DSprite(world, texPack->armTex, b2_dynamicBody, false, nullptr, componentScale*texPack->scale);
+	headgear = new Box2DSprite(world, texPack->headgearTex, b2_dynamicBody, false, nullptr, componentScale*texPack->scale);
 	
-	whiteHead = new Box2DSprite(world, PuppetResourceManager::whiteHead, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale);
-	whiteTorso = new Box2DSprite(world, PuppetResourceManager::whiteTorso, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale);
-	whiteArmLeft = new Box2DSprite(world, PuppetResourceManager::whiteArm, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale);
-	whiteArmRight = new Box2DSprite(world, PuppetResourceManager::whiteArm, b2_dynamicBody, false, nullptr, new Transform(), componentScale*texPack->scale);
+	whiteHead = new Box2DSprite(world, PuppetResourceManager::whiteHead, b2_dynamicBody, false, nullptr, componentScale*texPack->scale);
+	whiteTorso = new Box2DSprite(world, PuppetResourceManager::whiteTorso, b2_dynamicBody, false, nullptr, componentScale*texPack->scale);
+	whiteArmLeft = new Box2DSprite(world, PuppetResourceManager::whiteArm, b2_dynamicBody, false, nullptr, componentScale*texPack->scale);
+	whiteArmRight = new Box2DSprite(world, PuppetResourceManager::whiteArm, b2_dynamicBody, false, nullptr, componentScale*texPack->scale);
 	
 
 	
@@ -271,8 +267,8 @@ void PuppetCharacter::init(){
 	world->b2world->CreateJoint(&lhlej);
 
 	// flip left side
-	armLeft->transform->scale(-1, 1, 1);
-	handLeft->transform->scale(-1, 1, 1);
+	armLeft->childTransform->scale(-1, 1, 1);
+	handLeft->childTransform->scale(-1, 1, 1);
 
 	whiteArmLeft->body->SetGravityScale(0);
 	whiteArmRight->body->SetGravityScale(0);
@@ -287,7 +283,7 @@ void PuppetCharacter::createIndicator(signed long _id){
 	}
 	TextureSampler * tex = PuppetResourceManager::indicators.at(_id);
 
-	indicator = new Box2DSprite(world, tex, b2_dynamicBody, false, nullptr, new Transform(), componentScale);
+	indicator = new Box2DSprite(world, tex, b2_dynamicBody, false, nullptr, componentScale);
 	
 	b2Filter sf;
 	sf.categoryBits = 0;
@@ -296,20 +292,20 @@ void PuppetCharacter::createIndicator(signed long _id){
 	b2Fixture * f = indicator->createFixture(sf, b2Vec2(0.0f, 0.0f), this);
 	f->SetSensor(true);
 	
-	indicator->setShader(getShader(), true);
+	indicator->setShader(shader, true);
 
 	// score indicator
 	scoreIndicator = new ScoreIndicator(_id, world);
-	scoreIndicator->setShader(getShader(), true);
-	static_cast<LayeredScene *>(scene)->addUIChild(scoreIndicator);
+	scoreIndicator->setShader(shader, true);
+	static_cast<PuppetScene *>(scene)->uiLayer->childTransform->addChild(scoreIndicator, false);
 }
 
 
 void PuppetCharacter::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
 
-	ShaderComponentHsv * hsvShader = static_cast<ShaderComponentHsv *>(static_cast<BaseComponentShader *>(getShader())->components.at(1));
-	ShaderComponentTint * tintShader = static_cast<ShaderComponentTint *>(static_cast<BaseComponentShader *>(getShader())->components.at(2));
-	ShaderComponentAlpha * alphaShader = static_cast<ShaderComponentAlpha *>(static_cast<BaseComponentShader *>(getShader())->components.at(3));
+	ShaderComponentHsv * hsvShader = static_cast<ShaderComponentHsv *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(1));
+	ShaderComponentTint * tintShader = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2));
+	ShaderComponentAlpha * alphaShader = static_cast<ShaderComponentAlpha *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(3));
 
 	// save the current shader settings
 	float hue = hsvShader->getHue();
@@ -483,7 +479,7 @@ void PuppetCharacter::update(Step* _step){
 	// spray some particles to show hits more
 	if (justTookDamage){
 		if (ps != nullptr){
-			Particle * p = ps->particleSystem->addParticle(rootComponent->getPos(false));
+			Particle * p = ps->particleSystem->addParticle(rootComponent->getWorldPos(false));
 			p->applyLinearImpulse(vox::NumberUtils::randomFloat(-750, 750), vox::NumberUtils::randomFloat(1000, 1500), p->body->GetPosition().x, p->body->GetPosition().y);
 		}
 		justTookDamage = false;
@@ -493,9 +489,9 @@ void PuppetCharacter::update(Step* _step){
 	if(lastUpdateScore < score){
 		lastUpdateScore += 1;
 		if(scoreIndicator != nullptr){
-			Particle * p = scoreIndicator->scoreParticles->addParticle(scoreIndicator->getPos(false));
+			Particle * p = scoreIndicator->scoreParticles->addParticle(scoreIndicator->getWorldPos(false));
 			float pixels = 50;
-			p->transform->scale(pixels, pixels, 1.f);
+			p->childTransform->scale(pixels, pixels, 1.f);
 			p->startSize = pixels;
 			p->deltaSize = -pixels;
 			p->setTranslationPhysical(vox::NumberUtils::randomFloat(-pixels, pixels), vox::NumberUtils::randomFloat(-pixels, pixels), 0, true);
@@ -509,18 +505,19 @@ void PuppetCharacter::update(Step* _step){
 
 	if(indicator != nullptr){
 		//indicator->update(_step);
-		glm::vec3 iPos = indicator->getPos(false);
-		glm::vec3 hPos = headgear->getPos(false) + glm::vec3(0.f, 3.f, 0.f);
+		glm::vec3 iPos = indicator->getWorldPos(false);
+		glm::vec3 hPos = headgear->getWorldPos(false) + glm::vec3(0.f, 3.f, 0.f);
 
 
-		indicator->setPos(iPos + (hPos - iPos)*0.1f);
+		indicator->setTranslationPhysical(iPos + (hPos - iPos)*0.1f);
 		//indicator->transform->setOrientation(glm::quat(1,0,0,0));
 	}
 	
-	*whiteArmLeft->transform = *armLeft->transform;
+	// this needs to be fixed
+	/**whiteArmLeft->transform = *armLeft->transform;
 	*whiteArmRight->transform = *armRight->transform;
 	*whiteHead->transform = *head->transform;
-	*whiteTorso->transform = *torso->transform;
+	*whiteTorso->transform = *torso->transform;*/
 }
 
 void PuppetCharacter::jump(){

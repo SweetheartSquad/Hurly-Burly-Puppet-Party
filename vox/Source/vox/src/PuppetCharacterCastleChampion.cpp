@@ -15,9 +15,7 @@ PuppetCharacterCastleChampion::PuppetCharacterCastleChampion(Box2DWorld * _world
 		RaidTheCastleResourceManager::castleChampionTorso,
 		RaidTheCastleResourceManager::castleChampionArm,
 		RaidTheCastleResourceManager::castleChampionHelmet
-	), true, _world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr)
+	), true, _world, _categoryBits, _maskBits, _groupIndex)
 {
 	behaviourManager->addBehaviour(new BehaviourPatrol(glm::vec3(50,0,0), glm::vec3(100,0,0), this, 10));
 	behaviourManager->addBehaviour(new BehaviourAttack(this, 3, PuppetGame::kPLAYER));

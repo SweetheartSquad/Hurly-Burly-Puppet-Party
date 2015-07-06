@@ -5,45 +5,26 @@
 #include <StartupScene.h>
 #include <Rapunzel.h>
 
-#include "GameJamCharacter.h"
-#include "GameJamSceneIndoor.h"
-#include "GameJamSceneOutdoor.h"
-
 #include <NumberUtils.h>
 
 #include <cstdlib>
 #include <ctime>
-#include <BaseScene.h>
 #include <AccelerometerParser.h>
 #include <Accelerometer.h>
 #include <PuppetController.h>
 
 PuppetGame::PuppetGame(bool _running):
-	Game(_running),
+	Game(_running, std::pair<std::string, Scene *>("Startup", new StartupScene(this))),
 	arduino(new AccelerometerParser("COM4")),
 	lastScene(-1)
 {
 	std::srand((unsigned long int)std::time(0));
-	PuppetResourceManager::init();
-	PuppetResourceManager::load();
 
 	//Arduino stuff must be setup before the first scene is intiailized
 	puppetControllers.push_back(new PuppetController(arduino->addAccelerometer()));
 	puppetControllers.push_back(new PuppetController(arduino->addAccelerometer()));
 	puppetControllers.push_back(new PuppetController(arduino->addAccelerometer()));
 	puppetControllers.push_back(new PuppetController(arduino->addAccelerometer()));
-
-	//scenes.insert(std::make_pair("indoors", new GameJamSceneIndoor(this)));
-	//scenes.insert(std::make_pair("outdoors", new GameJamSceneOutdoor(this)));
-	
-	currentSceneKey = "Startup";
-	scenes.insert(std::make_pair(currentSceneKey, new StartupScene(this)));
-	currentScene = scenes.at(currentSceneKey);
-
-	/*loadRandomScene();
-	currentSceneKey = newSceneKey;
-	currentScene = scenes.at(currentSceneKey);
-	switchingScene = false;*/
 }
 
 PuppetGame::~PuppetGame(){

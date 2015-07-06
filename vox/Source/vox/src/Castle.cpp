@@ -16,17 +16,14 @@
 #include <RaidTheCastleResourceManager.h>
 
 Castle::Castle(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex):
-	StructureBreakable(100.f, _world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable()
+	StructureBreakable(100.f, _world, _categoryBits, _maskBits, _groupIndex)
 {
 	componentScale = 0.03f;
 	
 	TextureSampler * baseTex = RaidTheCastleResourceManager::castleBase;
 	Texture * baseSpriteSheetTex = RaidTheCastleResourceManager::castleSpriteSheet;
 
-	rootComponent = new Box2DSprite(_world, baseTex, b2_staticBody, false, nullptr, new Transform(), componentScale);
+	rootComponent = new Box2DSprite(_world, baseTex, b2_staticBody, false, nullptr, componentScale);
 	components.push_back(&rootComponent);
 	
 	b2Filter sf;

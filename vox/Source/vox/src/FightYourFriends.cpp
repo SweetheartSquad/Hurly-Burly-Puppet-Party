@@ -19,7 +19,7 @@
 #include <MeshEntity.h>
 #include <MeshInterface.h>
 #include <MeshFactory.h>
-#include <shader/BaseComponentShader.h>
+#include <shader/ComponentShaderBase.h>
 #include <keyboard.h>
 #include <Texture.h>
 #include <TextureSampler.h>
@@ -52,10 +52,10 @@ FightYourFriends::FightYourFriends(PuppetGame* _game):
 	cl->damageScoreMult = 1.f;
 
 	TextureSampler * splashMessageTextureSampler = FightYourFriendsResourceManager::splashMessage;
-	splashMessage = new Sprite(nullptr, new Transform());
+	splashMessage = new Sprite();
 	splashMessage->mesh->pushTexture2D(splashMessageTextureSampler->texture);
 	splashMessage->setShader(shader, true);
-	splashMessage->transform->translate(1920.f*0.5, 1080.f*0.5f, 0);
+	splashMessage->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0);
 
 	players.push_back(playerCharacter1);
 	players.push_back(playerCharacter2);
@@ -148,7 +148,7 @@ void FightYourFriends::update(Step* _step){
 }
 
 void FightYourFriends::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	PuppetScene::render(_matrixStack, renderOptions);
+	PuppetScene::render(_matrixStack, _renderOptions);
 }
 
 void FightYourFriends::load(){
@@ -160,15 +160,15 @@ void FightYourFriends::unload(){
 }
 
 void FightYourFriends::populateBackground(){
-	stageFloor = new MeshEntity(Resource::loadMeshFromObj("../assets/hurly-burly/stageFloor.vox"));
-	stageFront = new MeshEntity(Resource::loadMeshFromObj("../assets/hurly-burly/stageFront.vox"));
+	stageFloor = new MeshEntity(Resource::loadMeshFromObj("../assets/hurly-burly/stageFloor.vox").at(0));
+	stageFront = new MeshEntity(Resource::loadMeshFromObj("../assets/hurly-burly/stageFront.vox").at(0));
 
 	addChild(stageFloor, 0);
 	addChild(stageFront, 0);
 	
 	stageFloor->setShader(shader, true);
-	stageFloor->transform->scale(1000, 100, 100);
-	stageFloor->transform->translate(50.f / 2.f, 0, -15.f / 2.f);
+	stageFloor->parents.at(0)->scale(1000, 100, 100);
+	stageFloor->parents.at(0)->translate(50.f / 2.f, 0, -15.f / 2.f);
 	stageFloor->mesh->uvEdgeMode = GL_REPEAT;
 	stageFloor->mesh->pushTexture2D(PuppetResourceManager::stageFloor);
 	for (Vertex & v : stageFloor->mesh->vertices){
@@ -179,8 +179,8 @@ void FightYourFriends::populateBackground(){
 
 
 	stageFront->setShader(shader, true);
-	stageFront->transform->scale(1000, 100, 100);
-	stageFront->transform->translate(50.f / 2.f, 0, -15.f / 2.f);
+	stageFront->parents.at(0)->scale(1000, 100, 100);
+	stageFront->parents.at(0)->translate(50.f / 2.f, 0, -15.f / 2.f);
 	stageFront->mesh->uvEdgeMode = GL_REPEAT;
 	stageFront->mesh->pushTexture2D(PuppetResourceManager::stageFront);
 	for (Vertex & v : stageFront->mesh->vertices){
@@ -192,22 +192,22 @@ void FightYourFriends::populateBackground(){
 
 	if(std::rand() % 2 == 0){
 		Sprite * arenaBg = new Sprite();
+		addChild(arenaBg, 0);
 		float scale = sceneWidth*0.8f;
-		arenaBg->transform->translate(25, 40, -5);
-		arenaBg->transform->scale(scale, scale, 1);
+		arenaBg->parents.at(0)->translate(25, 40, -5);
+		arenaBg->parents.at(0)->scale(scale, scale, 1);
 		arenaBg->mesh->pushTexture2D(FightYourFriendsResourceManager::arena1);
 		arenaBg->setShader(shader, true);
-		addChild(arenaBg, 0);
 	}else{
 		Sprite * arenaBg = new Sprite();
+		addChild(arenaBg, 0);
 		float scale = sceneWidth*0.8f;
-		arenaBg->transform->translate(/*1024/2 * scale * 0.001f*/25, 35, -5);
-		arenaBg->transform->scale(scale, scale, 1);
+		arenaBg->parents.at(0)->translate(/*1024/2 * scale * 0.001f*/25, 35, -5);
+		arenaBg->parents.at(0)->scale(scale, scale, 1);
 		arenaBg->mesh->pushTexture2D(FightYourFriendsResourceManager::arena2Bg);
 		arenaBg->setShader(shader, true);
-		addChild(arenaBg, 0);
 
-		Box2DSprite * arenaFg = new Box2DSprite(world, FightYourFriendsResourceManager::arena2Fg, b2_staticBody, false, nullptr, new Transform(), 0.03f);
+		Box2DSprite * arenaFg = new Box2DSprite(world, FightYourFriendsResourceManager::arena2Fg, b2_staticBody, false, nullptr, 0.03f);
 		arenaFg->setTranslationPhysical(arenaFg->getCorrectedWidth()/2.f + 12.f, sceneHeight*0.25f, 0);
 		
 	b2Filter sf;

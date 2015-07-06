@@ -7,17 +7,14 @@
 #include <RapunzelResourceManager.h>
 
 Hair::Hair(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex):
-	Structure(_world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable()
+	Structure(_world, _categoryBits, _maskBits, _groupIndex)
 {
 	componentScale = 0.015f;
 	
 	TextureSampler * hairLinkTex = RapunzelResourceManager::hairLink;
 	TextureSampler * hairEndTex = RapunzelResourceManager::hairEnd;
 
-	rootComponent = new Box2DSprite(_world, hairLinkTex, b2_staticBody, false, nullptr, new Transform(), componentScale);
+	rootComponent = new Box2DSprite(_world, hairLinkTex, b2_staticBody, false, nullptr, componentScale);
 
 	components.push_back(&rootComponent);
 
@@ -26,7 +23,7 @@ Hair::Hair(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _grou
 	for(unsigned int i = 0; i < numLinks; i++){
 		TextureSampler * tex = (i < numLinks - 1 ? hairLinkTex : hairEndTex);
 		Box2DSprite ** hairLink = new Box2DSprite*[1];
-		hairLink[0] = new Box2DSprite(_world, tex, b2_dynamicBody, false, nullptr, new Transform(), componentScale);
+		hairLink[0] = new Box2DSprite(_world, tex, b2_dynamicBody, false, nullptr, componentScale);
 
 		components.push_back(hairLink);
 	}

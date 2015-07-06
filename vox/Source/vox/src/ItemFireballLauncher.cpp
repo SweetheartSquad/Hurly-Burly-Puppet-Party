@@ -3,7 +3,7 @@
 #include <ItemFireballLauncher.h>
 #include <ItemFireball.h>
 #include <PuppetScene.h>
-#include <shader\BaseComponentShader.h>
+#include <shader\ComponentShaderBase.h>
 
 #include <SlayTheDragonResourceManager.h>
 #include <PuppetResourceManager.h>
@@ -12,9 +12,7 @@
 #include <NumberUtils.h>
 
 ItemFireballLauncher::ItemFireballLauncher(PuppetCharacterDragon * _dragon, Box2DWorld * _world) :
-	ItemProjectileWeapon(SlayTheDragonResourceManager::itemFireball, PuppetResourceManager::itemNone, _world, PuppetGame::kITEM),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr)
+	ItemProjectileWeapon(SlayTheDragonResourceManager::itemFireball, PuppetResourceManager::itemNone, _world, PuppetGame::kITEM)
 {
 	owner = _dragon;
 }
@@ -28,7 +26,7 @@ Item * ItemFireballLauncher::getProjectile(bool _forceDrop){
 	ItemFireball * projectile = new ItemFireball(dragon, world);
 
 	Box2DSprite ** test = new Box2DSprite*[1];
-	test[0] = projectile->rootComponent = new Box2DSprite(world, projectileTex, b2_dynamicBody, false, nullptr, new Transform(), componentScale);
+	test[0] = projectile->rootComponent = new Box2DSprite(world, projectileTex, b2_dynamicBody, false, nullptr, componentScale);
 
 	projectile->components.push_back(test);
 

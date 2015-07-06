@@ -5,12 +5,9 @@
 #include <Box2DSprite.h>
 
 ItemSimpleWeapon::ItemSimpleWeapon(TextureSampler * _tex, bool _singleUse, Box2DWorld * _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex, int _damage, float _handleX, float _handleY):
-	Item(_singleUse, _world, _categoryBits, _maskBits, _groupIndex, _damage, _handleX, _handleY),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable()
+	Item(_singleUse, _world, _categoryBits, _maskBits, _groupIndex, _damage, _handleX, _handleY)
 {
-	rootComponent = new Box2DSprite(_world, _tex, b2_dynamicBody, false, nullptr, new Transform(), componentScale);
+	rootComponent = new Box2DSprite(_world, _tex, b2_dynamicBody, false, nullptr, componentScale);
 	components.push_back(&rootComponent);
 	
 	b2Filter sf;

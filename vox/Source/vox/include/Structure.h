@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Box2DSuperSprite.h"
+#include <Box2DSuperSprite.h>
+#include <Box2DSprite.h>
 
 class Structure : public Box2DSuperSprite {
 public:

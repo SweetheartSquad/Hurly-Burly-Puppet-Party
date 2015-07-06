@@ -7,14 +7,12 @@
 #include <MeshInterface.h>
 
 Cloud::Cloud(Shader * _shader) :
-	MeshEntity(MeshFactory::getPlaneMesh()),
-	NodeChild(nullptr),
-	NodeTransformable(new Transform())
+	MeshEntity(MeshFactory::getPlaneMesh())
 {
 	setShader(_shader, true);
 
 	float scale = vox::NumberUtils::randomFloat(0.5, 1.5)*10.f;
-	transform->scale(scale, scale, 1);
+	childTransform->scale(scale, scale, 1);
 	int tex = std::rand() % 4;
 	switch (tex){
 	case 0:
@@ -33,5 +31,5 @@ Cloud::Cloud(Shader * _shader) :
 void Cloud::update(Step * _step){
 	MeshEntity::update(_step);
 
-	transform->translate(sin(_step->time) / (10*transform->getScaleVector().x), 0, 0);
+	parents.at(0)->translate(sin(_step->time) / (10*parents.at(0)->getScaleVector().x), 0, 0);
 }

@@ -8,12 +8,10 @@
 #include <PuppetScene.h>
 #include <ItemGold.h>
 #include <PuppetCharacter.h>
-#include <shader\BaseComponentShader.h>
+#include <shader\ComponentShaderBase.h>
 
 StructureGoldPile::StructureGoldPile(Box2DWorld* _world):
 	StructureInteractable(_world, PuppetGame::kSTRUCTURE, PuppetGame::kPLAYER, -25),
-	NodeChild(nullptr),
-	NodeTransformable(new Transform()),
 	totalGold(20),
 	goldTaken(0)
 {
@@ -22,7 +20,7 @@ StructureGoldPile::StructureGoldPile(Box2DWorld* _world):
 	TextureSampler * baseTex = RapunzelResourceManager::goldBrick;
 	Texture * baseSpriteSheetTex = RapunzelResourceManager::goldSpriteSheet;
 
-	rootComponent = new Box2DSprite(_world, baseTex, b2_staticBody, false, nullptr, new Transform(), componentScale);
+	rootComponent = new Box2DSprite(_world, baseTex, b2_staticBody, false, nullptr, componentScale);
 	components.push_back(&rootComponent);
 	
 	b2Filter sf;

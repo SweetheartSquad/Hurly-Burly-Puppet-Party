@@ -15,14 +15,11 @@
 #include <SlayTheDragonResourceManager.h>
 
 Fortification::Fortification(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex) :
-	StructureBreakable(250.f, _world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable()
+	StructureBreakable(250.f, _world, _categoryBits, _maskBits, _groupIndex)
 {
 
 	/*
-	//fortBackground = new Sprite(nullptr, new Transform());
+	//fortBackground = new Sprite();
 	fortBackground->mesh->pushTexture2D(SlayTheDragonResourceManager::fortBackground->texture);
 	fortBackground->setShader(shader, true);
 	fortBackground->transform->translate(glm::vec3(0, 30, 0));
@@ -32,7 +29,7 @@ Fortification::Fortification(Box2DWorld* _world, int16 _categoryBits, int16 _mas
 
 	TextureSampler * roofTex = SlayTheDragonResourceManager::fortStructure;
 
-	rootComponent = new Box2DSprite(_world, roofTex, b2_staticBody, false, nullptr, new Transform(), componentScale);
+	rootComponent = new Box2DSprite(_world, roofTex, b2_staticBody, false, nullptr, componentScale);
 
 	components.push_back(&rootComponent);
 	
@@ -70,7 +67,7 @@ Fortification::~Fortification(){
 
 void Fortification::takeDamage(float _damage){
 	StructureBreakable::takeDamage(_damage);
-	glm::vec3 sv = rootComponent->transform->getScaleVector();
+	//glm::vec3 sv = rootComponent->parents.at(0)->getScaleVector();
 	unsigned long int lastFrame = rootComponent->currentAnimation->currentFrame;
 	switch (state){
 	default:
@@ -98,5 +95,5 @@ void Fortification::takeDamage(float _damage){
 		break;
 	}
 
-	rootComponent->transform->scale(sv, false);
+	//rootComponent->parents.at(0)->scale(sv, false);
 }

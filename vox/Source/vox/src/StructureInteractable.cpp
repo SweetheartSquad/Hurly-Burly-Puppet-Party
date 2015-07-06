@@ -4,9 +4,6 @@
 
 StructureInteractable::StructureInteractable(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex):
 	Structure(_world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable(),
 	ready(true),
 	prepared(false),
 	triggering(false),

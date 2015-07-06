@@ -5,7 +5,7 @@
 #include <Texture.h>
 #include <TextureSampler.h>
 #include "Sprite.h"
-#include "shader/BaseComponentShader.h"
+#include "shader/ComponentShaderBase.h"
 #include "shader/ShaderComponentTexture.h"
 #include "shader/ShaderComponentHsv.h"
 #include "shader/ShaderComponentTint.h"
@@ -19,14 +19,12 @@
 #include "MeshEntity.h"
 
 #include <Box2D/Box2D.h>
-#include <Box2DDebugDraw.h>
+#include <Box2DDebugDrawer.h>
 #include "Box2DMeshEntity.h"
 #include "MeshFactory.h"
 #include "FollowCamera.h"
 #include "MousePerspectiveCamera.h"
 #include "BitmapFont.h"
-#include "TestCharacter.h"
-#include "CharacterComponent.h"
 #include "RaidTheCastleContactListener.h"
 #include "Game.h"
 #include "PuppetGame.h"
@@ -59,7 +57,7 @@
 class SlayTheDragon;
 
 PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float _height, float _size, bool _fullCurtains) :
-	LayeredScene(_game, 3),
+	LayeredScene(_game, 4),
 	sceneHeight(_height),
 	sceneWidth(_width),
 	duration(seconds),
@@ -75,7 +73,7 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	stageFloor(nullptr),
 	stageFront(nullptr),
 	background(new MeshEntity(MeshFactory::getPlaneMesh())),
-	shader(new BaseComponentShader()),
+	shader(new ComponentShaderBase(false)),
 	soundManager(new SoundManager(-1)),
 	backgroundSoundManager(new SoundManager(-1)),
 	countdownSoundManager(new SoundManager(-1)),
@@ -87,15 +85,15 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	screenSurface(new RenderSurface(screenSurfaceShader)),
 	screenFBO(new StandardFrameBuffer(true)),
 	ghostPosition(0),
-	sun(nullptr)
+	sun(nullptr),
+	uiLayer(new UILayer(this, 0,0,0,0))
 {
 	world->b2world->SetContactListener(cl);
-	shader->components.push_back(new ShaderComponentTexture(shader));
-	shader->components.push_back(new ShaderComponentHsv(shader, 0.f, 1.25f, 1.25f));
-	shader->components.push_back(new ShaderComponentTint(shader, 0.f, 0.f, 0.f));
-	shader->components.push_back(new ShaderComponentAlpha(shader, 1.f));
+	shader->addComponent(new ShaderComponentTexture(shader));
+	shader->addComponent(new ShaderComponentHsv(shader, 0.f, 1.25f, 1.25f));
+	shader->addComponent(new ShaderComponentTint(shader, 0.f, 0.f, 0.f));
+	shader->addComponent(new ShaderComponentAlpha(shader, 1.f));
 	shader->compileShader();
-	renderOptions->alphaSorting = true;
 	
 	//Add Audio
 	countdownSoundManager->addNewSound("0", "../assets/hurly-burly/audio/HighCountdown_Zero.ogg");
@@ -113,45 +111,44 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	
 	if(_fullCurtains){
 		Sprite * spotlight = new Sprite();
+		addChild(spotlight, 2);
 	
-		spotlight->transform->translate(0, 1, 5);
-		spotlight->transform->scale(sceneWidth, sceneHeight, 1);
+		spotlight->parents.at(0)->translate(0, 1, 5);
+		spotlight->parents.at(0)->scale(sceneWidth, sceneHeight, 1);
 		spotlight->mesh->pushTexture2D(PuppetResourceManager::stageSpotlight->texture);
 		spotlight->setShader(shader, true);
-		addChild(spotlight, 2);
 
 		Sprite * curtainCenter = new Sprite();
+		addChild(curtainCenter, 2);
 	
-		curtainCenter->transform->translate(0, 1, 5);
-		curtainCenter->transform->scale(sceneWidth * 0.5, 30, 1);
-		curtainCenter->transform->translate((sceneWidth - curtainCenter->transform->getScaleVector().x) * 0.8, 0, 0);
+		curtainCenter->parents.at(0)->translate(0, 1, 5);
+		curtainCenter->parents.at(0)->scale(sceneWidth * 0.5, 30, 1);
+		curtainCenter->parents.at(0)->translate((sceneWidth - curtainCenter->parents.at(0)->getScaleVector().x) * 0.8, 0, 0);
 		curtainCenter->mesh->pushTexture2D(PuppetResourceManager::stageCurtainCenter->texture);
 		curtainCenter->setShader(shader, true);
-		addChild(curtainCenter, 2);
 
 		Sprite * topCurtain = new Sprite();
-	
-		topCurtain->transform->translate(0, 1, 5);
-		topCurtain->transform->scale(sceneWidth, sceneHeight, 1);
+		addChild(topCurtain, 2);
+		topCurtain->parents.at(0)->translate(0, 1, 5);
+		topCurtain->parents.at(0)->scale(sceneWidth, sceneHeight, 1);
 		topCurtain->mesh->pushTexture2D(PuppetResourceManager::stageCurtainTop->texture);
 		topCurtain->setShader(shader, true);
-		addChild(topCurtain, 2);
 	}
 
 	Sprite * curtain = new Sprite();
+	addChild(curtain, 2);
 	float scale = 100;
-	curtain->transform->translate(sceneWidth - 29, 1, 5);
-	curtain->transform->scale(30, sceneHeight, 1);
+	curtain->parents.at(0)->translate(sceneWidth - 29, 1, 5);
+	curtain->parents.at(0)->scale(30, sceneHeight, 1);
 	curtain->mesh->pushTexture2D(PuppetResourceManager::stageCurtain->texture);
 	curtain->setShader(shader, true);
-	addChild(curtain, 2);
 	
 	curtain = new Sprite();
-	curtain->transform->translate(29, 1, 5);
-	curtain->transform->scale(-30, sceneHeight, 1);
+	addChild(curtain, 2);
+	curtain->parents.at(0)->translate(29, 1, 5);
+	curtain->parents.at(0)->scale(-30, sceneHeight, 1);
 	curtain->mesh->pushTexture2D(PuppetResourceManager::stageCurtain->texture);
 	curtain->setShader(shader, true);
-	addChild(curtain, 2);
 
 
 
@@ -159,11 +156,14 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	boundaries.push_back(new Box2DMeshEntity(world, MeshFactory::getPlaneMesh(), b2_staticBody));
 	boundaries.push_back(new Box2DMeshEntity(world, MeshFactory::getPlaneMesh(), b2_staticBody));
 	boundaries.push_back(new Box2DMeshEntity(world, MeshFactory::getPlaneMesh(), b2_staticBody));
+	for(auto b : boundaries){
+		addChild(b, 2);
+	}
 
-	boundaries.at(0)->transform->scale(_size, sceneHeight*0.5f + _size*2.f, _size);
-	boundaries.at(1)->transform->scale(_size, sceneHeight*0.5f + _size*2.f, _size);
-	boundaries.at(2)->transform->scale(sceneWidth*0.5f + _size*2.f, _size, _size);
-	boundaries.at(3)->transform->scale(sceneWidth*0.5f + _size*2.f, _size, _size);
+	boundaries.at(0)->parents.at(0)->scale(_size, sceneHeight*0.5f + _size*2.f, _size);
+	boundaries.at(1)->parents.at(0)->scale(_size, sceneHeight*0.5f + _size*2.f, _size);
+	boundaries.at(2)->parents.at(0)->scale(sceneWidth*0.5f + _size*2.f, _size, _size);
+	boundaries.at(3)->parents.at(0)->scale(sceneWidth*0.5f + _size*2.f, _size, _size);
 
 	boundaries.at(0)->setTranslationPhysical(sceneWidth+_size, sceneHeight*0.5f, 5);
 	boundaries.at(1)->setTranslationPhysical(-_size, sceneHeight*0.5f, 5);
@@ -200,10 +200,11 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	ground->mesh->setUV(3, 40.0, 0.0);*/
 
 	//world->addToWorld(ground, 2);
-
+	
+	addChild(background, 0);
 	background->setShader(shader, true);
-	background->transform->translate(-sceneWidth/2.f, sceneHeight/2.f, -15.f/2.f);
-	background->transform->scale(sceneWidth*2.f, sceneHeight, 1);
+	background->parents.at(0)->translate(-sceneWidth/2.f, sceneHeight/2.f, -15.f/2.f);
+	background->parents.at(0)->scale(sceneWidth*2.f, sceneHeight, 1);
 	background->mesh->pushTexture2D(PuppetResourceManager::sky);
 	background->mesh->uvEdgeMode = GL_MIRRORED_REPEAT_ARB;
 
@@ -214,7 +215,6 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	background->mesh->setUV(2, static_cast<float>(timeOfDay) / timeOfDayOptions, 1);
 	background->mesh->setUV(3, static_cast<float>(timeOfDay) / timeOfDayOptions, 1);
 	
-	addChild(background, 0);
 
 	/*b2PolygonShape dynamicBox;
 	dynamicBox.SetAsBox(1.0f * std::abs(ground->transform->scaleVector.x), 1.0f * std::abs(ground->transform->scaleVector.y));	
@@ -228,32 +228,36 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	//world->addToWorld(randomGround);
 	
 	//Set up cameras
+	Transform * t = new Transform();
 	mouseCamera = new MousePerspectiveCamera();
+	t->addChild(mouseCamera, false);
 	cameras.push_back(mouseCamera);
 	mouseCamera->farClip = 1000.f;
-	mouseCamera->transform->rotate(90, 0, 1, 0, kWORLD);
-	mouseCamera->transform->translate(5.0f, 1.5f, 22.5f);
+	t->rotate(90, 0, 1, 0, kWORLD);
+	t->translate(5.0f, 1.5f, 22.5f);
 	mouseCamera->yaw = 90.0f;
 	mouseCamera->pitch = -10.0f;
 	mouseCamera->speed = 1;
 
+	t = new Transform();
 	gameCam = new FollowCamera(15, glm::vec3(0, 0, 0), 0, 0);
+	t->addChild(mouseCamera, false);
 	cameras.push_back(gameCam);
 	gameCam->farClip = 1000.f;
-	gameCam->transform->rotate(90, 0, 1, 0, kWORLD);
-	gameCam->transform->translate(5.0f, 1.5f, 22.5f);
+	t->rotate(90, 0, 1, 0, kWORLD);
+	t->translate(5.0f, 1.5f, 22.5f);
 	gameCam->minimumZoom = 22.5f;
 	gameCam->yaw = 90.0f;
 	gameCam->pitch = -10.0f;
 	activeCamera = gameCam;
 	
-	Sprite * countDown0 = new Sprite(nullptr, new Transform());
-	Sprite * countDownWait = new Sprite(nullptr, new Transform());
-	Sprite * countDown1 = new Sprite(nullptr, new Transform());
-	Sprite * countDown2 = new Sprite(nullptr, new Transform());
-	Sprite * countDown3 = new Sprite(nullptr, new Transform());
-	Sprite * countDown4 = new Sprite(nullptr, new Transform());
-	Sprite * countDown5 = new Sprite(nullptr, new Transform());
+	Sprite * countDown0 = new Sprite();
+	Sprite * countDownWait = new Sprite();
+	Sprite * countDown1 = new Sprite();
+	Sprite * countDown2 = new Sprite();
+	Sprite * countDown3 = new Sprite();
+	Sprite * countDown4 = new Sprite();
+	Sprite * countDown5 = new Sprite();
 	
 	countDown0->mesh->pushTexture2D(PuppetResourceManager::countDown0->texture);
 	countDownWait->mesh->pushTexture2D(PuppetResourceManager::blank);
@@ -274,7 +278,7 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	
 	for(Sprite * n : countDownNumbers){
 		n->setShader(shader, true);
-		n->transform->translate(1920.f*0.5, 1080.f*0.5f, 0);
+		n->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0);
     }
 
     particleSystem = new ParticleSystem(PuppetResourceManager::dustParticle, world, 0, 0, 0);
@@ -283,6 +287,8 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	particleSystem->setShader(shader, true);
 	particleSystem->emissionRate = -1;
 	particleSystem->emissionAmount = 0;
+
+	addChild(uiLayer, 3, false);
 }
 
 PuppetScene::~PuppetScene(){
@@ -293,10 +299,10 @@ PuppetScene::~PuppetScene(){
 		countDownNumbers.pop_back();
 	}
 
-	while(children.size() > 0){
+	/*while(children.size() > 0){
 		delete children.back();
 		children.pop_back();
-	}
+	}*/
 
 	delete soundManager;
 	delete countdownSoundManager;
@@ -399,16 +405,16 @@ void PuppetScene::update(Step * _step){
 	}
 	// camera controls
 	if (keyboard->keyDown(GLFW_KEY_UP)){
-		activeCamera->transform->translate((activeCamera->forwardVectorRotated) * static_cast<MousePerspectiveCamera *>(activeCamera)->speed);
+		activeCamera->parents.at(0)->translate((activeCamera->forwardVectorRotated) * static_cast<MousePerspectiveCamera *>(activeCamera)->speed);
 	}
 	if (keyboard->keyDown(GLFW_KEY_DOWN)){
-		activeCamera->transform->translate((activeCamera->forwardVectorRotated) * -static_cast<MousePerspectiveCamera *>(activeCamera)->speed);
+		activeCamera->parents.at(0)->translate((activeCamera->forwardVectorRotated) * -static_cast<MousePerspectiveCamera *>(activeCamera)->speed);
 	}
 	if (keyboard->keyDown(GLFW_KEY_LEFT)){
-		activeCamera->transform->translate((activeCamera->rightVectorRotated) * -static_cast<MousePerspectiveCamera *>(activeCamera)->speed);
+		activeCamera->parents.at(0)->translate((activeCamera->rightVectorRotated) * -static_cast<MousePerspectiveCamera *>(activeCamera)->speed);
 	}
 	if (keyboard->keyDown(GLFW_KEY_RIGHT)){
-		activeCamera->transform->translate((activeCamera->rightVectorRotated) * static_cast<MousePerspectiveCamera *>(activeCamera)->speed);
+		activeCamera->parents.at(0)->translate((activeCamera->rightVectorRotated) * static_cast<MousePerspectiveCamera *>(activeCamera)->speed);
 	}
 	
 
@@ -437,10 +443,10 @@ void PuppetScene::update(Step * _step){
 				//float scale = Easing::easeOutBack(splashDuration - currentTime, 0, 10, splashDuration);
 				float easeTime = splashDuration - currentTime;
 				float scale = (easeTime < splashDuration / 2.f) ? Easing::easeOutCubic(easeTime, 0, 1024, splashDuration / 2.f) : Easing::easeInElastic(easeTime - splashDuration / 2.f, 1024, -1024, splashDuration / 2.f);
-				splashMessage->transform->scale(glm::vec3(scale, scale, 1), false);
+				splashMessage->childTransform->scale(glm::vec3(scale, scale, 1), false);
 			}else{
 				//addChild(splashMessage, 2);
-				addUIChild(splashMessage);
+				uiLayer->childTransform->addChild(splashMessage, false);
 				displayingSplash = true;
 			}
 
@@ -448,7 +454,7 @@ void PuppetScene::update(Step * _step){
 			//splashMessage->transform->translate(glm::vec3(0,0,-10));
 		}else{
 			// Remove previous number from scene
-			removeUIChild(splashMessage);
+			uiLayer->childTransform->removeChild(splashMessage);
 			delete splashMessage;
 			splashMessage = nullptr;
 		}
@@ -465,7 +471,7 @@ void PuppetScene::update(Step * _step){
 		
 		if (item->destroy){
 			for (signed long int j = 0; j < std::rand() % 5 + 1; ++j){
-				particleSystem->addParticle(item->rootComponent->getPos(false), PuppetResourceManager::dustParticle);
+				particleSystem->addParticle(item->rootComponent->getWorldPos(false), PuppetResourceManager::dustParticle);
 			}
 			destroyItem(item);
 			item = nullptr;
@@ -485,10 +491,10 @@ void PuppetScene::update(Step * _step){
 				float displayTime = fmod(currentTime, 1.f);
 				if(displayTime < 0.5f){
 					float scale = Easing::easeOutElastic(displayTime, 0.f, 512.f, 0.5f);
-					countDownNumbers.at(countDown)->transform->scale(glm::vec3(scale, scale, 1.f), false);
+					countDownNumbers.at(countDown)->childTransform->scale(glm::vec3(scale, scale, 1.f), false);
 				}else{
 					float scale = Easing::easeInCirc(displayTime-0.5f, 512.f, -512.f, 0.5f);
-					countDownNumbers.at(countDown)->transform->scale(glm::vec3(scale, scale, 1.f), false);
+					countDownNumbers.at(countDown)->childTransform->scale(glm::vec3(scale, scale, 1.f), false);
 				}
 			}
 			if(currentTime > duration){
@@ -498,7 +504,7 @@ void PuppetScene::update(Step * _step){
 	}
 
 	if(sun != nullptr){
-		sun->transform->rotate(_step->deltaTimeCorrection*0.05f, 0, 0, 1, kOBJECT);
+		sun->parents.at(0)->rotate(_step->deltaTimeCorrection*0.05f, 0, 0, 1, kOBJECT);
 //		sun->transform->setOrientation(glm::quat(glm::angleAxis(sin(currentTime)*6.28f, glm::vec3(0, 0, 1))));
 	}
 
@@ -572,7 +578,7 @@ void PuppetScene::update(Step * _step){
 			delete drawer;
 			drawer = nullptr;
 		}else{
-			drawer = new Box2DDebugDraw(this, world);
+			drawer = new Box2DDebugDrawer(world);
 			world->b2world->SetDebugDraw(drawer);
 			drawer->drawing = true;
 			//drawer->AppendFlags(b2Draw::e_aabbBit);
@@ -606,6 +612,8 @@ void PuppetScene::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderO
 	
 	//Render the buffer to the render surface
 	screenSurface->render(screenFBO->getTextureId());
+
+	// maybe need to draw UILayer specifically here?
 }
 
 void PuppetScene::triggerVictoryState(){
@@ -638,30 +646,8 @@ void PuppetScene::complete(std::string _switchTo){
 
 void PuppetScene::destroyItem(Item * _item){
 	// remove the item from the children list
-	for(signed long int j = children.size()-1; j >= 0; --j){
-		if(children.at(j) == _item){
-			children.erase(children.begin() + j);
-		}else{
-			for(signed long int k = _item->components.size()-1; k >= 0; --k){
-				if(children.at(j) == *_item->components.at(k)){
-					children.erase(children.begin() + j);
-				}
-			}
-		}
-	}
-	for(std::vector<Entity *> & layer : layers){
-		for(signed long int j = layer.size()-1; j >= 0; --j){
-			if(layer.at(j) == _item){
-				layer.erase(layer.begin() + j);
-			}else{
-				for(signed long int k = _item->components.size()-1; k >= 0; --k){
-					if(layer.at(j) == *_item->components.at(k)){
-						layer.erase(layer.begin() + j);
-					}
-				}
-			}
-		}
-	}
+	removeChild(_item);
+
 	// remove from follow cam
 	gameCam->removeTarget(_item);
 	for(signed long int j = _item->components.size()-1; j >= 0; --j){
@@ -678,10 +664,10 @@ void PuppetScene::doCountDown(){
 	// Remove previous number
 	if (countDown <= countDownNumbers.size() - 1){
 		// make things get
-		static_cast<ShaderComponentHsv *>(shader->components.at(1))->setSaturation(static_cast<ShaderComponentHsv *>(shader->components.at(1))->getSaturation() - 0.15f);
+		static_cast<ShaderComponentHsv *>(shader->getComponentAt(1))->setSaturation(static_cast<ShaderComponentHsv *>(shader->getComponentAt(1))->getSaturation() - 0.15f);
 		//static_cast<ShaderComponentHsv *>(shader->components.at(1))->setValue(static_cast<ShaderComponentHsv *>(shader->components.at(1))->getValue() + 0.2f);
 		
-		removeUIChild(countDownNumbers.back());
+		uiLayer->childTransform->removeChild(countDownNumbers.back());
 		delete countDownNumbers.back();
 		countDownNumbers.pop_back();
 	}
@@ -699,7 +685,7 @@ void PuppetScene::doCountDown(){
 		countdownSoundManager->play(std::to_string(countDown));
 
 		// Add new number to scene
-		addUIChild(countDownNumbers.at(countDown));
+		uiLayer->childTransform->addChild(countDownNumbers.at(countDown), false);
 	}
 }
 
@@ -708,12 +694,15 @@ void PuppetScene::playRandomBackgroundMusic(){
 }
 
 void PuppetScene::populateBackground(){
-	stageFloor = new MeshEntity(Resource::loadMeshFromObj("../assets/hurly-burly/stageFloor.vox"));
-	stageFront = new MeshEntity(Resource::loadMeshFromObj("../assets/hurly-burly/stageFront.vox"));
+	stageFloor = new MeshEntity(Resource::loadMeshFromObj("../assets/hurly-burly/stageFloor.vox").at(0));
+	stageFront = new MeshEntity(Resource::loadMeshFromObj("../assets/hurly-burly/stageFront.vox").at(0));
+
+	addChild(stageFloor, 0);
+	addChild(stageFront, 0);
 
 	stageFloor->setShader(shader, true);
-	stageFloor->transform->scale(1000, 100, 100);
-	stageFloor->transform->translate(50.f / 2.f, 0, -15.f / 2.f);
+	stageFloor->parents.at(0)->scale(1000, 100, 100);
+	stageFloor->parents.at(0)->translate(50.f / 2.f, 0, -15.f / 2.f);
 	stageFloor->mesh->uvEdgeMode = GL_REPEAT;
 	stageFloor->mesh->pushTexture2D(PuppetResourceManager::stageFloor);
 	for (Vertex & v : stageFloor->mesh->vertices){
@@ -723,8 +712,8 @@ void PuppetScene::populateBackground(){
 	stageFloor->mesh->dirty = true;
 
 	stageFront->setShader(shader, true);
-	stageFront->transform->scale(1000, 100, 100);
-	stageFront->transform->translate(50.f / 2.f, 0, -15.f / 2.f);
+	stageFront->parents.at(0)->scale(1000, 100, 100);
+	stageFront->parents.at(0)->translate(50.f / 2.f, 0, -15.f / 2.f);
 	stageFront->mesh->uvEdgeMode = GL_REPEAT;
 	stageFront->mesh->pushTexture2D(PuppetResourceManager::stageFront);
 	for (Vertex & v : stageFront->mesh->vertices){
@@ -732,16 +721,13 @@ void PuppetScene::populateBackground(){
 		v.v *= 100;
 	}
 	stageFront->mesh->dirty = true;
-
-	addChild(stageFloor, 0);
-	addChild(stageFront, 0);
 	
 	sun = new MeshEntity(MeshFactory::getPlaneMesh());
-	sun->setShader(shader, true);
-	sun->transform->translate(10, sceneHeight-10, -7.f);
-	sun->transform->scale(12, 12, 1);
-	sun->mesh->pushTexture2D(PuppetResourceManager::sun);
 	addChild(sun, 0);
+	sun->setShader(shader, true);
+	sun->parents.at(0)->translate(10, sceneHeight-10, -7.f);
+	sun->parents.at(0)->scale(12, 12, 1);
+	sun->mesh->pushTexture2D(PuppetResourceManager::sun);
 
 	Texture * treeTex1 = PuppetResourceManager::tree1;
 	Texture * treeTex2 = PuppetResourceManager::tree2;
@@ -752,9 +738,10 @@ void PuppetScene::populateBackground(){
 	for(signed long int i = 0; i < numFoliage; ++i){
 		float height = std::rand()%500/50.f+5.f;
 		MeshEntity * foliage = new MeshEntity(MeshFactory::getPlaneMesh());
+		addChild(foliage, 0);
 		foliage->setShader(shader, true);
-		foliage->transform->translate((std::rand()%500/3.f)-25.f, height, max(-9, -(float)(numFoliage-i)/numFoliage)*8.f - 1.f);
-		foliage->transform->scale(height, height, 1);
+		foliage->parents.at(0)->translate((std::rand()%500/3.f)-25.f, height, max(-9, -(float)(numFoliage-i)/numFoliage)*8.f - 1.f);
+		foliage->parents.at(0)->scale(height, height, 1);
 		int tex = i % 4;
 		switch(tex){
 			case 0:
@@ -768,12 +755,11 @@ void PuppetScene::populateBackground(){
 			default:
 				break;
 		}
-		addChild(foliage, 0);
 		if(i == 3){
 			RandomGround * randomGround = new RandomGround(world, 100, 0.4f, PuppetResourceManager::paper->texture, 3, 1);
+			addChild(randomGround, 0);
 			randomGround->setTranslationPhysical(0.0f, 0.0f, max(-9, -(float)(numFoliage-i)/numFoliage)*8.f - 1.f);
 			randomGround->setShader(shader, true);
-			addChild(randomGround, 0);
 		}
 	}
 	
@@ -784,8 +770,8 @@ void PuppetScene::populateClouds(){
 	for(signed long int i = 0; i < numClouds; ++i){
 		float height = vox::NumberUtils::randomFloat(sceneHeight / 4.f, sceneHeight);
 		Cloud * cloud = new Cloud(shader);
-		cloud->transform->translate(vox::NumberUtils::randomFloat(0, sceneWidth), height, max(-9, -(float)(numClouds-i)/numClouds)*8.f - 1.f);
 		addChild(cloud, 0);
+		cloud->parents.at(0)->translate(vox::NumberUtils::randomFloat(0, sceneWidth), height, max(-9, -(float)(numClouds-i)/numClouds)*8.f - 1.f);
 	}
 }
 

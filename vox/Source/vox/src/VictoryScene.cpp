@@ -6,7 +6,7 @@
 #include <PuppetCharacter.h>
 #include <Box2DSprite.h>
 #include <PuppetGame.h>
-#include <shader\BaseComponentShader.h>
+#include <shader\ComponentShaderBase.h>
 #include <FollowCamera.h>
 #include <PuppetContactListener.h>
 #include <MeshInterface.h>
@@ -36,10 +36,10 @@ VictoryScene::VictoryScene(PuppetGame * _game, std::vector<PuppetCharacter *> _p
 		soundName << winner;
 		PuppetResourceManager::cheerSounds->play(soundName.str());
 		TextureSampler * splashMessageTextureSampler = PuppetResourceManager::winSplashes.at(winner);
-		splashMessage = new Sprite(nullptr, new Transform());
+		splashMessage = new Sprite();
 		splashMessage->mesh->pushTexture2D(splashMessageTextureSampler->texture);
 		splashMessage->setShader(shader, true);
-		splashMessage->transform->translate(1920.f*0.5, 1080.f*0.5f, 0);
+		splashMessage->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0);
 	}else{
 		// tie
 	}

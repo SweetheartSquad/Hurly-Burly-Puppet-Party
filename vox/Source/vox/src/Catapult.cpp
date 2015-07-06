@@ -19,9 +19,6 @@
 
 Catapult::Catapult(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex):
 	StructureInteractable(_world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable(),
 	fireBoulder(false),
 	boulderJoint(nullptr),
 	cooldownCnt(0.f),
@@ -31,8 +28,8 @@ Catapult::Catapult(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int
 {
 	componentScale = 0.016f;
 
-	base = new Box2DSprite(_world, RaidTheCastleResourceManager::catapultBody, b2_staticBody, false, nullptr, new Transform(), componentScale);
-	arm = new Box2DSprite(_world, RaidTheCastleResourceManager::catapultArm, b2_dynamicBody, false, nullptr, new Transform(), componentScale);
+	base = new Box2DSprite(_world, RaidTheCastleResourceManager::catapultBody, b2_staticBody, false, nullptr, componentScale);
+	arm = new Box2DSprite(_world, RaidTheCastleResourceManager::catapultArm, b2_dynamicBody, false, nullptr, componentScale);
 	
 	components.push_back(&arm);
 	components.push_back(&base);

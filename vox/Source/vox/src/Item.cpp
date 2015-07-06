@@ -3,10 +3,7 @@
 #include "Item.h"
 #include <Box2DWorld.h>
 
-Item::Item(bool _singleUse, Box2DWorld * _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex, float _damage, float _handleX, float _handleY):
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable(),
+Item::Item(bool _singleUse, Box2DWorld * _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex, float _damage, float _handleX, float _handleY) :
 	Box2DSuperSprite(_world, _categoryBits, _maskBits, _groupIndex),
 	damage(_damage),
 	handleX(_handleX),

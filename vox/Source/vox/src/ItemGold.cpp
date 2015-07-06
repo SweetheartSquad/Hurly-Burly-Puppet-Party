@@ -6,16 +6,12 @@
 #include <RapunzelResourceManager.h>
 #include <PuppetGame.h>
 #include <MeshInterface.h>
-#include <SpriteMesh.h>
 #include <MeshFactory.h>
 
 MeshInterface * ItemGold::goldMesh = nullptr;
 
 ItemGold::ItemGold(Box2DWorld * _world) :
 	ItemSimpleWeapon(RapunzelResourceManager::goldBrick, false, _world, PuppetGame::kITEM, PuppetGame::kPLAYER, 1),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr),
-	NodeRenderable(),
 	passed(false)
 {
 	/*//if(goldMesh == nullptr){
@@ -39,7 +35,7 @@ void ItemGold::render(vox::MatrixStack * _matrixStack, RenderOptions * _renderOp
 void ItemGold::update(Step * _step){
 	ItemSimpleWeapon::update(_step);
 	
-	glm::vec3 pos = rootComponent->transform->getTranslationVector();
+	glm::vec3 pos = rootComponent->parents.at(0)->getTranslationVector();
 	if(pos.y < 2.5f && !passed){
 		passed = true;
 		b2Filter sf = rootComponent->body->GetFixtureList()->GetFilterData();

@@ -13,9 +13,7 @@ PuppetCharacterRapunzel::PuppetCharacterRapunzel(bool _ai, Box2DWorld * _world, 
 		RapunzelResourceManager::rapunzelTorso,
 		RapunzelResourceManager::rapunzelArm,
 		RapunzelResourceManager::rapunzelHelmet
-	), _ai, _world, _categoryBits, _maskBits, _groupIndex),
-	NodeTransformable(new Transform()),
-	NodeChild(nullptr)
+	), _ai, _world, _categoryBits, _maskBits, _groupIndex)
 {
 	b2Filter sf;
 	sf.categoryBits = categoryBits;

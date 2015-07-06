@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Box2DSuperSprite.h"
+#include <Box2DSuperSprite.h>
+#include <Box2DSprite.h>
+
 #include "PuppetGame.h"
 
 class PuppetCharacter;
