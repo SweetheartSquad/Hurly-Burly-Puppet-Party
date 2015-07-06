@@ -25,11 +25,6 @@ Item * ItemFireballLauncher::getProjectile(bool _forceDrop){
 	}
 	ItemFireball * projectile = new ItemFireball(dragon, world);
 
-	Box2DSprite ** test = new Box2DSprite*[1];
-	test[0] = projectile->rootComponent = new Box2DSprite(world, projectileTex, b2_dynamicBody, false, nullptr, componentScale);
-
-	projectile->addComponent(test);
-
 	b2Filter sf;
 	sf.categoryBits = categoryBits;
 	if (projectile->maskBits != (int16)-1){
@@ -54,10 +49,6 @@ Item * ItemFireballLauncher::getProjectile(bool _forceDrop){
 	projectile->setShader(static_cast<PuppetScene *>(scene)->shader, true);
 
 	projectile->snapComponents(this->rootComponent);
-
-	projectile->thrown = true;
-	projectile->held = false;
-	projectile->owner = owner;
 
 	return projectile;
 }

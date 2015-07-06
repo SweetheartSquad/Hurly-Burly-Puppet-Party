@@ -181,7 +181,7 @@ Rapunzel::Rapunzel(PuppetGame* _game):
 	goldPile->translateComponents(catwalkPos - glm::vec3(20.f, -1.5f, 0.f));
 	goldPile->addToLayeredScene(this, 1);
 	goldPile->rootComponent->parents.at(0)->scale(10.0f, 10.0f, 1.0f);
-	gameCam->addTarget(goldPile);
+	gameCam->addTarget(goldPile->rootComponent);
 	playRandomBackgroundMusic();
 	
 	gameCam->useBounds = true;

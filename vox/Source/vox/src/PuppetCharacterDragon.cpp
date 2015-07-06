@@ -185,13 +185,6 @@ void PuppetCharacterDragon::update(Step * _step){
 	if (altitude > 0){
 		torso->body->SetTransform(b2Vec2(torso->body->GetPosition().x, altitude), torso->body->GetAngle());
 	}
-	/*if(ai){
-		if(behaviourManager->behaviours.at(1)->active){
-			behaviourManager->behaviours.at(0)->active = false;
-		}else{
-			behaviourManager->behaviours.at(0)->active = true;
-		}
-	}*/
 	fireParticles->update(_step);
     if (fireball != nullptr){
         Particle * p = fireParticles->addParticle(fireball->rootComponent->getWorldPos(false));
@@ -216,7 +209,8 @@ void PuppetCharacterDragon::action(bool _forceDrop){
 			if(fireball == nullptr){
 				SlayTheDragonResourceManager::dragonSounds->playRandomSound();
 				fireball = heldItem->getProjectile(_forceDrop);
-				if (fireball == heldItem){
+				assert(fireball != nullptr);
+				if(fireball == heldItem){
 					heldItem = nullptr;
 					itemJoint = nullptr;
 					itemToPickup = nullptr;

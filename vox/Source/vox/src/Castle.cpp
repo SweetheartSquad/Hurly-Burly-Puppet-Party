@@ -16,14 +16,12 @@
 #include <RaidTheCastleResourceManager.h>
 
 Castle::Castle(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex):
-	StructureBreakable(100.f, _world, _categoryBits, _maskBits, _groupIndex)
+	StructureBreakable(100.f, _world, _categoryBits, _maskBits, _groupIndex),
+	spriteSheet(new SpriteSheetAnimation(RaidTheCastleResourceManager::castleSpriteSheet, 0))
 {
 	componentScale = 0.03f;
 	
-	TextureSampler * baseTex = RaidTheCastleResourceManager::castleBase;
-	Texture * baseSpriteSheetTex = RaidTheCastleResourceManager::castleSpriteSheet;
-
-	rootComponent = new Box2DSprite(_world, baseTex, b2_staticBody, false, nullptr, componentScale);
+	rootComponent = new Box2DSprite(_world, RaidTheCastleResourceManager::castleBase, b2_staticBody, false, nullptr, componentScale);
 	addComponent(&rootComponent);
 	
 	b2Filter sf;
@@ -39,11 +37,9 @@ Castle::Castle(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _
 
 	setUserData(this);
 	
-	rootComponent->mesh->popTexture2D();
-	spriteSheet = new SpriteSheetAnimation(baseSpriteSheetTex, 0);
-
 	// sprite sheet animation
-	spriteSheet->pushFramesInRange(0, 3, baseTex->width, baseTex->height, baseSpriteSheetTex->width);
+	rootComponent->mesh->popTexture2D();
+	spriteSheet->pushFramesInRange(0, 3, RaidTheCastleResourceManager::castleBase->texture->width, RaidTheCastleResourceManager::castleBase->texture->height, spriteSheet->texture->width);
 	rootComponent->addAnimation("castleStates", spriteSheet, true);
 	rootComponent->setTranslationPhysical(0.f, rootComponent->getCorrectedHeight(), 0.f);
 	rootComponent->mesh->uvEdgeMode = GL_MIRRORED_REPEAT_ARB;

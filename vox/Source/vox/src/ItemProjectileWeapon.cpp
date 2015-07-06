@@ -37,8 +37,7 @@ ItemProjectileWeapon::~ItemProjectileWeapon(){
 }
 
 Item * ItemProjectileWeapon::getProjectile(bool _forceDrop){
-	//Item * projectile = new Item(true, projectileTemplate->world, projectileTemplate->categoryBits, projectileTemplate->maskBits, projectileTemplate->groupIndex, projectileTemplate->damage, projectileTemplate->handleX, projectileTemplate->handleY);
-    if (_forceDrop){
+	if (_forceDrop){
         return Item::getProjectile(_forceDrop);
     }
     

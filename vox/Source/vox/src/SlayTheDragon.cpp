@@ -52,7 +52,6 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	cl->damageScoreMult = 1;
 	
 	Sprite * fortBg = new Sprite();
-	fort->addToLayeredScene(this, 1);
 	addChild(fortBg, 0);
 	fortBg->setShader(shader, true);
 	fortBg->pushTextureSampler(SlayTheDragonResourceManager::fortBackground);
@@ -60,7 +59,6 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	fortBg->parents.at(0)->scale(2.6f, 2.6f, 1.0f);
 
 	
-	// dragon needs to be first bc the fire particles should draw underneath other players
 	
 	players.push_back(playerCharacter1);
 	players.push_back(playerCharacter2);
@@ -78,14 +76,11 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 		fortForeground->mesh->vertices.at(i).y += 2.0f;
 	}
 	fortForeground->mesh->dirty = true;
-
     fortForeground->setShader(shader, true);
     addChild(fortForeground, 2);
-
-    fortForeground->setTranslationPhysical(glm::vec3(0, fortForeground->getCorrectedHeight(), 0));
-
-    fort->translateComponents(glm::vec3(0.f, fortForeground->getCorrectedHeight() + 31.f, 0.f));
+    fortForeground->setTranslationPhysical(glm::vec3(80.0f, fortForeground->getCorrectedHeight(), 0));
 	
+	// dragon needs to be first bc the fire particles should draw underneath other players
 	addChild(playerCharacter4, 1);
 	playerCharacter4->addToLayeredScene(this, 1);
 	addChild(playerCharacter1, 1);
@@ -132,8 +127,7 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	fort->setShader(shader, true);
 	fort->addToLayeredScene(this, 1);
 	addChild(fort, 1);
-    fort->translateComponents(glm::vec3(80.0f, 0.f, 0.f));
-    fortForeground->setTranslationPhysical(glm::vec3(80.0f, 0.f, 0.f), true);
+    fort->translateComponents(glm::vec3(80.0f, fortForeground->getCorrectedHeight() + 31.f, 0.f));
 
 	Box2DMeshEntity * deathBounds = new Box2DMeshEntity(world, MeshFactory::getPlaneMesh(), b2_staticBody);
 	addChild(deathBounds, 2);

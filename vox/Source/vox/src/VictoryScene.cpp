@@ -53,11 +53,9 @@ VictoryScene::VictoryScene(PuppetGame * _game, std::vector<PuppetCharacter *> _p
 		players.at(i)->addToLayeredScene(this, 1);
 		players.at(i)->rootComponent->maxVelocity = b2Vec2(10, 10);
 		players.at(i)->translateComponents(glm::vec3(20.0f * (i+1), 35, 0.f));
-		gameCam->addTarget(players.at(i)->torso);
+		gameCam->addTarget(players.at(i)->indicator);
 		
 		static_cast<PuppetGame *>(game)->puppetControllers.at(i)->setPuppetCharacter(players.at(i), players.at(i)->id);
-
-		//players.at(i)->score /= maxScore;
 	}
 	
 	std::vector<PuppetCharacter *> playerList;
@@ -98,10 +96,6 @@ VictoryScene::VictoryScene(PuppetGame * _game, std::vector<PuppetCharacter *> _p
 	player2->score = player2->lastUpdateScore = 0.6f;
 	player3->score = player3->lastUpdateScore = 0.3f;
 	player4->score = player4->lastUpdateScore = 0.1f;
-
-	/*std::sort(sortedPlayers.begin(), sortedPlayers.end(), PuppetCharacter::compareByScore);
-	podium(sortedPlayers);*/
-
 
 	float maxHeight = 9.f;
 

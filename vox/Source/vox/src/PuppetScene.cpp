@@ -561,17 +561,19 @@ void PuppetScene::complete(std::string _switchTo){
 
 void PuppetScene::destroyItem(Item * _item){
 	// remove the item from the children list
-	removeChild(_item);
+	removeChild(_item->parents.at(0));
 
 	// remove from follow cam
 	gameCam->removeTarget(_item);
 	for(signed long int j = _item->components.size()-1; j >= 0; --j){
 		gameCam->removeTarget(*_item->components.at(j));
 	}
+	
+	// don't need to remove from item list because that happens in the calling function
 
 	//maybe use something like children.erase(std::remove(children.begin(), children.end(), item), children.end());
 
-	delete _item;
+	delete _item->parents.at(0);
 	_item = nullptr;
 }
 

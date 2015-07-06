@@ -15,13 +15,12 @@
 #include <SlayTheDragonResourceManager.h>
 
 Fortification::Fortification(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex) :
-	StructureBreakable(250.f, _world, _categoryBits, _maskBits, _groupIndex)
+	StructureBreakable(250.f, _world, _categoryBits, _maskBits, _groupIndex),
+	spriteSheet(new SpriteSheetAnimation(SlayTheDragonResourceManager::fortificationSpriteSheet, 0))
 {
 	componentScale = 0.025f;
 
-	TextureSampler * roofTex = SlayTheDragonResourceManager::fortStructure;
-
-	rootComponent = new Box2DSprite(_world, roofTex, b2_staticBody, false, nullptr, componentScale);
+	rootComponent = new Box2DSprite(_world, SlayTheDragonResourceManager::fortStructure, b2_staticBody, false, nullptr, componentScale);
 
 	addComponent(&rootComponent);
 	
@@ -45,9 +44,6 @@ Fortification::Fortification(Box2DWorld* _world, int16 _categoryBits, int16 _mas
 	
 	// sprite sheet animation
 	rootComponent->mesh->popTexture2D();
-	
-	spriteSheet = new SpriteSheetAnimation(SlayTheDragonResourceManager::fortificationSpriteSheet, 0);
-
 	spriteSheet->pushFramesInRange(0, 3, 1024, 188, 1024);
 	rootComponent->addAnimation("fortStates", spriteSheet, true);
 	rootComponent->mesh->uvEdgeMode = GL_MIRRORED_REPEAT_ARB;
@@ -62,29 +58,29 @@ void Fortification::takeDamage(float _damage){
 	//glm::vec3 sv = rootComponent->parents.at(0)->getScaleVector();
 	unsigned long int lastFrame = rootComponent->currentAnimation->currentFrame;
 	switch (state){
-	default:
-	case StructureBreakable::kNORMAL:
-		rootComponent->currentAnimation->currentFrame = 0;
-		break;
-	case StructureBreakable::kDAMAGED:
-		if(lastFrame != 2){
-			rootComponent->currentAnimation->currentFrame = 2;
-			SlayTheDragonResourceManager::miscSounds->play("damaged");
-		}
-		break;
-	case StructureBreakable::kDEAD:
-		if(lastFrame != 3){
-			rootComponent->currentAnimation->currentFrame = 3;
-			SlayTheDragonResourceManager::miscSounds->play("broken");
-			b2Filter sf;
-			sf.groupIndex = groupIndex;
-			sf.categoryBits = PuppetGame::kSTRUCTURE;
-			sf.maskBits = 0;
-			for(Box2DSprite ** c : components){
-				(*c)->body->GetFixtureList()->SetFilterData(sf);
+		default:
+		case StructureBreakable::kNORMAL:
+			rootComponent->currentAnimation->currentFrame = 0;
+			break;
+		case StructureBreakable::kDAMAGED:
+			if(lastFrame != 2){
+				rootComponent->currentAnimation->currentFrame = 2;
+				SlayTheDragonResourceManager::miscSounds->play("damaged");
 			}
-		}
-		break;
+			break;
+		case StructureBreakable::kDEAD:
+			if(lastFrame != 3){
+				rootComponent->currentAnimation->currentFrame = 3;
+				SlayTheDragonResourceManager::miscSounds->play("broken");
+				b2Filter sf;
+				sf.groupIndex = groupIndex;
+				sf.categoryBits = PuppetGame::kSTRUCTURE;
+				sf.maskBits = 0;
+				for(Box2DSprite ** c : components){
+					(*c)->body->GetFixtureList()->SetFilterData(sf);
+				}
+			}
+			break;
 	}
 
 	//rootComponent->parents.at(0)->scale(sv, false);

@@ -125,8 +125,8 @@ RaidTheCastle::RaidTheCastle(PuppetGame* _game):
 		gameCam->addTarget(p->indicator);
 	}
 
-	gameCam->addTarget(catapult);
-	gameCam->addTarget(castle);
+	gameCam->addTarget(catapult->rootComponent);
+	gameCam->addTarget(castle->rootComponent);
 
 	gameCam->useBounds = true;
 	gameCam->minBounds.x = 0;
@@ -139,8 +139,8 @@ void RaidTheCastle::update(Step* _step){
 	PuppetScene::update(_step);
 
 	if(!camTargetsRemoved && _step->time - sceneStart > 15.0) {
-		gameCam->removeTarget(castle);
-		gameCam->removeTarget(catapult);
+		gameCam->removeTarget(castle->rootComponent);
+		gameCam->removeTarget(catapult->rootComponent);
 		camTargetsRemoved = true;
 	}
 
