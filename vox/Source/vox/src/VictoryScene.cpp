@@ -181,23 +181,27 @@ void VictoryScene::unload(){
 void VictoryScene::doCountDown(){
 	// Remove previous number
 	if (countDown <= countDownNumbers.size() - 1){
-		// Remove previous number from scene
-		// Just copying destroyItem stuff for now
-		removeChild(countDownNumbers.at(countDown));
+		// make things get less saturated as the countdown progresses
+		//static_cast<ShaderComponentHsv *>(shader->getComponentAt(1))->setSaturation(static_cast<ShaderComponentHsv *>(shader->getComponentAt(1))->getSaturation() - 0.15f);
+		
+		uiLayer->childTransform->removeChild(countDownNumbers.back());
+		delete countDownNumbers.back();
+		countDownNumbers.pop_back();
 	}
 	
-	// Decrease countdown
-	-- countDown;
-	if(countDown == 0){
+	if(countDown > 0){
+		// Decrease countdown
+		-- countDown;
+
 		// Display countdown
 		std::cout << "=========================" << std::endl;
 		std::cout << countDown << std::endl;
-		std::cout << "idx: " << countDown << std::endl;
+		std::cout << "idx: " << countDownNumbers.size()-1 << std::endl;
 		std::cout << "=========================" << std::endl;
 
-		countdownSoundManager->play(std::to_string(countDown));
+		countdownSoundManager->play(std::to_string(countDownNumbers.size()-1));
 
 		// Add new number to scene
-		addChild(countDownNumbers.at(countDown), 2);
+		uiLayer->childTransform->addChild(countDownNumbers.back(), false);
 	}
 }
