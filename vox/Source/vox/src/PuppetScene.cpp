@@ -256,6 +256,7 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	particleSystem->setShader(shader, true);
 	particleSystem->emissionRate = -1;
 	particleSystem->emissionAmount = 0;
+	particleSystem->componentScale = 0.0025f;
 
 	addChild(uiLayer, 3, false);
 }
