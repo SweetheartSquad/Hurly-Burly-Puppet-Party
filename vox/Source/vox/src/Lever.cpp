@@ -94,7 +94,7 @@ void Lever::evaluateState(){
 
 void Lever::actuallyInteract(){
 	std::cout << type << std::endl;
-	Rapunzel * ps = static_cast<Rapunzel *>(scene);
+	Rapunzel * ps = dynamic_cast<Rapunzel *>(scene);
 	if(type == 1){
 		RapunzelResourceManager::spearSounds->playRandomSound();
 		Item * projectile = new Item(true, world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kBOUNDARY, groupIndex);
