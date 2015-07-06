@@ -602,20 +602,6 @@ void PuppetScene::update(Step * _step){
 	}
 }
 
-void PuppetScene::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	
-	screenFBO->resize(game->viewPortWidth, game->viewPortHeight);
-	//Bind frameBuffer
-	screenFBO->bindFrameBuffer();
-	//render the scene to the buffer
-	LayeredScene::render(_matrixStack, _renderOptions);
-	
-	//Render the buffer to the render surface
-	screenSurface->render(screenFBO->getTextureId());
-
-	// maybe need to draw UILayer specifically here?
-}
-
 void PuppetScene::triggerVictoryState(){
 	if(!victoryTriggered){
 		if(currentTime < duration - 1){
