@@ -51,15 +51,12 @@ Rapunzel::Rapunzel(PuppetGame* _game):
 	playerCharacter3(new PuppetCharacterThief(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY, -3)),
 	playerCharacter4(new PuppetCharacterRapunzel(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY, -4))
 {
+	splashMessage->mesh->pushTexture2D(RapunzelResourceManager::splashMessage->texture);
+
 	ghostPosition = 12.0f;
 
 	populateBackground();
 	cl = new RapunzelContactListener(this);
-
-	splashMessage = new Sprite();
-	splashMessage->mesh->pushTexture2D(RapunzelResourceManager::splashMessage->texture);
-	splashMessage->setShader(shader, true);
-	splashMessage->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0.f);
 
 	Sprite * towerBg = new Sprite();
 	addChild(towerBg, 0);

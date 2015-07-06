@@ -47,15 +47,11 @@ FightYourFriends::FightYourFriends(PuppetGame* _game):
 	playerCharacter3(new PuppetCharacterKnight(false, 2, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY, -3)),
 	playerCharacter4(new PuppetCharacterKnight(false, 3, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY, -4))
 {
+	splashMessage->mesh->pushTexture2D(FightYourFriendsResourceManager::splashMessage->texture);
+
 	ghostPosition = 12.0f;
 	cl = new PuppetContactListener(this);
 	cl->damageScoreMult = 1.f;
-
-	TextureSampler * splashMessageTextureSampler = FightYourFriendsResourceManager::splashMessage;
-	splashMessage = new Sprite();
-	splashMessage->mesh->pushTexture2D(splashMessageTextureSampler->texture);
-	splashMessage->setShader(shader, true);
-	splashMessage->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0);
 
 	players.push_back(playerCharacter1);
 	players.push_back(playerCharacter2);

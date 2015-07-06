@@ -259,6 +259,11 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	particleSystem->componentScale = 0.0025f;
 
 	addChild(uiLayer, 3, false);
+
+	splashMessage = new Sprite();
+	splashMessage->setShader(shader, true);
+	splashMessage->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0);
+	uiLayer->childTransform->addChild(splashMessage, false);
 }
 
 PuppetScene::~PuppetScene(){
@@ -376,20 +381,9 @@ void PuppetScene::update(Step * _step){
 	LayeredScene::update(_step);
 	if(splashMessage != nullptr){
 		if(currentTime < splashDuration){
-			if(displayingSplash){
-				// the factor of 15 is only there because I can't load this thing at the correct size...
-				//float scale = Easing::easeOutBack(splashDuration - currentTime, 0, 10, splashDuration);
-				float easeTime = splashDuration - currentTime;
-				float scale = (easeTime < splashDuration / 2.f) ? Easing::easeOutCubic(easeTime, 0, 1024, splashDuration / 2.f) : Easing::easeInElastic(easeTime - splashDuration / 2.f, 1024, -1024, splashDuration / 2.f);
-				splashMessage->childTransform->scale(glm::vec3(scale, scale, 1), false);
-			}else{
-				//addChild(splashMessage, 2);
-				uiLayer->childTransform->addChild(splashMessage, false);
-				displayingSplash = true;
-			}
-
-			//splashMessage->transform->translate(activeCamera->transform->getTranslationVector(), false);
-			//splashMessage->transform->translate(glm::vec3(0,0,-10));
+			float easeTime = splashDuration - currentTime;
+			float scale = (easeTime < splashDuration / 2.f) ? Easing::easeOutCubic(easeTime, 0, 1024, splashDuration / 2.f) : Easing::easeInElastic(easeTime - splashDuration / 2.f, 1024, -1024, splashDuration / 2.f);
+			splashMessage->childTransform->scale(glm::vec3(scale, scale, 1), false);
 		}else{
 			// Remove previous number from scene
 			uiLayer->childTransform->removeChild(splashMessage);

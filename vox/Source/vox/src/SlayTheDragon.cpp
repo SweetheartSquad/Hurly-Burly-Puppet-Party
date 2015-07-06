@@ -45,6 +45,8 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	playerCharacter3(new PuppetCharacterArcher(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY | PuppetGame::kDEAD_ZONE, -3)),
 	playerCharacter4(new PuppetCharacterDragon(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY, -4))
 {
+	splashMessage->mesh->pushTexture2D(SlayTheDragonResourceManager::splashMessage->texture);
+
 	ghostPosition = 30.0f;
 	cl = new SlayTheDragonContactListener(this);
 	cl->damageScoreMult = 1;
@@ -57,10 +59,6 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	fortBg->parents.at(0)->translate(65.0f, 20.0f, 0.0f);
 	fortBg->parents.at(0)->scale(2.6f, 2.6f, 1.0f);
 
-	splashMessage = new Sprite();
-	splashMessage->mesh->pushTexture2D(SlayTheDragonResourceManager::splashMessage->texture);
-	splashMessage->setShader(shader, true);
-	splashMessage->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0);
 	
 	// dragon needs to be first bc the fire particles should draw underneath other players
 	

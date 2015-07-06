@@ -48,6 +48,7 @@ RaidTheCastle::RaidTheCastle(PuppetGame* _game):
 	playerCharacter3(new PuppetCharacterKnight(false, 2, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY, -3)),
 	playerCharacter4(new PuppetCharacterKnight(false, 3, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY, -4))
 {
+	splashMessage->mesh->pushTexture2D(RaidTheCastleResourceManager::splashMessage->texture);
 
 	ghostPosition = 12.0f;
 	populateBackground();
@@ -58,11 +59,6 @@ RaidTheCastle::RaidTheCastle(PuppetGame* _game):
 	castle->addToLayeredScene(this, 0);
 	addChild(castle, 0);
 
-	TextureSampler * splashMessageTextureSampler = RaidTheCastleResourceManager::splashMessage;
-	splashMessage = new Sprite();
-	splashMessage->mesh->pushTexture2D(splashMessageTextureSampler->texture);
-	splashMessage->setShader(shader, true);
-	splashMessage->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0);
 
 	players.push_back(playerCharacter1);
 	players.push_back(playerCharacter2);
