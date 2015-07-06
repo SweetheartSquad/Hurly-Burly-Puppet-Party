@@ -205,13 +205,6 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	background->mesh->setUV(2, static_cast<float>(timeOfDay) / timeOfDayOptions, 1);
 	background->mesh->setUV(3, static_cast<float>(timeOfDay) / timeOfDayOptions, 1);
 	
-
-	/*b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(1.0f * std::abs(ground->transform->scaleVector.x), 1.0f * std::abs(ground->transform->scaleVector.y));	
-	b2Fixture * groundFixture = ground->getNewFixture(dynamicBox, 1.0f);
-	groundFixture->SetSensor(false);
-	groundFixture->SetUserData(this);
-	*/
 	
 	//Set up cameras
 	Transform * t = new Transform();
