@@ -78,6 +78,7 @@ PuppetCharacter * PuppetCharacterDragon::clone(Box2DWorld * _world, PuppetScene 
 	res->id = id;
 	res->score = score;
 	res->altitude = -1;
+	res->setShader(_scene->shader, true);
 	res->createIndicator(res->id);
 
 	return res;
@@ -90,6 +91,9 @@ PuppetCharacterDragon::~PuppetCharacterDragon(){
 }
 
 void PuppetCharacterDragon::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
+	Shader * prev = _renderOptions->shader;
+	applyShader(_renderOptions);
+
 	ShaderComponentHsv * hsvShader = static_cast<ShaderComponentHsv *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(1));
 	ShaderComponentTint * tintShader = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2));
 	// save the current shader settings
@@ -170,6 +174,8 @@ void PuppetCharacterDragon::render(vox::MatrixStack* _matrixStack, RenderOptions
 	tintShader->setRed(red);
 	tintShader->setGreen(green);
 	tintShader->setBlue(blue);
+
+	_renderOptions->shader = prev;
 }
 
 void PuppetCharacterDragon::update(Step * _step){

@@ -63,6 +63,7 @@ PuppetCharacter * PuppetCharacter::clone(Box2DWorld * _world, PuppetScene * _sce
 	res->id = id;
 	res->score = std::max(0.0001f, score);
 	res->lastUpdateScore = res->score;
+	res->setShader(_scene->shader, true);
 	res->createIndicator(res->id);
 	return res;
 }
@@ -297,11 +298,13 @@ void PuppetCharacter::createIndicator(signed long _id){
 	// score indicator
 	scoreIndicator = new ScoreIndicator(_id, world);
 	scoreIndicator->setShader(shader, true);
-	static_cast<PuppetScene *>(scene)->uiLayer->childTransform->addChild(scoreIndicator, false);
+	dynamic_cast<PuppetScene *>(scene)->uiLayer->childTransform->addChild(scoreIndicator);
 }
 
 
 void PuppetCharacter::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
+	Shader * prev = _renderOptions->shader;
+	applyShader(_renderOptions);
 
 	ShaderComponentHsv * hsvShader = static_cast<ShaderComponentHsv *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(1));
 	ShaderComponentTint * tintShader = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2));
@@ -389,6 +392,8 @@ void PuppetCharacter::render(vox::MatrixStack* _matrixStack, RenderOptions* _ren
 	tintShader->setGreen(green);
 	tintShader->setBlue(blue);
 	alphaShader->setAlpha(alpha);
+
+	_renderOptions->shader = prev;
 }
 
 void PuppetCharacter::update(Step* _step){

@@ -30,18 +30,20 @@ PuppetCharacterGuard::~PuppetCharacterGuard(){
 
 
 void PuppetCharacterGuard::render(vox::MatrixStack * _matrixStack, RenderOptions * _renderOptions){
+	Shader * prev = _renderOptions->shader;
+	applyShader(_renderOptions);
 	// save the current shader settings
-	float red = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->getRed();
-	float green = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->getGreen();
-	float blue = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->getBlue();
-	float alpha = static_cast<ShaderComponentAlpha *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(3))->getAlpha();
+	float red = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2))->getRed();
+	float green = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2))->getGreen();
+	float blue = static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2))->getBlue();
+	float alpha = static_cast<ShaderComponentAlpha *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(3))->getAlpha();
 
-	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->setRed(red + (1 - control) * 3);
-	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->setGreen(green - (1 - control) * 3);
-	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->setBlue(blue - (1 - control) * 3);
+	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2))->setRed(red + (1 - control) * 3);
+	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2))->setGreen(green - (1 - control) * 3);
+	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2))->setBlue(blue - (1 - control) * 3);
 
 	if (dead){
-		static_cast<ShaderComponentAlpha *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(3))->setAlpha(0.5f);
+		static_cast<ShaderComponentAlpha *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(3))->setAlpha(0.5f);
 	}
 
 	popsicleStick->render(_matrixStack, _renderOptions);
@@ -64,8 +66,10 @@ void PuppetCharacterGuard::render(vox::MatrixStack * _matrixStack, RenderOptions
 	if (indicator != nullptr){
 		indicator->render(_matrixStack, _renderOptions);
 	}
-	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->setRed(red);
-	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->setGreen(green);
-	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(2))->setBlue(blue);
-	static_cast<ShaderComponentAlpha *>(static_cast<ComponentShaderBase *>(_renderOptions->shader)->getComponentAt(3))->setAlpha(alpha);
+	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2))->setRed(red);
+	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2))->setGreen(green);
+	static_cast<ShaderComponentTint *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(2))->setBlue(blue);
+	static_cast<ShaderComponentAlpha *>(static_cast<ComponentShaderBase *>(shader)->getComponentAt(3))->setAlpha(alpha);
+
+	_renderOptions->shader = prev;
 }
