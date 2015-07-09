@@ -11,7 +11,7 @@
 #include <TextureSampler.h>
 #include <NumberUtils.h>
 
-Scenario * PuppetResourceManager::puppetScenario = new Scenario("../assets/puppetScenario.json");
+Scenario * PuppetResourceManager::puppetScenario = nullptr;
 
 Texture * PuppetResourceManager::startupSplash = new Texture("../assets/hurly-burly/SplashMessages/Startup.png", 2096, 2096, true, false);
 Texture * PuppetResourceManager::blank = new Texture("../assets/hurly-burly/blank.png", 1, 1, true, false);
@@ -33,30 +33,30 @@ Texture * PuppetResourceManager::cloud3 = new Texture("../assets/hurly-burly/Clo
 Texture * PuppetResourceManager::cloud4 = new Texture("../assets/hurly-burly/Clouds/Cloud4.png", 1024, 1024, true, false);
 
 
-TextureSampler * PuppetResourceManager::stageCurtain		= new TextureSampler("../assets/hurly-burly/StageAssets/", "curtain.png.def", false);
-TextureSampler * PuppetResourceManager::stageCurtainCenter	= new TextureSampler("../assets/hurly-burly/StageAssets/", "curtainCenter.png.def", false);
-TextureSampler * PuppetResourceManager::stageCurtainTop		= new TextureSampler("../assets/hurly-burly/StageAssets/", "topCurtain.png.def", false);
-TextureSampler * PuppetResourceManager::stageSpotlight		= new TextureSampler("../assets/hurly-burly/StageAssets/", "spotlight.png.def", false);
+TextureSampler * PuppetResourceManager::stageCurtain		= nullptr;
+TextureSampler * PuppetResourceManager::stageCurtainCenter	= nullptr;
+TextureSampler * PuppetResourceManager::stageCurtainTop		= nullptr;
+TextureSampler * PuppetResourceManager::stageSpotlight		= nullptr;
 
-TextureSampler * PuppetResourceManager::dustParticle = new TextureSampler("../assets/hurly-burly/", "dustParticle.png.def", false);
+TextureSampler * PuppetResourceManager::dustParticle = nullptr;
 std::vector<TextureSampler *> PuppetResourceManager::scoreParticles;
 
-TextureSampler * PuppetResourceManager::head = new TextureSampler("../assets/hurly-burly/", "Head1.png.def", false); 
-TextureSampler * PuppetResourceManager::hand = new TextureSampler("../assets/hurly-burly/", "Hand1.png.def", false);
-TextureSampler * PuppetResourceManager::popsicleStick = new TextureSampler("../assets/hurly-burly/", "popsicleStick.png.def", false);
+TextureSampler * PuppetResourceManager::head = nullptr; 
+TextureSampler * PuppetResourceManager::hand = nullptr;
+TextureSampler * PuppetResourceManager::popsicleStick = nullptr;
 std::vector<TextureSampler *> PuppetResourceManager::faces;
 
 
-TextureSampler * PuppetResourceManager::whiteHead = new TextureSampler("../assets/hurly-burly/white/", "head.png.def", false); 
-TextureSampler * PuppetResourceManager::whiteTorso = new TextureSampler("../assets/hurly-burly/white/", "torso.png.def", false); 
-TextureSampler * PuppetResourceManager::whiteArm = new TextureSampler("../assets/hurly-burly/white/", "arm.png.def", false); 
+TextureSampler * PuppetResourceManager::whiteHead = nullptr; 
+TextureSampler * PuppetResourceManager::whiteTorso = nullptr; 
+TextureSampler * PuppetResourceManager::whiteArm = nullptr; 
 
-TextureSampler * PuppetResourceManager::countDown0 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/0.png", 1024, 1024, true, false), 1024, 1024);
-TextureSampler * PuppetResourceManager::countDown1 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/1.png", 1024, 1024, true, false), 1024, 1024);
-TextureSampler * PuppetResourceManager::countDown2 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/2.png", 1024, 1024, true, false), 1024, 1024);
-TextureSampler * PuppetResourceManager::countDown3 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/3.png", 1024, 1024, true, false), 1024, 1024);
-TextureSampler * PuppetResourceManager::countDown4 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/4.png", 1024, 1024, true, false), 1024, 1024);
-TextureSampler * PuppetResourceManager::countDown5 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/5.png", 1024, 1024, true, false), 1024, 1024);
+TextureSampler * PuppetResourceManager::countDown0 = nullptr;
+TextureSampler * PuppetResourceManager::countDown1 = nullptr;
+TextureSampler * PuppetResourceManager::countDown2 = nullptr;
+TextureSampler * PuppetResourceManager::countDown3 = nullptr;
+TextureSampler * PuppetResourceManager::countDown4 = nullptr;
+TextureSampler * PuppetResourceManager::countDown5 = nullptr;
 
 
 std::vector<TextureSampler *> PuppetResourceManager::indicators;
@@ -80,7 +80,30 @@ std::vector<SoundManager *> PuppetResourceManager::miscCheerSounds;
 SoundManager * PuppetResourceManager::fallingSounds = new SoundManager(-1);
 
 void PuppetResourceManager::init(){
+	popsicleStick = new TextureSampler("../assets/hurly-burly/", "popsicleStick.png.def", false);
+	head = new TextureSampler("../assets/hurly-burly/", "Head1.png.def", false);
+	hand = new TextureSampler("../assets/hurly-burly/", "Hand1.png.def", false);
 	
+	countDown0 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/0.png", 1024, 1024, true, false), 1024, 1024);
+	countDown1 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/1.png", 1024, 1024, true, false), 1024, 1024);
+	countDown2 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/2.png", 1024, 1024, true, false), 1024, 1024);
+	countDown3 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/3.png", 1024, 1024, true, false), 1024, 1024);
+	countDown4 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/4.png", 1024, 1024, true, false), 1024, 1024);
+	countDown5 = new TextureSampler(new Texture("../assets/hurly-burly/Countdown/5.png", 1024, 1024, true, false), 1024, 1024);
+
+	dustParticle = new TextureSampler("../assets/hurly-burly/", "dustParticle.png.def", false);
+
+	whiteHead = new TextureSampler("../assets/hurly-burly/white/", "head.png.def", false); 
+	whiteTorso = new TextureSampler("../assets/hurly-burly/white/", "torso.png.def", false);
+	whiteArm = new TextureSampler("../assets/hurly-burly/white/", "arm.png.def", false);
+
+	stageCurtain		= new TextureSampler("../assets/hurly-burly/StageAssets/", "curtain.png.def", false);
+	stageCurtainCenter	= new TextureSampler("../assets/hurly-burly/StageAssets/", "curtainCenter.png.def", false);
+	stageCurtainTop		= new TextureSampler("../assets/hurly-burly/StageAssets/", "topCurtain.png.def", false);
+	stageSpotlight		= new TextureSampler("../assets/hurly-burly/StageAssets/", "spotlight.png.def", false);
+
+
+	puppetScenario = new Scenario("../assets/puppetScenario.json");
 	resources.push_back(startupSplash);
 	resources.push_back(blank);
 	resources.push_back(itemNone);

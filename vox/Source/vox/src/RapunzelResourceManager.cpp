@@ -4,47 +4,82 @@
 #include <TextureSampler.h>
 #include <SoundManager.h>
 
-TextureSampler * RapunzelResourceManager::splashMessage	= new TextureSampler(new Texture("../assets/hurly-burly/SplashMessages/RapunzelSplash.png", 1024, 1024, true, false), 1024, 1024);
-
 Texture * RapunzelResourceManager::goldSpriteSheet    = new Texture("../assets/hurly-burly/Gold/GoldPileSpriteSheet.png", 1024, 1024, true, false);
 
-TextureSampler * RapunzelResourceManager::towerBackground	= new TextureSampler("../assets/hurly-burly/RapCastleAssets/", "RapCastleBackground.png.def", false);
-TextureSampler * RapunzelResourceManager::towerCatwalk		= new TextureSampler("../assets/hurly-burly/RapCastleAssets/", "RapCastleCatwalk.png.def", false);
-TextureSampler * RapunzelResourceManager::towerTower		= new TextureSampler("../assets/hurly-burly/RapCastleAssets/", "RapCastleTower.png.def", false);
-
-TextureSampler * RapunzelResourceManager::goldBrick   = new TextureSampler("../assets/hurly-burly/Gold/", "goldBrick.png.def", false);
-TextureSampler * RapunzelResourceManager::glove   = new TextureSampler("../assets/hurly-burly/BoxingGlove/", "BoxingGlove.png.def", false);
-TextureSampler * RapunzelResourceManager::spring   = new TextureSampler("../assets/hurly-burly/RapCastleAssets/", "RapCastleSpring.png.def", false);
-TextureSampler * RapunzelResourceManager::itemSpear   = new TextureSampler("../assets/hurly-burly/WeaponAssets/", "arrow.png.def", false);
-
-TextureSampler * RapunzelResourceManager::leverHandle   = new TextureSampler("../assets/hurly-burly/Lever/", "LeverHandle.png.def", false);
-TextureSampler * RapunzelResourceManager::leverBase = new TextureSampler("../assets/hurly-burly/Lever/", "LeverBase.png.def", false);
-
-TextureSampler * RapunzelResourceManager::hair  = new TextureSampler("../assets/hurly-burly/Hair/", "Hair.png.def", false);
-
-TextureSampler * RapunzelResourceManager::hairLink  = new TextureSampler("../assets/hurly-burly/RapunzelAssets/", "RapunzelHairLink.png.def", false);
-TextureSampler * RapunzelResourceManager::hairEnd  = new TextureSampler("../assets/hurly-burly/RapunzelAssets/", "RapunzelHairEnd.png.def", false);
-
-TextureSampler * RapunzelResourceManager::thiefTorso	= new TextureSampler("../assets/hurly-burly/ThiefAssets/", "ThiefTorso.png.def", false);
-TextureSampler * RapunzelResourceManager::thiefArm		= new TextureSampler("../assets/hurly-burly/ThiefAssets/", "ThiefArm.png.def", false);
-TextureSampler * RapunzelResourceManager::thiefHelmet	= new TextureSampler("../assets/hurly-burly/ThiefAssets/", "ThiefHelmet.png.def", false);
-										  
-TextureSampler * RapunzelResourceManager::rapunzelTorso	   = new TextureSampler("../assets/hurly-burly/RapunzelAssets/", "RapunzelDress.png.def", false);
-TextureSampler * RapunzelResourceManager::rapunzelArm	   = new TextureSampler("../assets/hurly-burly/RapunzelAssets/", "RapunzelArm.png.def", false);
-TextureSampler * RapunzelResourceManager::rapunzelHelmet    = new TextureSampler("../assets/hurly-burly/RapunzelAssets/", "RapunzelHat.png.def", false);
-										  
-TextureSampler * RapunzelResourceManager::guard1Torso	= new TextureSampler("../assets/hurly-burly/FancyKnight1/", "FK1Breastplate.png.def", false);
-TextureSampler * RapunzelResourceManager::guard1Arm	    = new TextureSampler("../assets/hurly-burly/FancyKnight1/", "FK1Arm.png.def", false);
-TextureSampler * RapunzelResourceManager::guard1Helmet   = new TextureSampler("../assets/hurly-burly/FancyKnight1/", "FK1Helmet.png.def", false);
-TextureSampler * RapunzelResourceManager::guard2Torso	= new TextureSampler("../assets/hurly-burly/FancyKnight2/", "FK2Breastplate.png.def", false);
-TextureSampler * RapunzelResourceManager::guard2Arm	    = new TextureSampler("../assets/hurly-burly/FancyKnight2/", "FK2Arm.png.def", false);
-TextureSampler * RapunzelResourceManager::guard2Helmet   = new TextureSampler("../assets/hurly-burly/FancyKnight2/", "FK2Helmet.png.def", false);
+TextureSampler * RapunzelResourceManager::splashMessage		= nullptr;
+															  
+TextureSampler * RapunzelResourceManager::towerBackground	= nullptr;
+TextureSampler * RapunzelResourceManager::towerCatwalk		= nullptr;
+TextureSampler * RapunzelResourceManager::towerTower		= nullptr;
+															  
+TextureSampler * RapunzelResourceManager::goldBrick			= nullptr;
+TextureSampler * RapunzelResourceManager::glove				= nullptr;
+TextureSampler * RapunzelResourceManager::spring			= nullptr;
+TextureSampler * RapunzelResourceManager::itemSpear			= nullptr;
+															  
+TextureSampler * RapunzelResourceManager::leverHandle		= nullptr;
+TextureSampler * RapunzelResourceManager::leverBase			= nullptr;
+															  
+TextureSampler * RapunzelResourceManager::hair				= nullptr;
+															  
+TextureSampler * RapunzelResourceManager::hairLink			= nullptr;
+TextureSampler * RapunzelResourceManager::hairEnd			= nullptr;
+															  
+TextureSampler * RapunzelResourceManager::thiefTorso		= nullptr;
+TextureSampler * RapunzelResourceManager::thiefArm			= nullptr;
+TextureSampler * RapunzelResourceManager::thiefHelmet		= nullptr;
+										  					  
+TextureSampler * RapunzelResourceManager::rapunzelTorso		= nullptr;
+TextureSampler * RapunzelResourceManager::rapunzelArm		= nullptr;
+TextureSampler * RapunzelResourceManager::rapunzelHelmet	= nullptr;
+										  					  
+TextureSampler * RapunzelResourceManager::guard1Torso		= nullptr;
+TextureSampler * RapunzelResourceManager::guard1Arm			= nullptr;
+TextureSampler * RapunzelResourceManager::guard1Helmet		= nullptr;
+TextureSampler * RapunzelResourceManager::guard2Torso		= nullptr;
+TextureSampler * RapunzelResourceManager::guard2Arm			= nullptr;
+TextureSampler * RapunzelResourceManager::guard2Helmet		= nullptr;
 
 SoundManager * RapunzelResourceManager::gloveSounds	= new SoundManager(-1);
 SoundManager * RapunzelResourceManager::spearSounds	= new SoundManager(-1);
 SoundManager * RapunzelResourceManager::tauntSounds	= new SoundManager(-1);
 
 void RapunzelResourceManager::init(){
+
+	splashMessage		= new TextureSampler(new Texture("../assets/hurly-burly/SplashMessages/RapunzelSplash.png", 1024, 1024, true, false), 1024, 1024);
+	
+	towerBackground	= new TextureSampler("../assets/hurly-burly/RapCastleAssets/", "RapCastleBackground.png.def", false);
+	towerCatwalk		= new TextureSampler("../assets/hurly-burly/RapCastleAssets/", "RapCastleCatwalk.png.def", false);
+	towerTower		= new TextureSampler("../assets/hurly-burly/RapCastleAssets/", "RapCastleTower.png.def", false);
+	
+	goldBrick			= new TextureSampler("../assets/hurly-burly/Gold/", "goldBrick.png.def", false);
+	glove				= new TextureSampler("../assets/hurly-burly/BoxingGlove/", "BoxingGlove.png.def", false);
+	spring			= new TextureSampler("../assets/hurly-burly/RapCastleAssets/", "RapCastleSpring.png.def", false);
+	itemSpear			= new TextureSampler("../assets/hurly-burly/WeaponAssets/", "arrow.png.def", false);
+	
+	leverHandle		= new TextureSampler("../assets/hurly-burly/Lever/", "LeverHandle.png.def", false);
+	leverBase			= new TextureSampler("../assets/hurly-burly/Lever/", "LeverBase.png.def", false);
+	
+	hair				= new TextureSampler("../assets/hurly-burly/Hair/", "Hair.png.def", false);
+	
+	hairLink			= new TextureSampler("../assets/hurly-burly/RapunzelAssets/", "RapunzelHairLink.png.def", false);
+	hairEnd			= new TextureSampler("../assets/hurly-burly/RapunzelAssets/", "RapunzelHairEnd.png.def", false);
+	
+	thiefTorso		= new TextureSampler("../assets/hurly-burly/ThiefAssets/", "ThiefTorso.png.def", false);
+	thiefArm			= new TextureSampler("../assets/hurly-burly/ThiefAssets/", "ThiefArm.png.def", false);
+	thiefHelmet		= new TextureSampler("../assets/hurly-burly/ThiefAssets/", "ThiefHelmet.png.def", false);
+	
+	rapunzelTorso		= new TextureSampler("../assets/hurly-burly/RapunzelAssets/", "RapunzelDress.png.def", false);
+	rapunzelArm		= new TextureSampler("../assets/hurly-burly/RapunzelAssets/", "RapunzelArm.png.def", false);
+	rapunzelHelmet	= new TextureSampler("../assets/hurly-burly/RapunzelAssets/", "RapunzelHat.png.def", false);
+	
+	guard1Torso		= new TextureSampler("../assets/hurly-burly/FancyKnight1/", "FK1Breastplate.png.def", false);
+	guard1Arm			= new TextureSampler("../assets/hurly-burly/FancyKnight1/", "FK1Arm.png.def", false);
+	guard1Helmet		= new TextureSampler("../assets/hurly-burly/FancyKnight1/", "FK1Helmet.png.def", false);
+	guard2Torso		= new TextureSampler("../assets/hurly-burly/FancyKnight2/", "FK2Breastplate.png.def", false);
+	guard2Arm			= new TextureSampler("../assets/hurly-burly/FancyKnight2/", "FK2Arm.png.def", false);
+	guard2Helmet		= new TextureSampler("../assets/hurly-burly/FancyKnight2/", "FK2Helmet.png.def", false);
+
 
 	resources.push_back(splashMessage);
 

@@ -4,32 +4,51 @@
 #include <TextureSampler.h>
 #include <SoundManager.h>
 
-
-TextureSampler * RaidTheCastleResourceManager::catapultArm   = new TextureSampler("../assets/hurly-burly/Catapult/", "CatapultFlinger.png.def", false);
-TextureSampler * RaidTheCastleResourceManager::catapultBody  = new TextureSampler("../assets/hurly-burly/Catapult/", "CatapultBase.png.def", false);
-TextureSampler * RaidTheCastleResourceManager::boulder		 = new TextureSampler("../assets/hurly-burly/Catapult/", "Boulder1.png.def", false);
-TextureSampler * RaidTheCastleResourceManager::castleBase = new TextureSampler(new Texture("../assets/hurly-burly/Castle/CastleNorm_State1.png", 1024, 1024, true, false), 973, 619);
 Texture * RaidTheCastleResourceManager::castleSpriteSheet = new Texture("../assets/hurly-burly/Castle/Castle_SpriteSheet.png", 2048, 2048, true, false);
 
-TextureSampler * RaidTheCastleResourceManager::knightTorso	= new TextureSampler(new Texture("../assets/hurly-burly/NormalKnightAssets/KnightBreastplate.png", 1024, 1024, true, false), 268, 776);
-TextureSampler * RaidTheCastleResourceManager::knightArm	= new TextureSampler(new Texture("../assets/hurly-burly/NormalKnightAssets/KnightArm.png", 1024, 1024, true, false), 92, 327);
-TextureSampler * RaidTheCastleResourceManager::knightHelmet	= new TextureSampler(new Texture("../assets/hurly-burly/NormalKnightAssets/KnightHelmet.png", 1024, 1024, true, false), 233, 254);
-
-TextureSampler * RaidTheCastleResourceManager::castleChampionTorso	= new TextureSampler(new Texture("../assets/hurly-burly/CastleChampionAssets/CCBody.png", 1024, 1024, true, false), 275, 806);
-TextureSampler * RaidTheCastleResourceManager::castleChampionArm	= new TextureSampler(new Texture("../assets/hurly-burly/CastleChampionAssets/CCArm.png", 1024, 1024, true, false), 67, 200);
-TextureSampler * RaidTheCastleResourceManager::castleChampionHelmet	= new TextureSampler(new Texture("../assets/hurly-burly/CastleChampionAssets/CCHelmet.png", 1024, 1024, true, false), 229, 295);
-
-TextureSampler * RaidTheCastleResourceManager::splashMessage	= new TextureSampler(new Texture("../assets/hurly-burly/SplashMessages/RaidTheCastle.png", 1024, 1024, true, false), 1024, 1024);
-
-TextureSampler * RaidTheCastleResourceManager::itemFlailGrip	= new TextureSampler("../assets/hurly-burly/WeaponAssets/", "FlailGrip.png.def", false);
-TextureSampler * RaidTheCastleResourceManager::itemFlailJoint	= new TextureSampler("../assets/hurly-burly/WeaponAssets/", "FlailJoint.png.def", false);
-TextureSampler * RaidTheCastleResourceManager::itemFlailHead	= new TextureSampler("../assets/hurly-burly/WeaponAssets/", "FlailHead.png.def", false);
+TextureSampler * RaidTheCastleResourceManager::catapultArm			= nullptr;
+TextureSampler * RaidTheCastleResourceManager::catapultBody			= nullptr;
+TextureSampler * RaidTheCastleResourceManager::boulder				= nullptr;
+TextureSampler * RaidTheCastleResourceManager::castleBase			= nullptr;
+																	  
+TextureSampler * RaidTheCastleResourceManager::knightTorso			= nullptr;
+TextureSampler * RaidTheCastleResourceManager::knightArm			= nullptr;
+TextureSampler * RaidTheCastleResourceManager::knightHelmet			= nullptr;
+																	  
+TextureSampler * RaidTheCastleResourceManager::castleChampionTorso	= nullptr;
+TextureSampler * RaidTheCastleResourceManager::castleChampionArm	= nullptr;
+TextureSampler * RaidTheCastleResourceManager::castleChampionHelmet	= nullptr;
+																	  
+TextureSampler * RaidTheCastleResourceManager::splashMessage		= nullptr;
+																	  
+TextureSampler * RaidTheCastleResourceManager::itemFlailGrip		= nullptr;
+TextureSampler * RaidTheCastleResourceManager::itemFlailJoint		= nullptr;
+TextureSampler * RaidTheCastleResourceManager::itemFlailHead		= nullptr;
 
 SoundManager * RaidTheCastleResourceManager::catapultHitSounds = new SoundManager(-1);
 SoundManager * RaidTheCastleResourceManager::catapultThrowSounds = new SoundManager(-1);
 SoundManager * RaidTheCastleResourceManager::catapultWhistleSounds = new SoundManager(-1);
 
 void RaidTheCastleResourceManager::init(){
+
+	catapultArm			= new TextureSampler("../assets/hurly-burly/Catapult/", "CatapultFlinger.png.def", false);
+	catapultBody			= new TextureSampler("../assets/hurly-burly/Catapult/", "CatapultBase.png.def", false);
+	boulder				= new TextureSampler("../assets/hurly-burly/Catapult/", "Boulder1.png.def", false);
+	castleBase			= new TextureSampler(new Texture("../assets/hurly-burly/Castle/CastleNorm_State1.png", 1024, 1024, true, false), 973, 619);
+	
+	knightTorso			= new TextureSampler(new Texture("../assets/hurly-burly/NormalKnightAssets/KnightBreastplate.png", 1024, 1024, true, false), 268, 776);
+	knightArm			= new TextureSampler(new Texture("../assets/hurly-burly/NormalKnightAssets/KnightArm.png", 1024, 1024, true, false), 92, 327);
+	knightHelmet			= new TextureSampler(new Texture("../assets/hurly-burly/NormalKnightAssets/KnightHelmet.png", 1024, 1024, true, false), 233, 254);
+	
+	castleChampionTorso	= new TextureSampler(new Texture("../assets/hurly-burly/CastleChampionAssets/CCBody.png", 1024, 1024, true, false), 275, 806);
+	castleChampionArm	= new TextureSampler(new Texture("../assets/hurly-burly/CastleChampionAssets/CCArm.png", 1024, 1024, true, false), 67, 200);
+	castleChampionHelmet	= new TextureSampler(new Texture("../assets/hurly-burly/CastleChampionAssets/CCHelmet.png", 1024, 1024, true, false), 229, 295);
+	
+	splashMessage		= new TextureSampler(new Texture("../assets/hurly-burly/SplashMessages/RaidTheCastle.png", 1024, 1024, true, false), 1024, 1024);
+	
+	itemFlailGrip		= new TextureSampler("../assets/hurly-burly/WeaponAssets/", "FlailGrip.png.def", false);
+	itemFlailJoint		= new TextureSampler("../assets/hurly-burly/WeaponAssets/", "FlailJoint.png.def", false);
+	itemFlailHead		= new TextureSampler("../assets/hurly-burly/WeaponAssets/", "FlailHead.png.def", false);
 
 	resources.push_back(splashMessage);
 	resources.push_back(castleSpriteSheet);
