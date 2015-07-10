@@ -51,11 +51,6 @@ Castle::Castle(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _
 	}
 }
 
-Castle::~Castle(){
-	delete spriteSheet;
-}
-
-
 void Castle::takeDamage(float _damage){
 	RaidTheCastleResourceManager::catapultHitSounds->playRandomSound();
 	StructureBreakable::takeDamage(_damage);

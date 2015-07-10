@@ -49,10 +49,6 @@ Fortification::Fortification(Box2DWorld* _world, int16 _categoryBits, int16 _mas
 	rootComponent->mesh->uvEdgeMode = GL_MIRRORED_REPEAT_ARB;
 }
 
-Fortification::~Fortification(){
-	delete spriteSheet;
-}
-
 void Fortification::takeDamage(float _damage){
 	StructureBreakable::takeDamage(_damage);
 	//glm::vec3 sv = rootComponent->parents.at(0)->getScaleVector();

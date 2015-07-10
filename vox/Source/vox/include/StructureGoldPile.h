@@ -13,7 +13,6 @@ public:
 	SpriteSheetAnimation * spriteSheet;
 
 	explicit StructureGoldPile(Box2DWorld* _world);
-	~StructureGoldPile();
 
 	void actuallyInteract() override;
 	void evaluateState() override;

@@ -51,10 +51,6 @@ StructureGoldPile::StructureGoldPile(Box2DWorld* _world):
 	rootComponent->body->GetFixtureList()->SetSensor(true);
 }
 
-StructureGoldPile::~StructureGoldPile(){
-	delete spriteSheet;
-}
-
 void StructureGoldPile::actuallyInteract(){
 	if(playerWhoTriggered->heldItem == nullptr){
 
