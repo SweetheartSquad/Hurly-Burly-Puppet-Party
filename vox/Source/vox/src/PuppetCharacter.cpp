@@ -416,7 +416,7 @@ void PuppetCharacter::update(Step* _step){
 		}
 	}
 	Box2DSuperSprite::update(_step);
-    if (control < 0.5f){
+    if(control < 0.5f){
         targetRoll = glm::radians(90.f);
         action(true);
     }
@@ -445,7 +445,6 @@ void PuppetCharacter::update(Step* _step){
 		}else{
 			rootComponent->applyForceDown(500.f);
 		}
-	//	rootComponent->setTranslationPhysical(rootComponent->body->GetPosition().x, ghostPosition, rootComponent->transform->getTranslationVector().z);
 		rootComponent->body->ApplyForce(b2Vec2(-bodAngle * 50.0f, 0), rootComponent->body->GetWorldCenter(), true);
 
 		float t = rootComponent->body->GetAngle();
@@ -464,13 +463,7 @@ void PuppetCharacter::update(Step* _step){
 		die();
 	}
 	if(control >= 0.995f){
-		for(Box2DSprite ** c : components){
-			if(*c != nullptr){
-				b2Filter b = (*c)->body->GetFixtureList()->GetFilterData();
-				b.groupIndex = groupIndex;
-				(*c)->body->GetFixtureList()->SetFilterData(b);
-			}
-		}
+		setGroupIndex(groupIndex);
 	}
 
 	if(contactDelegate != nullptr) {
@@ -497,11 +490,6 @@ void PuppetCharacter::update(Step* _step){
 			p->startSize = pixels;
 			p->deltaSize = -pixels;
 			p->setTranslationPhysical(vox::NumberUtils::randomFloat(-pixels, pixels), vox::NumberUtils::randomFloat(-pixels, pixels), 0, true);
-			
-			/*float mass = p->body->GetMass();
-			p->body->SetLinearVelocity(b2Vec2(vox::NumberUtils::randomFloat(-500, 500), vox::NumberUtils::randomFloat(1500, 2000)));
-			//p->applyLinearImpulse(vox::NumberUtils::randomFloat(-500, 500)*mass, vox::NumberUtils::randomFloat(1500, 2000)*mass, p->body->GetPosition().x, p->body->GetPosition().y);
-			//p->body->SetGravityScale(mass);*/
 		}
 	}
 
