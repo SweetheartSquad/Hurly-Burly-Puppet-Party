@@ -46,7 +46,9 @@ Fortification::Fortification(Box2DWorld* _world, int16 _categoryBits, int16 _mas
 	rootComponent->mesh->popTexture2D();
 	spriteSheet->pushFramesInRange(0, 3, 1024, 188, 1024);
 	rootComponent->addAnimation("fortStates", spriteSheet, true);
-	rootComponent->mesh->uvEdgeMode = GL_MIRRORED_REPEAT_ARB;
+	rootComponent->playAnimation = true;
+	rootComponent->currentAnimation->currentFrame = 0;
+	rootComponent->update(&vox::step);
 }
 
 void Fortification::takeDamage(float _damage){

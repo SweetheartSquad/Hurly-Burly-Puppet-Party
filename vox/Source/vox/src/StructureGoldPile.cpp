@@ -34,21 +34,17 @@ StructureGoldPile::StructureGoldPile(Box2DWorld* _world):
 		(*c)->createFixture(sf);
 	}
 	setUserData(this);
-	rootComponent->mesh->popTexture2D();
-	spriteSheet = new SpriteSheetAnimation(baseSpriteSheetTex, 0);
+	
+	rootComponent->body->GetFixtureList()->SetSensor(true);
 
 	// sprite sheet animation
-	int f[] = {0,1,2,3,4,5};
-	std::vector<int> ff(std::begin(f), std::end(f));
-
+	rootComponent->mesh->popTexture2D();
+	spriteSheet = new SpriteSheetAnimation(baseSpriteSheetTex, 0);
 	spriteSheet->pushFramesInRange(0, 5, 512, 209, baseSpriteSheetTex->width);
-	
 	rootComponent->addAnimation("brickStates", spriteSheet, true);
 	rootComponent->playAnimation = true;
 	rootComponent->currentAnimation->currentFrame = 0;
 	rootComponent->update(&vox::step);
-	
-	rootComponent->body->GetFixtureList()->SetSensor(true);
 }
 
 void StructureGoldPile::actuallyInteract(){

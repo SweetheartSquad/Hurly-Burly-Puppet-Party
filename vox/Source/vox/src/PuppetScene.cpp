@@ -379,6 +379,8 @@ void PuppetScene::update(Step * _step){
 	}
 
 	LayeredScene::update(_step);
+
+
 	if(splashMessage != nullptr){
 		if(currentTime < splashDuration){
 			float easeTime = splashDuration - currentTime;
@@ -515,7 +517,7 @@ void PuppetScene::update(Step * _step){
 			box2DDebugDrawer->AppendFlags(b2Draw::e_centerOfMassBit);
 			box2DDebugDrawer->AppendFlags(b2Draw::e_jointBit);
 			//drawer->AppendFlags(b2Draw::e_pairBit);
-			addChild(box2DDebugDrawer, 3, false);
+			addChild(box2DDebugDrawer, 2, false);
 		}
 	}
 
