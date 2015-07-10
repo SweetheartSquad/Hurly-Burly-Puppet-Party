@@ -20,9 +20,6 @@ PuppetCharacterThief::PuppetCharacterThief(bool _ai, Box2DWorld * _world, int16 
 
 }
 
-PuppetCharacterThief::~PuppetCharacterThief(){
-}
-
 void PuppetCharacterThief::pickupItem(Item * _itemToPickup){
 	ItemGold * gold = dynamic_cast<ItemGold *>(_itemToPickup);
 

@@ -18,6 +18,3 @@ PuppetCharacterKnight::PuppetCharacterKnight(bool _ai, unsigned long int _id, Bo
 {
 
 }
-
-PuppetCharacterKnight::~PuppetCharacterKnight(){
-}

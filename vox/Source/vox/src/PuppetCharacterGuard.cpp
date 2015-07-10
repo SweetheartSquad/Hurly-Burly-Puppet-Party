@@ -25,10 +25,6 @@ PuppetCharacterGuard::PuppetCharacterGuard(bool _ai, Box2DWorld * _world, int16 
 	behaviourManager->addBehaviour(new BehaviourAttack(this, 3, PuppetGame::kPLAYER));
 }
 
-PuppetCharacterGuard::~PuppetCharacterGuard(){
-}
-
-
 void PuppetCharacterGuard::render(vox::MatrixStack * _matrixStack, RenderOptions * _renderOptions){
 	Shader * prev = _renderOptions->shader;
 	applyShader(_renderOptions);

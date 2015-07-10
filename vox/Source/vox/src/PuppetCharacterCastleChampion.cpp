@@ -23,10 +23,6 @@ PuppetCharacterCastleChampion::PuppetCharacterCastleChampion(Box2DWorld * _world
 	itemHolder = armLeft;
 }
 
-PuppetCharacterCastleChampion::~PuppetCharacterCastleChampion(){
-	//delete texPack;
-}
-
 void PuppetCharacterCastleChampion::action(bool _forceDrop){
 	// the castle champion isn't allowed to throw their weapon as a projectile
 	if(_forceDrop){

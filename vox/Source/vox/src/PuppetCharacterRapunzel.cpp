@@ -24,6 +24,3 @@ PuppetCharacterRapunzel::PuppetCharacterRapunzel(bool _ai, Box2DWorld * _world, 
 	}
 	sf.groupIndex = groupIndex;
 }
-
-PuppetCharacterRapunzel::~PuppetCharacterRapunzel(){
-}

@@ -12,9 +12,6 @@ PuppetCharacterArcher::PuppetCharacterArcher(bool _ai, Box2DWorld * _world, int1
 {
 }
 
-PuppetCharacterArcher::~PuppetCharacterArcher(){
-}
-
 void PuppetCharacterArcher::update(Step * _step){
 	PuppetCharacter::update(_step);
 	if(onFire){
