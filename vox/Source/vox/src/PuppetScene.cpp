@@ -313,7 +313,7 @@ void PuppetScene::assignControllers(){
 }
 
 void PuppetScene::load(){
-	Scene::load();
+	LayeredScene::load();
 
 	for(Sprite * s : countDownNumbers){
 		s->load();
@@ -321,7 +321,7 @@ void PuppetScene::load(){
 }
 
 void PuppetScene::unload(){
-	Scene::unload();
+	LayeredScene::unload();
 	
 	for(Sprite * s : countDownNumbers){
 		s->unload();

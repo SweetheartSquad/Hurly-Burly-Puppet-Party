@@ -61,7 +61,7 @@ Rapunzel::Rapunzel(PuppetGame* _game):
 	Sprite * towerBg = new Sprite();
 	addChild(towerBg, 0);
 	towerBg->setShader(shader, true);
-	towerBg->pushTextureSampler(RapunzelResourceManager::towerBackground);
+	towerBg->mesh->pushTexture2D(RapunzelResourceManager::towerBackground->texture);
 	towerBg->parents.at(0)->translate(2.f, 0.f, 0.f);
 	towerBg->parents.at(0)->scale(2.6f, 2.6f, 1.f);
 

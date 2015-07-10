@@ -54,7 +54,7 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	Sprite * fortBg = new Sprite();
 	addChild(fortBg, 0);
 	fortBg->setShader(shader, true);
-	fortBg->pushTextureSampler(SlayTheDragonResourceManager::fortBackground);
+	fortBg->mesh->pushTexture2D(SlayTheDragonResourceManager::fortBackground->texture);
 	fortBg->parents.at(0)->translate(65.0f, 20.0f, 0.0f);
 	fortBg->parents.at(0)->scale(2.6f, 2.6f, 1.0f);
 
