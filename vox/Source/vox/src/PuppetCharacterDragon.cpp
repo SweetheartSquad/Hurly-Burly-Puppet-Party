@@ -129,14 +129,14 @@ void PuppetCharacterDragon::render(vox::MatrixStack* _matrixStack, RenderOptions
 	hsvShader->setSaturation(newSat);
 
 	// lower wing behind upper wing
-	handLeft->render(_matrixStack, _renderOptions);
-	handRight->render(_matrixStack, _renderOptions);
-	armLeft->render(_matrixStack, _renderOptions);
-	armRight->render(_matrixStack, _renderOptions);
-	torso->render(_matrixStack, _renderOptions);
-	head->render(_matrixStack, _renderOptions);
+	handLeft->parents.at(0)->render(_matrixStack, _renderOptions);
+	handRight->parents.at(0)->render(_matrixStack, _renderOptions);
+	armLeft->parents.at(0)->render(_matrixStack, _renderOptions);
+	armRight->parents.at(0)->render(_matrixStack, _renderOptions);
+	torso->parents.at(0)->render(_matrixStack, _renderOptions);
+	head->parents.at(0)->render(_matrixStack, _renderOptions);
 	// This is scary
-	//face->render(_matrixStack, _renderOptions);
+	//face->parents.at(0)->render(_matrixStack, _renderOptions);
 
 	// revert the shader settings
 	hsvShader->setHue(hue);
@@ -162,9 +162,9 @@ void PuppetCharacterDragon::render(vox::MatrixStack* _matrixStack, RenderOptions
 	hsvShader->setHue(newHue);
 	hsvShader->setSaturation(newSat);
 	
-	headgear->render(_matrixStack, _renderOptions);
+	headgear->parents.at(0)->render(_matrixStack, _renderOptions);
 	if (indicator != nullptr){
-		indicator->render(_matrixStack, _renderOptions);
+		indicator->parents.at(0)->render(_matrixStack, _renderOptions);
 	}
 
 	// revert the shader settings
