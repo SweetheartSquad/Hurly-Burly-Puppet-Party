@@ -155,10 +155,10 @@ void PuppetCharacter::init(){
 	whitesf.maskBits = 0;
 	whitesf.groupIndex = groupIndex;
 	
-	whiteTorso->createFixture	 (whitesf, b2Vec2(0.0f, -1.f), this);
-	whiteHead->createFixture		 (whitesf, b2Vec2(0.0f, 0.0f), this);
-	whiteArmLeft->createFixture		 (whitesf, b2Vec2(0.0f, 0.0f), this);
-	whiteArmRight->createFixture		 (whitesf, b2Vec2(0.0f, 0.0f), this);
+	whiteTorso->createFixture    (whitesf, b2Vec2(0.0f, -1.f), this);
+	whiteHead->createFixture     (whitesf, b2Vec2(0.0f, 0.0f), this);
+	whiteArmLeft->createFixture  (whitesf, b2Vec2(0.0f, 0.0f), this);
+	whiteArmRight->createFixture (whitesf, b2Vec2(0.0f, 0.0f), this);
 
 	b2RevoluteJointDef jth;
 	jth.bodyA = torso->body;
@@ -342,10 +342,10 @@ void PuppetCharacter::render(vox::MatrixStack* _matrixStack, RenderOptions* _ren
 
 	popsicleStick->render(_matrixStack, _renderOptions);
 
-	whiteHead->render(_matrixStack, _renderOptions);
-	whiteTorso->render(_matrixStack, _renderOptions);
-	whiteArmLeft->render(_matrixStack, _renderOptions);
-	whiteArmRight->render(_matrixStack, _renderOptions);
+	whiteHead->parents.at(0)->render(_matrixStack, _renderOptions);
+	whiteTorso->parents.at(0)->render(_matrixStack, _renderOptions);
+	whiteArmLeft->parents.at(0)->render(_matrixStack, _renderOptions);
+	whiteArmRight->parents.at(0)->render(_matrixStack, _renderOptions);
 	
 
 	tintShader->setRed(red + (1 - control) * 3);
@@ -359,19 +359,19 @@ void PuppetCharacter::render(vox::MatrixStack* _matrixStack, RenderOptions* _ren
 	hsvShader->setSaturation(newSat);
 	
 
-	armLeft->render(_matrixStack, _renderOptions);
-	armRight->render(_matrixStack, _renderOptions);
-	torso->render(_matrixStack, _renderOptions);
+	armLeft->parents.at(0)->render(_matrixStack, _renderOptions);
+	armRight->parents.at(0)->render(_matrixStack, _renderOptions);
+	torso->parents.at(0)->render(_matrixStack, _renderOptions);
 	//Box2DSuperSprite::render(_matrixStack, _renderOptions);
 
 	// revert the shader settings
 	hsvShader->setHue(hue);
 	hsvShader->setSaturation(sat);
 
-	head->render(_matrixStack, _renderOptions);
-	face->render(_matrixStack, _renderOptions);
-	handLeft->render(_matrixStack, _renderOptions);
-	handRight->render(_matrixStack, _renderOptions);
+	head->parents.at(0)->render(_matrixStack, _renderOptions);
+	face->parents.at(0)->render(_matrixStack, _renderOptions);
+	handLeft->parents.at(0)->render(_matrixStack, _renderOptions);
+	handRight->parents.at(0)->render(_matrixStack, _renderOptions);
 	
 	// change the shader settings based on current damage and player id
 	hsvShader->setHue(newHue);
@@ -380,10 +380,10 @@ void PuppetCharacter::render(vox::MatrixStack* _matrixStack, RenderOptions* _ren
 	if(dead){
 		alphaShader->setAlpha(0.5f);
 	}
-	headgear->render(_matrixStack, _renderOptions);
+	headgear->parents.at(0)->render(_matrixStack, _renderOptions);
 
 	if(indicator != nullptr){
-		indicator->render(_matrixStack, _renderOptions);
+		indicator->parents.at(0)->render(_matrixStack, _renderOptions);
 	}
 
 	// revert the shader settings
@@ -415,7 +415,10 @@ void PuppetCharacter::update(Step* _step){
 			}
 		}
 	}
+	
 	Box2DSuperSprite::update(_step);
+
+
     if(control < 0.5f){
         targetRoll = glm::radians(90.f);
         action(true);
