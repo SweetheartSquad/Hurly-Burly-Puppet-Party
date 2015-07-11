@@ -15,14 +15,6 @@
 
 #include "Behaviour.h"
 
-/*bool GameJamContactListener:: ShouldCollide(b2Fixture* fixtureA, b2Fixture* fixtureB){
-	if(fixtureA->GetFilterData().maskBits == 1 || fixtureB->GetFilterData().maskBits == 1){
-		// collide
-	}else{
-		// pass
-	}
-}*/
-
 RaidTheCastleContactListener::RaidTheCastleContactListener(PuppetScene * _scene) :
 	PuppetContactListener(_scene)
 {
