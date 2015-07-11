@@ -141,7 +141,7 @@ void Catapult::prepare(){
 	b2WeldJointDef abpj;
 	abpj.bodyA = arm->body;
 	abpj.bodyB = boulder->boulder->body;
-	abpj.localAnchorA.Set(-0.7f * arm->getCorrectedWidth(), 0.0f * arm->getCorrectedHeight());
+	abpj.localAnchorA.Set(-0.35f * arm->getCorrectedWidth(), 0.0f * arm->getCorrectedHeight());
 	abpj.localAnchorB.Set(0.0f * boulder->boulder->getCorrectedWidth(), 0.f * boulder->boulder->getCorrectedHeight());
 	abpj.collideConnected = false;
 	abpj.referenceAngle = 0.f;

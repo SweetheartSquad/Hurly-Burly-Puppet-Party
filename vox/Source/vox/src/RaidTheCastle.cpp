@@ -54,7 +54,7 @@ RaidTheCastle::RaidTheCastle(PuppetGame* _game):
 	populateBackground();
 	cl = new RaidTheCastleContactListener(this);
 	
-	castle->translateComponents(glm::vec3(120.f, 0.f, 0.f));
+	castle->translateComponents(glm::vec3(120.f, -castle->rootComponent->getCorrectedHeight()*0.5f, 0.f));
 	castle->setShader(shader, true);
 	castle->addToLayeredScene(this, 0);
 	addChild(castle, 0);
@@ -92,7 +92,7 @@ RaidTheCastle::RaidTheCastle(PuppetGame* _game):
 	catapult->setShader(shader, true);
 	catapult->addToLayeredScene(this, 1);
 	addChild(catapult, 1);
-	catapult->translateComponents(glm::vec3(14.0f, 0.f, 0.f));
+	catapult->translateComponents(glm::vec3(14.0f, -catapult->rootComponent->getCorrectedHeight()*0.5f, 0.f));
 	
 	for(PuppetCharacter * p : players){
 		TextureSampler * weaponTex = PuppetResourceManager::getRandomMeleeWeapon();

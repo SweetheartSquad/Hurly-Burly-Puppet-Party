@@ -654,11 +654,11 @@ void PuppetScene::populateBackground(){
 	
 	int numFoliage = 60;
 	for(signed long int i = 0; i < numFoliage; ++i){
-		float height = std::rand()%500/50.f+5.f;
+		float height = std::rand()%500/25.f+10.f;
 		MeshEntity * foliage = new MeshEntity(MeshFactory::getPlaneMesh());
 		addChild(foliage, 0);
 		foliage->setShader(shader, true);
-		foliage->parents.at(0)->translate((std::rand()%500/3.f)-25.f, height, max(-9, -(float)(numFoliage-i)/numFoliage)*8.f - 1.f);
+		foliage->parents.at(0)->translate((std::rand()%500/3.f)-25.f, height/2.f, max(-9, -(float)(numFoliage-i)/numFoliage)*8.f - 1.f);
 		foliage->parents.at(0)->scale(height, height, 1);
 		int tex = i % 4;
 		switch(tex){

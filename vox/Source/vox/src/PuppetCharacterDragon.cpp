@@ -34,7 +34,7 @@ PuppetCharacterDragon::PuppetCharacterDragon(bool _ai, Box2DWorld * _world, int1
 	fireParticles(new ParticleSystem(SlayTheDragonResourceManager::itemFireParticle, _world, 0, 0, _groupIndex)),
 	altitude(60.f)
 {
-
+	fireParticles->componentScale = componentScale;
 	//behaviourManager->addBehaviour(new BehaviourPatrol(glm::vec3(35,0,0), glm::vec3(125,0,0), this, 1));
 	//behaviourManager->addBehaviour(new BehaviourAttackThrow(true, this, 100, PuppetGame::kPLAYER));
 
