@@ -64,13 +64,6 @@ Lever::Lever(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _gr
 	world->b2world->CreateJoint(&jth);
 }
 
-Lever::~Lever(){
-}
-
-void Lever::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	StructureInteractable::render(_matrixStack, _renderOptions);
-}
-
 void Lever::evaluateState(){
 	b2RevoluteJoint * jk = (b2RevoluteJoint *)base->body->GetJointList()->joint;
 	float angle = jk->GetJointAngle();
@@ -149,6 +142,6 @@ void Lever::actuallyInteract(){
 		ps->addChild(weapon, 1);
 		weapon->snapComponents(g->itemHolder);
 	}else{
-		throw "um";
+		Log::error("Lever type invalid");
 	}
 }

@@ -78,10 +78,6 @@ Catapult::Catapult(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int
 	world->b2world->CreateJoint(&jth);
 }
 
-void Catapult::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	Structure::render(_matrixStack, _renderOptions);
-}
-
 void Catapult::evaluateState(){
 	if(!ready){
 		arm->body->SetAngularVelocity(1);
@@ -94,7 +90,6 @@ void Catapult::evaluateState(){
 			ready = true;
 		}
 	}
-
 	
 	b2RevoluteJoint * jk = (b2RevoluteJoint *)base->body->GetJointList()->joint;
 	float angle = jk->GetJointAngle();
@@ -123,19 +118,6 @@ void Catapult::evaluateState(){
 			playerWhoTriggered = nullptr;
 		}
 	}
-}
-
-void Catapult::unload(){
-	Structure::unload();
-}
-
-void Catapult::load(){
-	Structure::load();
-}
-
-void Catapult::trigger(PuppetCharacter * _playerWhoTriggered){
-	StructureInteractable::trigger(_playerWhoTriggered);
-	b2RevoluteJoint * j = (b2RevoluteJoint *)base->body->GetJointList()->joint;
 }
 
 void Catapult::prepare(){
@@ -169,9 +151,6 @@ void Catapult::prepare(){
 	StructureInteractable::prepare();
 }
 
-void Catapult::attemptInteract(){
-	StructureInteractable::attemptInteract();
-}
 void Catapult::actuallyInteract(){
 	StructureInteractable::actuallyInteract();
 	RaidTheCastleResourceManager::catapultWhistleSounds->playRandomSound();

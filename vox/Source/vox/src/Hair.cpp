@@ -62,7 +62,3 @@ Hair::Hair(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _grou
 
 	rootComponent->setTranslationPhysical(0.f, rootComponent->getCorrectedHeight() * (numLinks + 1), 0.f);
 }
-
-Hair::~Hair()
-{
-}

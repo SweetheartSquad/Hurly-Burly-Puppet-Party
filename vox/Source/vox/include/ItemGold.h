@@ -9,6 +9,5 @@ public:
 	bool passed;
 
 	explicit ItemGold (Box2DWorld * _world);
-	void render(vox::MatrixStack * _matrixStack, RenderOptions * _renderOption) override;
 	void update(Step * _step) override;
 };

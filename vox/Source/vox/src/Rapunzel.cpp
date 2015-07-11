@@ -221,15 +221,3 @@ void Rapunzel::update(Step* _step){
 		}
 	}
 }
-
-void Rapunzel::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	PuppetScene::render(_matrixStack, _renderOptions);
-}
-
-void Rapunzel::load(){
-	PuppetScene::load();
-}
-
-void Rapunzel::unload(){
-	PuppetScene::unload();
-}

@@ -28,10 +28,6 @@ ItemGold::ItemGold(Box2DWorld * _world) :
 	}*/
 }
 
-void ItemGold::render(vox::MatrixStack * _matrixStack, RenderOptions * _renderOption){
-	ItemSimpleWeapon::render(_matrixStack, _renderOption);
-}
-
 void ItemGold::update(Step * _step){
 	ItemSimpleWeapon::update(_step);
 	

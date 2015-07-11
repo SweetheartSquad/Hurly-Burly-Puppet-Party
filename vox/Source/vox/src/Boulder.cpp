@@ -46,10 +46,6 @@ Boulder::~Boulder(){
 	}
 }
 
-void Boulder::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	Item::render(_matrixStack, _renderOptions);
-}
-
 void Boulder::update(Step* _step){
 	Item::update(_step);
 
@@ -58,12 +54,4 @@ void Boulder::update(Step* _step){
 	if(tv.x > 200 || tv.y < 0){
 		destroy = true;
 	}
-}
-
-void Boulder::unload(){
-	Item::unload();
-}
-
-void Boulder::load(){
-	Item::load();
 }

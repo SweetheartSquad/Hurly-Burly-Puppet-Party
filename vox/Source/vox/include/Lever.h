@@ -14,9 +14,7 @@ public:
 	int type;
 
 	Lever(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex);
-	~Lever();
 	
 	void evaluateState() override;
-	void render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions) override;
 	void actuallyInteract() override;
 };

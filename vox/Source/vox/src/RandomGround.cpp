@@ -95,6 +95,3 @@ RandomGround::RandomGround(Box2DWorld * _world, unsigned long int _numPoints, fl
 	sf.categoryBits = PuppetGame::kGROUND;
 	f->SetFilterData(sf);*/
 }
-
-RandomGround::~RandomGround(){
-}

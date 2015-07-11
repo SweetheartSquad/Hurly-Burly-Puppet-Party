@@ -59,7 +59,6 @@
     <ClCompile Include="../src/StructureBreakable.cpp" />
     <ClCompile Include="../src/StructureBoxingGlove.cpp" />
     <ClCompile Include="../src/ItemGold.cpp" />
-    <ClCompile Include="../src/StructureGold.cpp" />
     <ClCompile Include="../src/StructureInteractable.cpp" />
     <ClCompile Include="../src/StructureGoldPile.cpp" />
     <ClCompile Include="../src/Cloud.cpp" />
@@ -117,7 +116,6 @@
     <ClInclude Include="../include/StructureBreakable.h" />
     <ClInclude Include="../include/StructureBoxingGlove.h" />
     <ClInclude Include="../include/ItemGold.h" />
-    <ClInclude Include="../include/StructureGold.h" />
     <ClInclude Include="../include/StructureInteractable.h" />
     <ClInclude Include="../include/StructureGoldPile.h" />
     <ClInclude Include="../include/Cloud.h" />

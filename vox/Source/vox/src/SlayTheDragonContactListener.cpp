@@ -26,14 +26,6 @@ SlayTheDragonContactListener::SlayTheDragonContactListener(PuppetScene * _scene)
 {
 }
 
-void SlayTheDragonContactListener::BeginContact(b2Contact * _contact){
-	PuppetContactListener::BeginContact(_contact);
-}
-
-void SlayTheDragonContactListener::playerPlayerContact(b2Contact * _contact){
-	PuppetContactListener::playerPlayerContact(_contact);
-}
-
 void SlayTheDragonContactListener::playerItemContact(b2Contact * _contact, b2Fixture * _playerFixture, b2Fixture * _itemFixture){
 	PuppetContactListener::playerItemContact(_contact, _playerFixture, _itemFixture);
 	
@@ -45,18 +37,6 @@ void SlayTheDragonContactListener::playerItemContact(b2Contact * _contact, b2Fix
 		static_cast<PuppetCharacterDragon *>(fb->owner)->playerOnFire = player;
 		player->onFire = true;
 	}
-}
-
-void SlayTheDragonContactListener::playerStructureContact(b2Contact * _contact, b2Fixture * _playerFixture, b2Fixture * _structureFixture){
-	PuppetContactListener::playerStructureContact(_contact, _playerFixture, _structureFixture);
-}
-
-void SlayTheDragonContactListener::playerGroundContact(b2Contact * _contact, b2Fixture * _playerFixture, b2Fixture * _groundFixture){
-	PuppetContactListener::playerGroundContact(_contact, _playerFixture, _groundFixture);
-}
-
-void SlayTheDragonContactListener::playerDeadZoneContact(b2Contact * _contact, b2Fixture * _playerFixture, b2Fixture * _groundFixture){
-	PuppetContactListener::playerDeadZoneContact(_contact, _playerFixture, _groundFixture);
 }
 
 void SlayTheDragonContactListener::structureItemContact(b2Contact * _contact, b2Fixture * _structureFixture, b2Fixture * _itemFixture){
@@ -78,8 +58,4 @@ void SlayTheDragonContactListener::structureItemContact(b2Contact * _contact, b2
 			}
 		}*/
 	}
-}
-
-void SlayTheDragonContactListener::EndContact(b2Contact * _contact){
-	PuppetContactListener::EndContact(_contact);
 }

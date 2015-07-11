@@ -156,15 +156,3 @@ void RaidTheCastle::update(Step* _step){
 		triggerVictoryState();
 	}
 }
-
-void RaidTheCastle::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
-	PuppetScene::render(_matrixStack, _renderOptions);
-}
-
-void RaidTheCastle::load(){
-	PuppetScene::load();
-}
-
-void RaidTheCastle::unload(){
-	PuppetScene::unload();
-}

@@ -28,26 +28,6 @@ RaidTheCastleContactListener::RaidTheCastleContactListener(PuppetScene * _scene)
 {
 }
 
-void RaidTheCastleContactListener::BeginContact(b2Contact * _contact){
-	PuppetContactListener::BeginContact(_contact);
-}
-
-void RaidTheCastleContactListener::playerPlayerContact(b2Contact * _contact){
-	PuppetContactListener::playerPlayerContact(_contact);
-}
-
-void RaidTheCastleContactListener::playerItemContact(b2Contact * _contact, b2Fixture * _playerFixture, b2Fixture * _itemFixture){
-	PuppetContactListener::playerItemContact(_contact, _playerFixture, _itemFixture);
-}
-
-void RaidTheCastleContactListener::playerStructureContact(b2Contact * _contact, b2Fixture * _playerFixture, b2Fixture * _structureFixture){
-	PuppetContactListener::playerStructureContact(_contact, _playerFixture, _structureFixture);
-}
-
-void RaidTheCastleContactListener::playerGroundContact(b2Contact * _contact, b2Fixture * _playerFixture, b2Fixture * _groundFixture){
-	PuppetContactListener::playerGroundContact(_contact, _playerFixture, _groundFixture);
-}
-
 void RaidTheCastleContactListener::structureItemContact(b2Contact * _contact, b2Fixture * _structureFixture, b2Fixture * _itemFixture){
 	PuppetContactListener::structureItemContact(_contact, _structureFixture, _itemFixture);
 
@@ -67,8 +47,4 @@ void RaidTheCastleContactListener::structureItemContact(b2Contact * _contact, b2
 			}
 		}
 	}
-}
-
-void RaidTheCastleContactListener::EndContact(b2Contact * _contact){
-	PuppetContactListener::EndContact(_contact);
 }

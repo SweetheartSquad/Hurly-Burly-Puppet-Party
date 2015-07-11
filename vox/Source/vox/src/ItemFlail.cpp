@@ -61,6 +61,3 @@ ItemFlail::ItemFlail(Box2DWorld * _world, int16 _categoryBits, int16 _maskBits, 
 	//jointDef.lowerAngle = glm::radians(-20.f);
 	_world->b2world->CreateJoint(&jointDef);
 }
-
-ItemFlail::~ItemFlail(){
-}
