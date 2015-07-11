@@ -183,8 +183,8 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 
 	addChild(background, 0);
 	background->setShader(shader, true);
-	background->parents.at(0)->translate(-sceneWidth/2.f, sceneHeight/2.f, -15.f/2.f);
-	background->parents.at(0)->scale(sceneWidth*2.f, sceneHeight, 1);
+	background->parents.at(0)->translate(sceneWidth/2.f, sceneHeight/2.f, -15.f/2.f, false);
+	background->parents.at(0)->scale(sceneWidth*4.f, sceneHeight*4.f, 1);
 	background->mesh->pushTexture2D(PuppetResourceManager::sky);
 	background->mesh->uvEdgeMode = GL_MIRRORED_REPEAT_ARB;
 
