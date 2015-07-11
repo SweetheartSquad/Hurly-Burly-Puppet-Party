@@ -9,7 +9,7 @@ StructureBoxingGlove::StructureBoxingGlove(Box2DWorld * _world) :
 	Structure(_world, PuppetGame::kSTRUCTURE, PuppetGame::kPLAYER, -25)
 {
 	
-	componentScale = 0.016f;
+	componentScale = 0.032f;
 	
 	glove = new Box2DSprite(world, RapunzelResourceManager::glove, b2_dynamicBody, false, nullptr, componentScale/4.f);
 	spring = new Box2DSprite(world, PuppetResourceManager::itemNone, b2_staticBody, false, nullptr, componentScale);

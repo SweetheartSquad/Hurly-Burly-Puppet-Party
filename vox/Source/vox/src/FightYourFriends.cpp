@@ -75,7 +75,7 @@ FightYourFriends::FightYourFriends(PuppetGame* _game):
 
 	for(PuppetCharacter * p : players){
 		TextureSampler * weaponTex = PuppetResourceManager::getRandomMeleeWeapon();
-		ItemSimpleWeapon * weapon = new ItemSimpleWeapon(weaponTex, false, world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kBOUNDARY | PuppetGame::kGROUND, p->groupIndex, 1, 0, -weaponTex->height);
+		ItemSimpleWeapon * weapon = new ItemSimpleWeapon(weaponTex, false, world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kBOUNDARY | PuppetGame::kGROUND, p->groupIndex, 1, 0, -weaponTex->height*0.5f);
 
         weapon->addToLayeredScene(this, 1);
 		weapon->setShader(shader, true);
@@ -116,7 +116,7 @@ void FightYourFriends::update(Step* _step){
 	// randomly drop weapons
 	if(vox::NumberUtils::randomFloat(0.f, 1.f) <= itemDropFreq){
 		TextureSampler * weaponTex = PuppetResourceManager::getRandomMeleeWeapon();
-		ItemSimpleWeapon * weapon = new ItemSimpleWeapon(weaponTex, false, world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kBOUNDARY | PuppetGame::kGROUND, 0, 1, 0, -weaponTex->height);
+		ItemSimpleWeapon * weapon = new ItemSimpleWeapon(weaponTex, false, world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kBOUNDARY | PuppetGame::kGROUND, 0, 1, 0, -weaponTex->height*0.5f);
 
         weapon->addToLayeredScene(this, 1);
 		weapon->setShader(shader, true);

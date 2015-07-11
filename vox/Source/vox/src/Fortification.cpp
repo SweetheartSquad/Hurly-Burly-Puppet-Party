@@ -18,7 +18,7 @@ Fortification::Fortification(Box2DWorld* _world, int16 _categoryBits, int16 _mas
 	StructureBreakable(250.f, _world, _categoryBits, _maskBits, _groupIndex),
 	spriteSheet(new SpriteSheetAnimation(SlayTheDragonResourceManager::fortificationSpriteSheet, 0))
 {
-	componentScale = 0.025f;
+	componentScale = 0.05f;
 
 	rootComponent = new Box2DSprite(_world, SlayTheDragonResourceManager::fortStructure, b2_staticBody, false, nullptr, componentScale);
 

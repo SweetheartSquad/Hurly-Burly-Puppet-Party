@@ -73,7 +73,9 @@ PuppetCharacter::~PuppetCharacter(){
 }
 
 void PuppetCharacter::init(){
-	componentScale = 0.0025f;
+	childTransform->addChild(behaviourManager, false);
+
+	componentScale = 0.005f;
 	bool defaultTex = false;
 	if(texPack == nullptr){
 		defaultTex = true;
@@ -140,8 +142,8 @@ void PuppetCharacter::init(){
 	b2Fixture * testf = torso->body->CreateFixture(&test);
 	sf.groupIndex = groupIndex;
 
-	torso->createFixture	 (sf, b2Vec2(0.f, -1.f), this);
-	popsicleStick->createFixture(sf, b2Vec2(0.f, -1.5f), this);
+	torso->createFixture	 (sf, b2Vec2(0.f, 0.0f), this);
+	popsicleStick->createFixture(sf, b2Vec2(0.f, 0.0f), this);
 	armLeft->createFixture	 (sf, b2Vec2(0.f, 0.f), this);
 	armRight->createFixture	 (sf, b2Vec2(0.f, 0.f), this);
 	handLeft->createFixture  (sf, b2Vec2(0.f, 0.f), this);
@@ -155,7 +157,7 @@ void PuppetCharacter::init(){
 	whitesf.maskBits = 0;
 	whitesf.groupIndex = groupIndex;
 	
-	whiteTorso->createFixture    (whitesf, b2Vec2(0.0f, -1.f), this);
+	whiteTorso->createFixture    (whitesf, b2Vec2(0.0f, 0.0f), this);
 	whiteHead->createFixture     (whitesf, b2Vec2(0.0f, 0.0f), this);
 	whiteArmLeft->createFixture  (whitesf, b2Vec2(0.0f, 0.0f), this);
 	whiteArmRight->createFixture (whitesf, b2Vec2(0.0f, 0.0f), this);
@@ -164,7 +166,7 @@ void PuppetCharacter::init(){
 	jth.bodyA = torso->body;
 	jth.bodyB = head->body;
 	jth.localAnchorA.Set(0, 0.4f * torso->getCorrectedHeight());
-	jth.localAnchorB.Set(0, -0.9f * head->getCorrectedHeight());
+	jth.localAnchorB.Set(0, -0.45f * head->getCorrectedHeight());
 	jth.collideConnected = false;
 	jth.enableLimit = true;
 	jth.enableMotor = true;
@@ -204,8 +206,8 @@ void PuppetCharacter::init(){
 	//b2RevoluteJointDef jhh;
 	jhh.bodyA = head->body;
 	jhh.bodyB = headgear->body;
-	jhh.localAnchorA.Set(0, 0.5f * head->getCorrectedHeight());
-	jhh.localAnchorB.Set(0, -0.1f * headgear->getCorrectedHeight());
+	jhh.localAnchorA.Set(0, 0.25f * head->getCorrectedHeight());
+	jhh.localAnchorB.Set(0, -0.05f * headgear->getCorrectedHeight());
 	jhh.collideConnected = false;
 	//jhh.enableLimit = true;
 	jhh.referenceAngle = 0;
@@ -216,8 +218,8 @@ void PuppetCharacter::init(){
 	jtar.bodyA = torso->body;
 	jtar.bodyB = armRight->body;
 
-	jtar.localAnchorA.Set(0.9f * torso->getCorrectedWidth(), 0.3f * torso->getCorrectedHeight());
-	jtar.localAnchorB.Set(0, 0.6f * armRight->getCorrectedHeight());
+	jtar.localAnchorA.Set(0.45f * torso->getCorrectedWidth(), 0.3f * torso->getCorrectedHeight());
+	jtar.localAnchorB.Set(0, 0.3f * armRight->getCorrectedHeight());
 
 	jtar.collideConnected = false;
 	jtar.enableLimit = true;
@@ -234,8 +236,8 @@ void PuppetCharacter::init(){
 	jtal.bodyA = torso->body;
 	jtal.bodyB = armLeft->body;
 
-	jtal.localAnchorA.Set(-0.9f * torso->getCorrectedWidth(), 0.3f * torso->getCorrectedHeight());
-	jtal.localAnchorB.Set(0, 0.6f * armLeft->getCorrectedHeight());
+	jtal.localAnchorA.Set(-0.45f * torso->getCorrectedWidth(), 0.3f * torso->getCorrectedHeight());
+	jtal.localAnchorB.Set(0, 0.3f * armLeft->getCorrectedHeight());
 
 	jtal.collideConnected = false;
 	jtal.enableLimit = true;
@@ -251,7 +253,7 @@ void PuppetCharacter::init(){
 	b2WeldJointDef rhrej;
 	rhrej.bodyA = armRight->body;
 	rhrej.bodyB = handRight->body;
-	rhrej.localAnchorA.Set(0.f, -0.9f * armRight->getCorrectedHeight());
+	rhrej.localAnchorA.Set(0.f, -0.45f * armRight->getCorrectedHeight());
 	rhrej.localAnchorB.Set(0.f, 0.f);
 	rhrej.collideConnected = false;
 	rhrej.referenceAngle = glm::radians(0.f);
@@ -261,7 +263,7 @@ void PuppetCharacter::init(){
 	b2WeldJointDef lhlej;
 	lhlej.bodyA = armLeft->body;
 	lhlej.bodyB = handLeft->body;
-	lhlej.localAnchorA.Set(0.f, -0.9f * armLeft->getCorrectedHeight());
+	lhlej.localAnchorA.Set(0.f, -0.45f * armLeft->getCorrectedHeight());
 	lhlej.localAnchorB.Set(0.f, 0.f);
 	lhlej.collideConnected = false;
 	lhlej.referenceAngle = glm::radians(0.f);
@@ -499,11 +501,9 @@ void PuppetCharacter::update(Step* _step){
 	if(indicator != nullptr){
 		//indicator->update(_step);
 		glm::vec3 iPos = indicator->getWorldPos(false);
-		glm::vec3 hPos = headgear->getWorldPos(false) + glm::vec3(0.f, 3.f, 0.f);
 
 
-		indicator->setTranslationPhysical(iPos + (hPos - iPos)*0.1f);
-		//indicator->transform->setOrientation(glm::quat(1,0,0,0));
+		indicator->setTranslationPhysical((hPos - iPos)*0.1f, true);
 	}
 	
 	// this needs to be fixed

@@ -19,7 +19,7 @@ Castle::Castle(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _
 	StructureBreakable(100.f, _world, _categoryBits, _maskBits, _groupIndex),
 	spriteSheet(new SpriteSheetAnimation(RaidTheCastleResourceManager::castleSpriteSheet, 0))
 {
-	componentScale = 0.03f;
+	componentScale = 0.06f;
 	
 	rootComponent = new Box2DSprite(_world, RaidTheCastleResourceManager::castleBase, b2_staticBody, false, nullptr, componentScale);
 	addComponent(&rootComponent);

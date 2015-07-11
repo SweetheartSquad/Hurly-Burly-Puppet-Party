@@ -17,6 +17,7 @@ StructureBreakable::StructureBreakable(float _maxHealth, Box2DWorld* _world, int
 	destroy(false)
 {
 	particleSystem = new ParticleSystem(PuppetResourceManager::dustParticle, world, 0, 0, 0);
+	particleSystem->componentScale = componentScale;
 	childTransform->addChild(particleSystem);
 	particleSystem->emissionRate = -1;
 	particleSystem->emissionAmount = 0;

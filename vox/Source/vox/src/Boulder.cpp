@@ -12,7 +12,7 @@ Boulder::Boulder(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16
 	Item(true, _world, _categoryBits, _maskBits, _groupIndex, 25.f, 50.f, 56.f),
 	catapult(nullptr)
 {
-	componentScale = 0.016f;
+	componentScale = 0.032f;
 
 	TextureSampler * boulderTexSampler = RaidTheCastleResourceManager::boulder;
 	

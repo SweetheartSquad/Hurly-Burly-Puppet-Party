@@ -16,7 +16,7 @@
 Tower::Tower(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex):
 	Structure(_world, _categoryBits, _maskBits, _groupIndex)
 {
-	componentScale = 0.03f;
+	componentScale = 0.06f;
 	
 	TextureSampler * towerTex = RapunzelResourceManager::towerTower;
 

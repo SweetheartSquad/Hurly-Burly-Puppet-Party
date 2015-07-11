@@ -98,7 +98,7 @@ RaidTheCastle::RaidTheCastle(PuppetGame* _game):
 		TextureSampler * weaponTex = PuppetResourceManager::getRandomMeleeWeapon();
 		TextureSampler * projTex = PuppetResourceManager::getRandomMeleeWeapon();
 		
-		ItemSimpleWeapon * weapon = new ItemSimpleWeapon(weaponTex, false, world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kBOUNDARY | PuppetGame::kGROUND | PuppetGame::kSTRUCTURE, p->groupIndex, 1, 0, -weaponTex->height);
+		ItemSimpleWeapon * weapon = new ItemSimpleWeapon(weaponTex, false, world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kBOUNDARY | PuppetGame::kGROUND | PuppetGame::kSTRUCTURE, p->groupIndex, 1, 0, -weaponTex->height*0.5f);
 
         weapon->addToLayeredScene(this, 1);
 		weapon->setShader(shader, true);

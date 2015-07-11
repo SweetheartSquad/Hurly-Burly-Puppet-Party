@@ -15,7 +15,7 @@ StructureGoldPile::StructureGoldPile(Box2DWorld* _world):
 	totalGold(20),
 	goldTaken(0)
 {
-	componentScale = 0.0025f;
+	componentScale = 0.005f;
 	
 	TextureSampler * baseTex = RapunzelResourceManager::goldBrick;
 	Texture * baseSpriteSheetTex = RapunzelResourceManager::goldSpriteSheet;

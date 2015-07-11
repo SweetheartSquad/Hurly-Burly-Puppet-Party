@@ -26,7 +26,7 @@ Catapult::Catapult(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int
 	arm(nullptr),
 	base(nullptr)
 {
-	componentScale = 0.016f;
+	componentScale = 0.032f;
 
 	base = new Box2DSprite(_world, RaidTheCastleResourceManager::catapultBody, b2_staticBody, false, nullptr, componentScale);
 	arm = new Box2DSprite(_world, RaidTheCastleResourceManager::catapultArm, b2_dynamicBody, false, nullptr, componentScale);
@@ -65,8 +65,8 @@ Catapult::Catapult(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int
 	b2RevoluteJointDef jth;
 	jth.bodyA = base->body;
 	jth.bodyB = arm->body;
-	jth.localAnchorA.Set(0.f * base->getCorrectedWidth(), 0.7f * base->getCorrectedHeight());
-	jth.localAnchorB.Set(0.9f * arm->getCorrectedWidth(), 0.f * arm->getCorrectedHeight());
+	jth.localAnchorA.Set(0.f * base->getCorrectedWidth(), 0.35f * base->getCorrectedHeight());
+	jth.localAnchorB.Set(0.45f * arm->getCorrectedWidth(), 0.f * arm->getCorrectedHeight());
 	jth.collideConnected = false;
 	jth.enableLimit = true;
 	/*jth.enableMotor = true;
