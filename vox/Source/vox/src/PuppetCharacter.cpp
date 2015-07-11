@@ -340,7 +340,7 @@ void PuppetCharacter::render(vox::MatrixStack* _matrixStack, RenderOptions* _ren
 		alphaShader->setAlpha(0.5f);
 	}
 
-	popsicleStick->render(_matrixStack, _renderOptions);
+	popsicleStick->parents.at(0)->render(_matrixStack, _renderOptions);
 
 	whiteHead->parents.at(0)->render(_matrixStack, _renderOptions);
 	whiteTorso->parents.at(0)->render(_matrixStack, _renderOptions);
