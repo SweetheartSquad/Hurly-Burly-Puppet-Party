@@ -506,11 +506,18 @@ void PuppetCharacter::update(Step* _step){
 		indicator->setTranslationPhysical((hPos - iPos)*0.1f, true);
 	}
 	
-	// this needs to be fixed
-	/**whiteArmLeft->transform = *armLeft->transform;
-	*whiteArmRight->transform = *armRight->transform;
-	*whiteHead->transform = *head->transform;
-	*whiteTorso->transform = *torso->transform;*/
+	// position white paper parts behind their corresponding puppet parts
+	whiteArmLeft->setTranslationPhysical(armLeft->getWorldPos(0));
+	whiteArmLeft->parents.at(0)->setOrientation((armLeft->parents.at(0)->getOrientationQuat()));
+
+	whiteArmRight->setTranslationPhysical(armRight->getWorldPos(0));
+	whiteArmRight->parents.at(0)->setOrientation((armRight->parents.at(0)->getOrientationQuat()));
+
+	whiteHead->setTranslationPhysical(head->getWorldPos(0));
+	whiteHead->parents.at(0)->setOrientation((head->parents.at(0)->getOrientationQuat()));
+
+	whiteTorso->setTranslationPhysical(torso->getWorldPos(0));
+	whiteTorso->parents.at(0)->setOrientation((torso->parents.at(0)->getOrientationQuat()));
 }
 
 void PuppetCharacter::jump(){
