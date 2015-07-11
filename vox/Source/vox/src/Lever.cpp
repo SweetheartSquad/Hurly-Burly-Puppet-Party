@@ -23,14 +23,14 @@ glm::vec3 Lever::towerPos;
 Lever::Lever(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _groupIndex):
 	StructureInteractable(_world, _categoryBits, _maskBits, _groupIndex)
 {
-	componentScale = 0.005f;
+	componentScale = 0.01f;
 	type = -1;
 
 	rootComponent = base = new Box2DSprite(_world, RapunzelResourceManager::leverBase, b2_staticBody, false, nullptr, componentScale);
 	handle = new Box2DSprite(_world, RapunzelResourceManager::leverHandle, b2_dynamicBody, false, nullptr, componentScale);
 	
-	addComponent(&base);
 	addComponent(&handle);
+	addComponent(&base);
 	
 	b2Filter sf;
 	sf.categoryBits = categoryBits;
@@ -54,8 +54,8 @@ Lever::Lever(Box2DWorld* _world, int16 _categoryBits, int16 _maskBits, int16 _gr
 	b2RevoluteJointDef jth;
 	jth.bodyA = base->body;
 	jth.bodyB = handle->body;
-	jth.localAnchorA.Set(0.f, 0.9f * base->getCorrectedHeight());
-	jth.localAnchorB.Set(0.f, -0.9f * handle->getCorrectedHeight());
+	jth.localAnchorA.Set(0.f, 0.4f * base->getCorrectedHeight());
+	jth.localAnchorB.Set(0.f, -0.4f * handle->getCorrectedHeight());
 	jth.collideConnected = false;
 	jth.enableLimit = true;
 	jth.referenceAngle = 0.f;

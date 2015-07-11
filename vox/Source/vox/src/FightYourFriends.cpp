@@ -187,7 +187,7 @@ void FightYourFriends::populateBackground(){
 		Sprite * arenaBg = new Sprite();
 		addChild(arenaBg, 0);
 		float scale = sceneWidth*0.8f;
-		arenaBg->parents.at(0)->translate(25, 40, -5);
+		arenaBg->parents.at(0)->translate(25, 20, -5);
 		arenaBg->parents.at(0)->scale(scale, scale, 1);
 		arenaBg->mesh->pushTexture2D(FightYourFriendsResourceManager::arena1);
 		arenaBg->setShader(shader, true);
@@ -195,12 +195,12 @@ void FightYourFriends::populateBackground(){
 		Sprite * arenaBg = new Sprite();
 		addChild(arenaBg, 0);
 		float scale = sceneWidth*0.8f;
-		arenaBg->parents.at(0)->translate(/*1024/2 * scale * 0.001f*/25, 35, -5);
+		arenaBg->parents.at(0)->translate(25, 17.5, -5);
 		arenaBg->parents.at(0)->scale(scale, scale, 1);
 		arenaBg->mesh->pushTexture2D(FightYourFriendsResourceManager::arena2Bg);
 		arenaBg->setShader(shader, true);
 
-		Box2DSprite * arenaFg = new Box2DSprite(world, FightYourFriendsResourceManager::arena2Fg, b2_staticBody, false, nullptr, 0.03f);
+		Box2DSprite * arenaFg = new Box2DSprite(world, FightYourFriendsResourceManager::arena2Fg, b2_staticBody, false, nullptr, 0.06f);
 		addChild(arenaFg, 1);
 		
 		b2Filter sf;
@@ -214,6 +214,6 @@ void FightYourFriends::populateBackground(){
 			arenaFg->mesh->vertices.at(i).y += 2.5f;
 		}
 		arenaFg->mesh->dirty = true;
-		arenaFg->setTranslationPhysical(arenaFg->getCorrectedWidth()/2.f + 12.f, sceneHeight*0.25f, 0);
+		arenaFg->setTranslationPhysical(sceneWidth*0.5f, sceneHeight*0.25f, 0);
 	}
 }

@@ -39,7 +39,7 @@
 SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	PuppetScene(_game, 30, 170.f, 120.f),
 	fort(new Fortification(world, PuppetGame::kSTRUCTURE, PuppetGame::kITEM | PuppetGame::kPLAYER)),
-    fortForeground(new Box2DSprite(world, SlayTheDragonResourceManager::fortForeground, b2_staticBody, false, nullptr, 0.03f)),
+    fortForeground(new Box2DSprite(world, SlayTheDragonResourceManager::fortForeground, b2_staticBody, false, nullptr, 0.06f)),
 	playerCharacter1(new PuppetCharacterArcher(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY | PuppetGame::kDEAD_ZONE, -1)),
 	playerCharacter2(new PuppetCharacterArcher(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY | PuppetGame::kDEAD_ZONE, -2)),
 	playerCharacter3(new PuppetCharacterArcher(false, world, PuppetGame::kPLAYER, PuppetGame::kGROUND | PuppetGame::kSTRUCTURE | PuppetGame::kITEM | PuppetGame::kPLAYER | PuppetGame::kBEHAVIOUR | PuppetGame::kBOUNDARY | PuppetGame::kDEAD_ZONE, -3)),
@@ -55,7 +55,7 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	addChild(fortBg, 0);
 	fortBg->setShader(shader, true);
 	fortBg->mesh->pushTexture2D(SlayTheDragonResourceManager::fortBackground->texture);
-	fortBg->parents.at(0)->translate(65.0f, 20.0f, 0.0f);
+	fortBg->parents.at(0)->translate(65.0f, 10.0f, 0.0f);
 	fortBg->parents.at(0)->scale(2.6f, 2.6f, 1.0f);
 
 	
@@ -78,7 +78,7 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	fortForeground->mesh->dirty = true;
     fortForeground->setShader(shader, true);
     addChild(fortForeground, 2);
-    fortForeground->setTranslationPhysical(glm::vec3(80.0f, fortForeground->getCorrectedHeight(), 0));
+    fortForeground->setTranslationPhysical(glm::vec3(80.0f, fortForeground->getCorrectedHeight()*0.5f, 0));
 	
 	// dragon needs to be first bc the fire particles should draw underneath other players
 	addChild(playerCharacter4, 1);
@@ -116,18 +116,18 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 		weapon->setShader(shader, true);
 		p->itemToPickup = weapon;
 		addChild(weapon, 1);
-		p->translateComponents(glm::vec3(40.f + (pCnt * 20), fortForeground->getCorrectedHeight() * 2, 0));
 		p->setShader(shader, true);
+		p->translateComponents(glm::vec3(40.f + (pCnt * 20), fortForeground->getCorrectedHeight(), 0));
 	}
 	
-	playerCharacter1->translateComponents(glm::vec3(20.f, fort->rootComponent->getCorrectedHeight() * 1.2, 0.f));
-	playerCharacter2->translateComponents(glm::vec3(30.f, fort->rootComponent->getCorrectedHeight() * 1.2, 0.f));
-	playerCharacter3->translateComponents(glm::vec3(40.f, fort->rootComponent->getCorrectedHeight() * 1.2, 0.f));
+	playerCharacter1->translateComponents(glm::vec3(20.f, fort->rootComponent->getCorrectedHeight(), 0.f));
+	playerCharacter2->translateComponents(glm::vec3(30.f, fort->rootComponent->getCorrectedHeight(), 0.f));
+	playerCharacter3->translateComponents(glm::vec3(40.f, fort->rootComponent->getCorrectedHeight(), 0.f));
 	
 	fort->setShader(shader, true);
 	fort->addToLayeredScene(this, 1);
 	addChild(fort, 1);
-    fort->translateComponents(glm::vec3(80.0f, fortForeground->getCorrectedHeight() + 31.f, 0.f));
+    fort->translateComponents(glm::vec3(80.0f, fortForeground->getCorrectedHeight()*0.5f + 31.f, 0.f));
 
 	Box2DMeshEntity * deathBounds = new Box2DMeshEntity(world, MeshFactory::getPlaneMesh(), b2_staticBody);
 	addChild(deathBounds, 2);
