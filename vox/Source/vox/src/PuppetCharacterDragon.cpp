@@ -49,7 +49,7 @@ PuppetCharacterDragon::PuppetCharacterDragon(bool _ai, Box2DWorld * _world, int1
 	b2RevoluteJointDef rhrej;
 	rhrej.bodyA = armRight->body;
 	rhrej.bodyB = handRight->body;
-	rhrej.localAnchorA.Set(-0.5f * armRight->getCorrectedWidth(), -0.1f * armRight->getCorrectedHeight());
+	rhrej.localAnchorA.Set(0.5f * armRight->getCorrectedWidth(), -0.1f * armRight->getCorrectedHeight());
 	rhrej.localAnchorB.Set(0.3f * handRight->getCorrectedWidth(), 0.4f * handRight->getCorrectedHeight());
 	rhrej.collideConnected = false;
 	rhrej.enableLimit = true;
