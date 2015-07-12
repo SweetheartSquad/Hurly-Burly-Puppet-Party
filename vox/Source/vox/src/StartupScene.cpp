@@ -11,8 +11,6 @@
 #include <FollowCamera.h>
 #include <PuppetCharacterKnight.h>
 #include <Box2DSprite.h>
-#include <BehaviourAttack.h>
-#include <BehaviourManager.h>
 
 StartupScene::StartupScene(PuppetGame * _game) :
 	PuppetScene(_game, 20.f, 30.f, 20.f, 100.f, true),
@@ -24,37 +22,21 @@ StartupScene::StartupScene(PuppetGame * _game) :
 	splashMessage->mesh->pushTexture2D(PuppetResourceManager::startupSplash);
 
 	populateBackground();
-
-	//Do we want some guys in here?
 	
-	playerCharacter1->setShader(shader, true);
-	addChild(playerCharacter1, 1);
-	playerCharacter1->addToLayeredScene(this, 1);
-	playerCharacter1->behaviourManager->addBehaviour(new BehaviourAttack(playerCharacter1, 3, PuppetGame::kPLAYER));
-	playerCharacter1->ai = true;
+	players.push_back(playerCharacter1);
+	players.push_back(playerCharacter2);
+	players.push_back(playerCharacter3);
+	players.push_back(playerCharacter4);
 
-	playerCharacter2->setShader(shader, true);
-	addChild(playerCharacter2, 1);
-	playerCharacter2->addToLayeredScene(this, 1);
-	playerCharacter2->behaviourManager->addBehaviour(new BehaviourAttack(playerCharacter2, 3, PuppetGame::kPLAYER));
-	playerCharacter2->ai = true;
+	for(unsigned long int i = 0; i < players.size(); ++i){
+		PuppetCharacter * p = players.at(i);
+		p->ai = true;
+		addChild(p, 1);
+		p->addToLayeredScene(this, 1);
+		p->setShader(shader, true);
 
-	playerCharacter3->setShader(shader, true);
-	addChild(playerCharacter3, 1);
-	playerCharacter3->addToLayeredScene(this, 1);
-	playerCharacter3->behaviourManager->addBehaviour(new BehaviourAttack(playerCharacter4, 3, PuppetGame::kPLAYER));
-	playerCharacter3->ai = true;
-
-	playerCharacter4->setShader(shader, true);
-	addChild(playerCharacter4, 1);
-	playerCharacter4->addToLayeredScene(this, 1);
-	playerCharacter4->behaviourManager->addBehaviour(new BehaviourAttack(playerCharacter3, 3, PuppetGame::kPLAYER));
-	playerCharacter4->ai = true;
-
-	playerCharacter1->translateComponents(glm::vec3(0.5f * sceneWidth*0.25f, 35, 0.f));
-	playerCharacter2->translateComponents(glm::vec3(1.5f * sceneWidth*0.25f, 35, 0.f));
-	playerCharacter3->translateComponents(glm::vec3(2.5f * sceneWidth*0.25f, 35, 0.f));
-	playerCharacter4->translateComponents(glm::vec3(3.5f * sceneWidth*0.25f, 35, 0.f));
+		p->translateComponents(glm::vec3((i+0.5f) * sceneWidth*0.25f, 35, 0.f));
+	}
 
 	gameCam->offset = glm::vec3(sceneWidth*0.5f, sceneHeight*0.5f, 0);
 }

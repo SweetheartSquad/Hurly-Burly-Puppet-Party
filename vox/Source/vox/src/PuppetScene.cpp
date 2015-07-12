@@ -288,13 +288,13 @@ PuppetScene::~PuppetScene(){
 
 
 void PuppetScene::assignControllers(){
+	PuppetGame * pg = dynamic_cast<PuppetGame *>(game);
+
 	// standard
-	//static_cast<PuppetGame *>(game)->puppetControllers.at(0)->setPuppetCharacter(players.at(0));
-	//static_cast<PuppetGame *>(game)->puppetControllers.at(1)->setPuppetCharacter(players.at(1));
-	//static_cast<PuppetGame *>(game)->puppetControllers.at(2)->setPuppetCharacter(players.at(2));
-	//static_cast<PuppetGame *>(game)->puppetControllers.at(3)->setPuppetCharacter(players.at(3));
-	
-	
+	//pg->puppetControllers.at(0)->setPuppetCharacter(players.at(0));
+	//pg->puppetControllers.at(1)->setPuppetCharacter(players.at(1));
+	//pg->puppetControllers.at(2)->setPuppetCharacter(players.at(2));
+	//pg->puppetControllers.at(3)->setPuppetCharacter(players.at(3));
 
 	// random
 	std::vector<PuppetCharacter *> chars;
@@ -306,7 +306,9 @@ void PuppetScene::assignControllers(){
 	while(chars.size() > 0){
 		int ch = vox::NumberUtils::randomInt(0, chars.size()-1);
 		chars.at(ch)->id = c;
-		static_cast<PuppetGame *>(game)->puppetControllers.at(c)->setPuppetCharacter(chars.at(ch));
+		if(pg->puppetControllers.size() > c){
+			pg->puppetControllers.at(c)->setPuppetCharacter(chars.at(ch));
+		}
 		chars.erase(chars.begin() + ch);
 		++c;
 	}
@@ -332,14 +334,15 @@ void PuppetScene::update(Step * _step){
     PuppetGame * pg = static_cast<PuppetGame *>(game);
 	
 	// player controls
-	if (players.size() > 0){
-		if (keyboard->keyDown(GLFW_KEY_W)){
-			pg->puppetControllers.at(0)->getPuppetCharacter()->jump();
-		}if (keyboard->keyDown(GLFW_KEY_A)){
-			pg->puppetControllers.at(0)->getPuppetCharacter()->targetRoll = glm::radians(-75.f);
-		}
-		if (keyboard->keyDown(GLFW_KEY_D)){
-			pg->puppetControllers.at(0)->getPuppetCharacter()->targetRoll = glm::radians(75.f);
+	if (pg->puppetControllers.size() > 0){
+		if(pg->puppetControllers.at(0)->getPuppetCharacter() != nullptr){
+			if (keyboard->keyDown(GLFW_KEY_W)){
+				pg->puppetControllers.at(0)->getPuppetCharacter()->jump();
+			}if (keyboard->keyDown(GLFW_KEY_A)){
+				pg->puppetControllers.at(0)->getPuppetCharacter()->targetRoll = glm::radians(-75.f);
+			}if (keyboard->keyDown(GLFW_KEY_D)){
+				pg->puppetControllers.at(0)->getPuppetCharacter()->targetRoll = glm::radians(75.f);
+			}
 		}
 		if (keyboard->keyJustDown(GLFW_KEY_T)){
 			players.at(3)->action();
@@ -500,8 +503,10 @@ void PuppetScene::update(Step * _step){
 	glm::vec2 sd = vox::getScreenDimensions();
 	uiLayer->resize(0, sd.x, 0, sd.y);
 	for(unsigned long int i = 0; i < players.size(); ++i){
-		players.at(i)->scoreIndicator->parents.at(0)->translate(sd.x * (float)(players.at(i)->id+0.5f)/players.size(), sd.y*0.15f, 0, false);
-		players.at(i)->scoreIndicator->parents.at(0)->scale(sd.y*0.1f, false);
+		if(players.at(i)->scoreIndicator != nullptr){
+			players.at(i)->scoreIndicator->parents.at(0)->translate(sd.x * (float)(players.at(i)->id+0.5f)/players.size(), sd.y*0.15f, 0, false);
+			players.at(i)->scoreIndicator->parents.at(0)->scale(sd.y*0.1f, false);
+		}
 	}
 	for(auto n : countDownNumbers){
 		n->childTransform->translate(sd.x*0.5, sd.y*0.5f, 0, false);
