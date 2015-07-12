@@ -23,10 +23,6 @@ StructureBreakable::StructureBreakable(float _maxHealth, Box2DWorld* _world, int
 	particleSystem->emissionAmount = 0;
 }
 
-StructureBreakable::~StructureBreakable(){
-	delete particleSystem;
-}
-
 void StructureBreakable::update(Step* _step){
 	Structure::update(_step);
 
