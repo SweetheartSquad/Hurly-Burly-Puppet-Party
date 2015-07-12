@@ -269,7 +269,7 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 PuppetScene::~PuppetScene(){
 	while(countDownNumbers.size() > 0){
 		// just in case the scene was deleted while the countdown was going, remove them from the children list to avoid deleting them twice
-		removeChild(countDownNumbers.back());
+		uiLayer->childTransform->removeChild(countDownNumbers.back());
 		delete countDownNumbers.back();
 		countDownNumbers.pop_back();
 	}
