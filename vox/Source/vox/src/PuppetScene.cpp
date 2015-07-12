@@ -249,7 +249,6 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	
 	for(Sprite * n : countDownNumbers){
 		n->setShader(shader, true);
-		n->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0);
     }
 
     particleSystem = new ParticleSystem(PuppetResourceManager::dustParticle, world, 0, 0, 0);
