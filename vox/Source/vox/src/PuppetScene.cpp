@@ -17,6 +17,7 @@
 #include "ControllableOrthographicCamera.h"
 #include "RenderOptions.h"
 #include "MeshEntity.h"
+#include <System.h>
 
 #include <Box2D/Box2D.h>
 #include <Box2DDebugDrawer.h>
@@ -43,6 +44,7 @@
 #include <FightYourFriends.h>
 #include <VictoryScene.h>
 
+#include <ScoreIndicator.h>
 #include <PuppetResourceManager.h>
 #include <NumberUtils.h>
 #include <Resource.h>
@@ -262,7 +264,6 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 
 	splashMessage = new Sprite();
 	splashMessage->setShader(shader, true);
-	splashMessage->childTransform->translate(1920.f*0.5, 1080.f*0.5f, 0);
 	uiLayer->childTransform->addChild(splashMessage, false);
 }
 
@@ -380,20 +381,6 @@ void PuppetScene::update(Step * _step){
 
 	LayeredScene::update(_step);
 
-
-	if(splashMessage != nullptr){
-		if(currentTime < splashDuration){
-			float easeTime = splashDuration - currentTime;
-			float scale = (easeTime < splashDuration / 2.f) ? Easing::easeOutCubic(easeTime, 0, 1024, splashDuration / 2.f) : Easing::easeInElastic(easeTime - splashDuration / 2.f, 1024, -1024, splashDuration / 2.f);
-			splashMessage->childTransform->scale(glm::vec3(scale, scale, 1), false);
-		}else{
-			// Remove previous number from scene
-			uiLayer->childTransform->removeChild(splashMessage);
-			delete splashMessage;
-			splashMessage = nullptr;
-		}
-	}
-	
 	// destroy used up items
 	for(signed long int i = items.size()-1; i >= 0; --i){
 		Item * item = items.at(i);
@@ -409,28 +396,6 @@ void PuppetScene::update(Step * _step){
 	}
 	
 	world->update(_step);
-
-	if(this == game->currentScene){
-		currentTime += _step->deltaTime;
-		if (currentTime > duration - countDownNumbers.size()){
-			if(duration - currentTime < countDown){
-				doCountDown();
-			}
-			if(countDown < countDownNumbers.size()){
-				float displayTime = fmod(currentTime, 1.f);
-				if(displayTime < 0.5f){
-					float scale = Easing::easeOutElastic(displayTime, 0.f, 512.f, 0.5f);
-					countDownNumbers.at(countDown)->childTransform->scale(glm::vec3(scale, scale, 1.f), false);
-				}else{
-					float scale = Easing::easeInCirc(displayTime-0.5f, 512.f, -512.f, 0.5f);
-					countDownNumbers.at(countDown)->childTransform->scale(glm::vec3(scale, scale, 1.f), false);
-				}
-			}
-			if(currentTime > duration){
-				complete();
-			}
-		}
-	}
 
 	if(sun != nullptr){
 		sun->parents.at(0)->rotate(_step->deltaTimeCorrection*0.05f, 0, 0, 1, kOBJECT);
@@ -530,6 +495,50 @@ void PuppetScene::update(Step * _step){
 	}
 	if(everyonesDead){
 		triggerVictoryState();
+	}
+
+	// UI layer stuff
+	glm::vec2 sd = vox::getScreenDimensions();
+	uiLayer->resize(0, sd.x, 0, sd.y);
+	for(auto n : countDownNumbers){
+		n->childTransform->translate(sd.x*0.5, sd.y*0.5f, 0, false);
+	}
+	if(splashMessage != nullptr){
+		splashMessage->childTransform->translate(sd.x*0.5, sd.y*0.5f, 0, false);
+	}
+	if(splashMessage != nullptr){
+		if(currentTime < splashDuration){
+			float easeTime = splashDuration - currentTime;
+			float scale = (easeTime < splashDuration / 2.f) ? Easing::easeOutCubic(easeTime, 0, sd.y*0.8f, splashDuration / 2.f) : Easing::easeInElastic(easeTime - splashDuration / 2.f, sd.y*0.8f, -sd.y*0.8f, splashDuration / 2.f);
+			splashMessage->childTransform->scale(glm::vec3(scale, scale, 1), false);
+		}else{
+			// Remove previous number from scene
+			uiLayer->childTransform->removeChild(splashMessage);
+			delete splashMessage;
+			splashMessage = nullptr;
+		}
+	}
+
+	if(this == game->currentScene){
+		currentTime += _step->deltaTime;
+		if (currentTime > duration - countDownNumbers.size()){
+			if(duration - currentTime < countDown){
+				doCountDown();
+			}
+			if(countDown < countDownNumbers.size()){
+				float displayTime = fmod(currentTime, 1.f);
+				if(displayTime < 0.5f){
+					float scale = Easing::easeOutElastic(displayTime, 0.f, sd.y*0.5f, 0.5f);
+					countDownNumbers.at(countDown)->childTransform->scale(glm::vec3(scale, scale, 1.f), false);
+				}else{
+					float scale = Easing::easeInCirc(displayTime-0.5f, sd.y*0.5f, -sd.y*0.5f, 0.5f);
+					countDownNumbers.at(countDown)->childTransform->scale(glm::vec3(scale, scale, 1.f), false);
+				}
+			}
+			if(currentTime > duration){
+				complete();
+			}
+		}
 	}
 }
 
