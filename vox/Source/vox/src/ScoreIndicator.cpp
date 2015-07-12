@@ -13,17 +13,9 @@ ScoreIndicator::ScoreIndicator(unsigned long int _id, Box2DWorld * _world) :
 	id(_id),
 	scoreParticles(new ParticleSystem(PuppetResourceManager::scoreParticles.at(0), _world, 0, 0, 0))
 {
-	float pixels = 100;
-
-	 // this might be wrong
-	childTransform->scale(pixels, pixels, 1);
-	childTransform->translate((3.5f-id) * 1920.f*0.25f, pixels*1.1f, 10.f);
-
 	mesh->pushTexture2D(PuppetResourceManager::scoreIndicators.at(id));
-}
-
-ScoreIndicator::~ScoreIndicator(){
-	delete scoreParticles;
+	scoreParticles->componentScale = 0.0025f;
+	childTransform->addChild(scoreParticles, false);
 }
 
 void ScoreIndicator::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
@@ -48,28 +40,13 @@ void ScoreIndicator::render(vox::MatrixStack* _matrixStack, RenderOptions* _rend
 	hsvShader->setSaturation(newSat);
 
 	Sprite::render(_matrixStack, _renderOptions);
-	scoreParticles->render(_matrixStack, _renderOptions);
 	
 	// revert the shader settings
 	hsvShader->setHue(hue);
 	hsvShader->setSaturation(sat);
 }
 
-void ScoreIndicator::update(Step * _step){
-	Sprite::update(_step);
-	scoreParticles->update(_step);
-}
 void ScoreIndicator::setShader(Shader * _shader, bool _configure){
 	Sprite::setShader(_shader, _configure);
 	scoreParticles->setShader(_shader, _configure);
-}
-
-void ScoreIndicator::load(){
-	Sprite::load();
-	scoreParticles->load();
-}
-
-void ScoreIndicator::unload(){
-	Sprite::unload();
-	scoreParticles->unload();
 }

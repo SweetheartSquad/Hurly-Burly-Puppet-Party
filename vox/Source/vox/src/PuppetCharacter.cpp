@@ -489,12 +489,9 @@ void PuppetCharacter::update(Step* _step){
 	if(lastUpdateScore < score){
 		lastUpdateScore += 1;
 		if(scoreIndicator != nullptr){
-			Particle * p = scoreIndicator->scoreParticles->addParticle(scoreIndicator->getWorldPos(false));
-			float pixels = 50;
-			p->childTransform->scale(pixels, pixels, 1.f);
-			p->startSize = pixels;
-			p->deltaSize = -pixels;
-			p->setTranslationPhysical(vox::NumberUtils::randomFloat(-pixels, pixels), vox::NumberUtils::randomFloat(-pixels, pixels), 0, true);
+			Particle * p = scoreIndicator->scoreParticles->addParticle(glm::vec3(0));
+			p->setTranslationPhysical(vox::NumberUtils::randomFloat(-p->startSize, p->startSize), vox::NumberUtils::randomFloat(-p->startSize, p->startSize), 0, true);
+			p->applyLinearImpulseToCenter(vox::NumberUtils::randomFloat(-p->startSize, p->startSize), vox::NumberUtils::randomFloat(-p->startSize, 0));
 		}
 	}
 
