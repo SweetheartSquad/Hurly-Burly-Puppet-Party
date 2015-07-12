@@ -165,8 +165,8 @@ void PuppetCharacter::init(){
 	b2RevoluteJointDef jth;
 	jth.bodyA = torso->body;
 	jth.bodyB = head->body;
-	jth.localAnchorA.Set(0, 0.4f * torso->getCorrectedHeight());
-	jth.localAnchorB.Set(0, -0.45f * head->getCorrectedHeight());
+	jth.localAnchorA.Set(0, 0.45f * torso->getCorrectedHeight());
+	jth.localAnchorB.Set(0, -0.4f * head->getCorrectedHeight());
 	jth.collideConnected = false;
 	jth.enableLimit = true;
 	jth.enableMotor = true;
@@ -218,8 +218,8 @@ void PuppetCharacter::init(){
 	jtar.bodyA = torso->body;
 	jtar.bodyB = armRight->body;
 
-	jtar.localAnchorA.Set(0.45f * torso->getCorrectedWidth(), 0.3f * torso->getCorrectedHeight());
-	jtar.localAnchorB.Set(0, 0.3f * armRight->getCorrectedHeight());
+	jtar.localAnchorA.Set(0.3f * torso->getCorrectedWidth(), 0.4f * torso->getCorrectedHeight());
+	jtar.localAnchorB.Set(0, 0.5f * armRight->getCorrectedHeight());
 
 	jtar.collideConnected = false;
 	jtar.enableLimit = true;
@@ -236,8 +236,8 @@ void PuppetCharacter::init(){
 	jtal.bodyA = torso->body;
 	jtal.bodyB = armLeft->body;
 
-	jtal.localAnchorA.Set(-0.45f * torso->getCorrectedWidth(), 0.3f * torso->getCorrectedHeight());
-	jtal.localAnchorB.Set(0, 0.3f * armLeft->getCorrectedHeight());
+	jtal.localAnchorA.Set(-0.3f * torso->getCorrectedWidth(), 0.4f * torso->getCorrectedHeight());
+	jtal.localAnchorB.Set(0, 0.5f * armLeft->getCorrectedHeight());
 
 	jtal.collideConnected = false;
 	jtal.enableLimit = true;
@@ -499,9 +499,8 @@ void PuppetCharacter::update(Step* _step){
 	}
 
 	if(indicator != nullptr){
-		//indicator->update(_step);
-		glm::vec3 iPos = indicator->getWorldPos(false);
-
+		glm::vec3 iPos = indicator->getWorldPos();
+		glm::vec3 hPos = headgear->getWorldPos() + glm::vec3(0.f, 22.5f, 0.f);
 
 		indicator->setTranslationPhysical((hPos - iPos)*0.1f, true);
 	}
@@ -650,7 +649,7 @@ void PuppetCharacter::pickupItem(Item * _item){
 		b2WeldJointDef jd;
 		jd.bodyA = itemHolder->body;
 		jd.bodyB = (*_item->components.at(0))->body;
-		jd.localAnchorA.Set(0.f, -0.9f * itemHolder->getCorrectedHeight());
+		jd.localAnchorA.Set(0.f, -0.45f * itemHolder->getCorrectedHeight());
 		jd.localAnchorB.Set(_item->handleX * componentScale, _item->handleY * componentScale);
 		jd.collideConnected = false;
 		jd.referenceAngle = glm::radians(-90.f);
