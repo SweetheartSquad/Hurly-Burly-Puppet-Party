@@ -186,10 +186,10 @@ Rapunzel::Rapunzel(PuppetGame* _game):
 	
 	gameCam->useBounds = true;
 	gameCam->minBounds.x = 4;
-	gameCam->minBounds.y = -10;
+	//gameCam->minBounds.y = -100;
 	gameCam->minBounds.height = 0;//sceneHeight;
 	gameCam->minBounds.width = sceneWidth-8;
-	gameCam->minimumZoom = 30;
+	gameCam->minimumZoom = 40;
 	gameCam->buffer = 0;
 }
 
