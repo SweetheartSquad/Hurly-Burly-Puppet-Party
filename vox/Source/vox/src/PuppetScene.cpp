@@ -500,7 +500,7 @@ void PuppetScene::update(Step * _step){
 	glm::vec2 sd = vox::getScreenDimensions();
 	uiLayer->resize(0, sd.x, 0, sd.y);
 	for(unsigned long int i = 0; i < players.size(); ++i){
-		players.at(i)->scoreIndicator->parents.at(0)->translate(sd.x * (float)(i+0.5f)/players.size(), sd.y*0.15f, 0, false);
+		players.at(i)->scoreIndicator->parents.at(0)->translate(sd.x * (float)(players.at(i)->id+0.5f)/players.size(), sd.y*0.15f, 0, false);
 		players.at(i)->scoreIndicator->parents.at(0)->scale(sd.y*0.1f, false);
 	}
 	for(auto n : countDownNumbers){
