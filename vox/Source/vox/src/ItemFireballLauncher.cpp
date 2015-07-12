@@ -9,7 +9,6 @@
 #include <PuppetResourceManager.h>
 #include <PuppetCharacterDragon.h>
 #include <TextureSampler.h>
-#include <NumberUtils.h>
 
 ItemFireballLauncher::ItemFireballLauncher(PuppetCharacterDragon * _dragon, Box2DWorld * _world) :
 	ItemProjectileWeapon(SlayTheDragonResourceManager::itemFireball, PuppetResourceManager::itemNone, _world, PuppetGame::kITEM)
@@ -18,7 +17,6 @@ ItemFireballLauncher::ItemFireballLauncher(PuppetCharacterDragon * _dragon, Box2
 }
 
 Item * ItemFireballLauncher::getProjectile(bool _forceDrop){
-	//Item * projectile = new Item(true, projectileTemplate->world, projectileTemplate->categoryBits, projectileTemplate->maskBits, projectileTemplate->groupIndex, projectileTemplate->damage, projectileTemplate->handleX, projectileTemplate->handleY);
 	PuppetCharacterDragon * dragon = dynamic_cast<PuppetCharacterDragon *>(owner);
 	if(dragon == nullptr){
 		throw "not a dragon!";
@@ -40,12 +38,11 @@ Item * ItemFireballLauncher::getProjectile(bool _forceDrop){
 		(*c)->body->ResetMassData();
 	}
 
-    projectile->rootComponent->applyAngularImpulse(vox::NumberUtils::randomFloat(-25.0f, 25.0f));
 	projectile->setUserData(projectile);
 
-	//static_cast<PuppetScene *>(scene)->addChild(projectile, 1);
+	static_cast<PuppetScene *>(scene)->addChild(projectile, 1);
 	static_cast<PuppetScene *>(scene)->items.push_back(projectile);
-	//projectile->addToLayeredScene(static_cast<PuppetScene *>(scene), 1);
+	projectile->addToLayeredScene(static_cast<PuppetScene *>(scene), 1);
 	projectile->setShader(static_cast<PuppetScene *>(scene)->shader, true);
 
 	projectile->snapComponents(this->rootComponent);

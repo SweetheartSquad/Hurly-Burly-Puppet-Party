@@ -34,14 +34,14 @@ PuppetCharacterDragon::PuppetCharacterDragon(bool _ai, Box2DWorld * _world, int1
 	fireParticles(new ParticleSystem(SlayTheDragonResourceManager::itemFireParticle, _world, 0, 0, _groupIndex)),
 	altitude(60.f)
 {
+	childTransform->addChild(fireParticles, false);
 	fireParticles->componentScale = componentScale;
-	//behaviourManager->addBehaviour(new BehaviourPatrol(glm::vec3(35,0,0), glm::vec3(125,0,0), this, 1));
-	//behaviourManager->addBehaviour(new BehaviourAttackThrow(true, this, 100, PuppetGame::kPLAYER));
 
 	for(auto c : components) {
 		(*c)->body->SetGravityScale(0.0f);
 	}
 
+	// replace the hand joints with wings
 	world->b2world->DestroyJoint(handRight->body->GetJointList()->joint);
 	world->b2world->DestroyJoint(handLeft->body->GetJointList()->joint);
 
@@ -84,10 +84,9 @@ PuppetCharacter * PuppetCharacterDragon::clone(Box2DWorld * _world, PuppetScene 
 	return res;
 }
 
-PuppetCharacterDragon::~PuppetCharacterDragon(){
-	//delete texPack;
-	delete fireParticles;
-	delete fireball;
+void PuppetCharacterDragon::setShader(Shader * _shader, bool _default){
+	PuppetCharacter::setShader(_shader, _default);
+	fireParticles->setShader(_shader, _default);
 }
 
 void PuppetCharacterDragon::render(vox::MatrixStack* _matrixStack, RenderOptions* _renderOptions){
@@ -146,12 +145,7 @@ void PuppetCharacterDragon::render(vox::MatrixStack* _matrixStack, RenderOptions
 	tintShader->setGreen(green);
 	tintShader->setBlue(blue);
 
-	fireParticles->setShader(shader, true);
 	fireParticles->render(_matrixStack, _renderOptions);
-
-    if(fireball != nullptr){
-        fireball->render(_matrixStack, _renderOptions);
-    }
 
 	// render head on top
 	tintShader->setRed(red + (1 - control) * 3);
@@ -185,14 +179,11 @@ void PuppetCharacterDragon::update(Step * _step){
 	if (altitude > 0){
 		torso->body->SetTransform(b2Vec2(torso->body->GetPosition().x, altitude), torso->body->GetAngle());
 	}
-	fireParticles->update(_step);
     if (fireball != nullptr){
         Particle * p = fireParticles->addParticle(fireball->rootComponent->getWorldPos(false));
         p->body->SetGravityScale(-0.1f);
         p->applyAngularImpulse(vox::NumberUtils::randomFloat(-25.0f, 25.0f));
         p->setTranslationPhysical(glm::vec3(vox::NumberUtils::randomFloat(-2.f, 2.f), vox::NumberUtils::randomFloat(0.75f, 1.25f), vox::NumberUtils::randomFloat(-2.f, 2.f)), true);
-
-        fireball->update(_step);
     }
 	if(playerOnFire != nullptr && !playerOnFire->dead){
         Particle * p = fireParticles->addParticle(playerOnFire->rootComponent->getWorldPos(false));
@@ -252,22 +243,6 @@ void PuppetCharacterDragon::pickupItem(Item * _item){
 		itemToPickup = nullptr;
 		_item->held = true;
 		_item->owner = this;
-	}
-}
-
-void PuppetCharacterDragon::load(){
-	PuppetCharacter::load();
-	fireParticles->load();
-	if(fireball != nullptr){
-		fireball->load();
-	}
-}
-
-void PuppetCharacterDragon::unload(){
-	PuppetCharacter::unload();
-	fireParticles->unload();
-	if(fireball != nullptr){
-		fireball->unload();
 	}
 }
 

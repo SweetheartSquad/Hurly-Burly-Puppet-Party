@@ -47,15 +47,6 @@ void SlayTheDragonContactListener::structureItemContact(b2Contact * _contact, b2
 
 	Fortification * fort = dynamic_cast<Fortification *>(structure);
 	if(fort != nullptr){
-		// need to filter by roof vs. base (base shouldn't take damage)
-
-		fort->takeDamage(item->damage); // what is going on here?
-		/*ItemFireball * fireball = dynamic_cast<ItemFireball *>(item);
-		if(fireball != nullptr){
-			//fireball->playerWhoFired->score += boulder->damage;
-			if(fort->state == StructureBreakable::kDEAD){
-				fireball->playerWhoFired->score += 100000;
-			}
-		}*/
+		fort->takeDamage(item->damage);
 	}
 }

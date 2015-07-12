@@ -3,6 +3,7 @@
 #include <ItemFireball.h>
 #include <PuppetCharacterDragon.h>
 #include <SlayTheDragonResourceManager.h>
+#include <NumberUtils.h>
 
 ItemFireball::ItemFireball(PuppetCharacterDragon * _dragon, Box2DWorld * _world) :
 	Item(true, _world, PuppetGame::kITEM, PuppetGame::kPLAYER | PuppetGame::kSTRUCTURE | PuppetGame::kBOUNDARY | PuppetGame::kGROUND, 0, 25)
@@ -18,6 +19,8 @@ ItemFireball::ItemFireball(PuppetCharacterDragon * _dragon, Box2DWorld * _world)
 	test[0] = rootComponent = new Box2DSprite(world, SlayTheDragonResourceManager::itemFireball, b2_dynamicBody, false, nullptr, componentScale);
 
 	addComponent(test);
+
+   rootComponent->applyAngularImpulse(vox::NumberUtils::randomFloat(-25.0f, 25.0f));
 }
 
 ItemFireball::~ItemFireball(){
