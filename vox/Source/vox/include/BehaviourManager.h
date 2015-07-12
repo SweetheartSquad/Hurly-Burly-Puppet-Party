@@ -2,12 +2,13 @@
 
 #include <vector>
 
-#include "node\NodeUpdatable.h"
+#include <node\NodeUpdatable.h>
+#include <node\NodeChild.h>
 
 class Behaviour;
 class PuppetCharacter;
 
-class BehaviourManager : public NodeUpdatable{
+class BehaviourManager : public NodeUpdatable, public NodeChild{
 public:
 	PuppetCharacter * target;
 

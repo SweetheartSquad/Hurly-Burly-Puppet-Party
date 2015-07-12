@@ -57,6 +57,23 @@ PuppetCharacter::PuppetCharacter(PuppetTexturePack * _texturePack, bool _ai, Box
 	init();
 }
 
+PuppetCharacter::~PuppetCharacter(){
+	whiteHead = nullptr;
+	whiteTorso = nullptr;
+	whiteArmLeft = nullptr;
+	whiteArmRight = nullptr;
+	
+	popsicleStick = nullptr;
+	armLeft = nullptr;
+	armRight = nullptr;
+	handLeft = nullptr;
+	handRight = nullptr;
+	torso = nullptr;
+	head = nullptr;
+	face = nullptr;
+	headgear = nullptr;
+}
+
 PuppetCharacter * PuppetCharacter::clone(Box2DWorld * _world, PuppetScene * _scene){
 	PuppetCharacter * res = new PuppetCharacter(texPack, ai, _world, categoryBits, maskBits, groupIndex);
 	res->scene = _scene;
@@ -66,10 +83,6 @@ PuppetCharacter * PuppetCharacter::clone(Box2DWorld * _world, PuppetScene * _sce
 	res->setShader(_scene->shader, true);
 	res->createIndicator(res->id);
 	return res;
-}
-
-PuppetCharacter::~PuppetCharacter(){
-	delete behaviourManager;
 }
 
 void PuppetCharacter::init(){

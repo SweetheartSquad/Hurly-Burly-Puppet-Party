@@ -14,9 +14,6 @@ BehaviourManager::BehaviourManager(PuppetCharacter * _target) :
 
 BehaviourManager::~BehaviourManager(){
 	while(behaviours.size() > 0){
-		if(behaviours.back()->fixture != nullptr){
-			target->torso->body->DestroyFixture(behaviours.back()->fixture);
-		}
 		delete behaviours.back();
 		behaviours.pop_back();
 	}
@@ -33,16 +30,4 @@ void BehaviourManager::update(Step * _step){
 
 void BehaviourManager::addBehaviour(Behaviour * _behaviour){
 	behaviours.push_back(_behaviour);
-	
-	b2CircleShape torsoShape;
-	torsoShape.m_radius = _behaviour->radius;
-
-	_behaviour->fixture = target->torso->body->CreateFixture(&torsoShape, 0);
-	_behaviour->fixture->SetSensor(true);
-	_behaviour->fixture->SetUserData(_behaviour);
-	b2Filter f;
-	f.categoryBits = PuppetGame::kBEHAVIOUR;
-	f.maskBits = _behaviour->filter;
-	f.groupIndex = target->groupIndex;
-	_behaviour->fixture->SetFilterData(f);
 }
