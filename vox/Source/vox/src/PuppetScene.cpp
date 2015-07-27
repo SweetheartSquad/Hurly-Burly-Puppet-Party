@@ -203,10 +203,10 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	//Set up cameras
 	Transform * t = new Transform();
 	mouseCamera = new MousePerspectiveCamera();
-	t->addChild(mouseCamera, false);
+	t = childTransform->addChild(mouseCamera);
 	cameras.push_back(mouseCamera);
 	mouseCamera->farClip = 1000.f;
-	t->rotate(90, 0, 1, 0, kWORLD);
+	mouseCamera->childTransform->rotate(90, 0, 1, 0, kWORLD);
 	t->translate(5.0f, 1.5f, 22.5f);
 	mouseCamera->yaw = 90.0f;
 	mouseCamera->pitch = -10.0f;
@@ -214,10 +214,10 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 
 	t = new Transform();
 	gameCam = new FollowCamera(15, glm::vec3(0, 0, 0), 0, 0);
-	t->addChild(gameCam, false);
+	t = childTransform->addChild(gameCam);
 	cameras.push_back(gameCam);
 	gameCam->farClip = 1000.f;
-	t->rotate(90, 0, 1, 0, kWORLD);
+	gameCam->childTransform->rotate(90, 0, 1, 0, kWORLD);
 	t->translate(5.0f, 1.5f, 22.5f);
 	gameCam->minimumZoom = 22.5f;
 	gameCam->yaw = 90.0f;
