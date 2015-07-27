@@ -516,17 +516,17 @@ void PuppetCharacter::update(Step* _step){
 	}
 	
 	// position white paper parts behind their corresponding puppet parts
-	whiteArmLeft->setTranslationPhysical(armLeft->getWorldPos(0));
-	whiteArmLeft->parents.at(0)->setOrientation((armLeft->parents.at(0)->getOrientationQuat()));
+	whiteArmLeft->setTranslationPhysical(armLeft->mesh->getWorldPos(0));
+	whiteArmLeft->childTransform->setOrientation((armLeft->childTransform->getOrientationQuat()));
 
-	whiteArmRight->setTranslationPhysical(armRight->getWorldPos(0));
-	whiteArmRight->parents.at(0)->setOrientation((armRight->parents.at(0)->getOrientationQuat()));
+	whiteArmRight->setTranslationPhysical(armRight->mesh->getWorldPos(0));
+	whiteArmRight->childTransform->setOrientation((armRight->childTransform->getOrientationQuat()));
 
-	whiteHead->setTranslationPhysical(head->getWorldPos(0));
-	whiteHead->parents.at(0)->setOrientation((head->parents.at(0)->getOrientationQuat()));
+	whiteHead->setTranslationPhysical(head->mesh->getWorldPos(0));
+	whiteHead->childTransform->setOrientation((head->childTransform->getOrientationQuat()));
 
-	whiteTorso->setTranslationPhysical(torso->getWorldPos(0));
-	whiteTorso->parents.at(0)->setOrientation((torso->parents.at(0)->getOrientationQuat()));
+	whiteTorso->setTranslationPhysical(torso->mesh->getWorldPos(0));
+	whiteTorso->childTransform->setOrientation((torso->childTransform->getOrientationQuat()));
 }
 
 void PuppetCharacter::jump(){
