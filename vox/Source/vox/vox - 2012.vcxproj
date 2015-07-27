@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src/Behaviour.cpp" />
+    <ClCompile Include="src/BehaviourAttack.cpp" />
+    <ClCompile Include="src/BehaviourFollow.cpp" />
+    <ClCompile Include="src/BehaviourManager.cpp" />
+    <ClCompile Include="src/BehaviourPatrol.cpp" />
+    <ClCompile Include="src/Boulder.cpp" />
+    <ClCompile Include="src/Castle.cpp" />
+    <ClCompile Include="src/Catapult.cpp" />
+    <ClCompile Include="src/Hair.cpp" />
+    <ClCompile Include="src/Item.cpp" />
+    <ClCompile Include="src/ItemFlail.cpp" />
+    <ClCompile Include="src/ItemProjectileWeapon.cpp" />
+    <ClCompile Include="src/ItemSimpleWeapon.cpp" />
+    <ClCompile Include="src/Lever.cpp" />
+    <ClCompile Include="src/Main.cpp" />
+    <ClCompile Include="src/PuppetCharacter.cpp" />
+    <ClCompile Include="src/PuppetCharacterArcher.cpp" />
+    <ClCompile Include="src/PuppetCharacterCastleChampion.cpp" />
+    <ClCompile Include="src/PuppetCharacterDragon.cpp" />
+    <ClCompile Include="src/PuppetCharacterGuard.cpp" />
+    <ClCompile Include="src/PuppetCharacterKnight.cpp" />
+    <ClCompile Include="src/PuppetCharacterRapunzel.cpp" />
+    <ClCompile Include="src/PuppetCharacterThief.cpp" />
+    <ClCompile Include="src/PuppetContactListener.cpp" />
+    <ClCompile Include="src/PuppetController.cpp" />
+    <ClCompile Include="src/PuppetResourceManager.cpp" />
+    <ClCompile Include="src/PuppetScene.cpp" />
+    <ClCompile Include="src/PuppetTexturePack.cpp" />
+    <ClCompile Include="src/RaidTheCastle.cpp" />
+    <ClCompile Include="src/RaidTheCastleContactListener.cpp" />
+    <ClCompile Include="src/RaidTheCastleResourceManager.cpp" />
+    <ClCompile Include="src/RandomGround.cpp" />
+    <ClCompile Include="src/Rapunzel.cpp" />
+    <ClCompile Include="src/RapunzelContactListener.cpp" />
+    <ClCompile Include="src/RapunzelResourceManager.cpp" />
+    <ClCompile Include="src/SlayTheDragon.cpp" />
+    <ClCompile Include="src/SlayTheDragonContactListener.cpp" />
+    <ClCompile Include="src/SlayTheDragonResourceManager.cpp" />
+    <ClCompile Include="src/Structure.cpp" />
+    <ClCompile Include="src/PuppetGame.cpp" />
+    <ClCompile Include="src/VictoryScene.cpp" />
+    <ClCompile Include="src/Fortification.cpp" />
+    <ClCompile Include="src/BehaviourAttackThrow.cpp" />
+    <ClCompile Include="src/ItemFireball.cpp" />
+    <ClCompile Include="src/ItemFireballLauncher.cpp" />
+    <ClCompile Include="src/StructureBreakable.cpp" />
+    <ClCompile Include="src/StructureBoxingGlove.cpp" />
+    <ClCompile Include="src/ItemGold.cpp" />
+    <ClCompile Include="src/StructureInteractable.cpp" />
+    <ClCompile Include="src/StructureGoldPile.cpp" />
+    <ClCompile Include="src/Cloud.cpp" />
+    <ClCompile Include="src/FightYourFriends.cpp" />
+    <ClCompile Include="src/FightYourFriendsResourceManager.cpp" />
+    <ClCompile Include="src/ScoreIndicator.cpp" />
+    <ClCompile Include="src/StartupScene.cpp" />
+    <ClCompile Include="src/Tower.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include/Behaviour.h" />
+    <ClInclude Include="include/BehaviourAttack.h" />
+    <ClInclude Include="include/BehaviourFollow.h" />
+    <ClInclude Include="include/BehaviourManager.h" />
+    <ClInclude Include="include/BehaviourPatrol.h" />
+    <ClInclude Include="include/Boulder.h" />
+    <ClInclude Include="include/Castle.h" />
+    <ClInclude Include="include/Catapult.h" />
+    <ClInclude Include="include/Hair.h" />
+    <ClInclude Include="include/Item.h" />
+    <ClInclude Include="include/ItemFlail.h" />
+    <ClInclude Include="include/ItemProjectileWeapon.h" />
+    <ClInclude Include="include/ItemSimpleWeapon.h" />
+    <ClInclude Include="include/Lever.h" />
+    <ClInclude Include="include/PuppetCharacter.h" />
+    <ClInclude Include="include/PuppetCharacterArcher.h" />
+    <ClInclude Include="include/PuppetCharacterCastleChampion.h" />
+    <ClInclude Include="include/PuppetCharacterDragon.h" />
+    <ClInclude Include="include/PuppetCharacterGuard.h" />
+    <ClInclude Include="include/PuppetCharacterKnight.h" />
+    <ClInclude Include="include/PuppetCharacterRapunzel.h" />
+    <ClInclude Include="include/PuppetCharacterThief.h" />
+    <ClInclude Include="include/PuppetContactListener.h" />
+    <ClInclude Include="include/PuppetController.h" />
+    <ClInclude Include="include/PuppetResourceManager.h" />
+    <ClInclude Include="include/PuppetScene.h" />
+    <ClInclude Include="include/PuppetTexturePack.h" />
+    <ClInclude Include="include/RaidTheCastle.h" />
+    <ClInclude Include="include/RaidTheCastleContactListener.h" />
+    <ClInclude Include="include/RaidTheCastleResourceManager.h" />
+    <ClInclude Include="include/RandomGround.h" />
+    <ClInclude Include="include/Rapunzel.h" />
+    <ClInclude Include="include/RapunzelContactListener.h" />
+    <ClInclude Include="include/RapunzelResourceManager.h" />
+    <ClInclude Include="include/SlayTheDragon.h" />
+    <ClInclude Include="include/SlayTheDragonContactListener.h" />
+    <ClInclude Include="include/SlayTheDragonResourceManager.h" />
+    <ClInclude Include="include/Structure.h" />
+    <ClInclude Include="include/PuppetGame.h" />
+    <ClInclude Include="include/VictoryScene.h" />
+    <ClInclude Include="include/Fortification.h" />
+    <ClInclude Include="include/BehaviourAttackThrow.h" />
+    <ClInclude Include="include/ItemFireball.h" />
+    <ClInclude Include="include/ItemFireballLauncher.h" />
+    <ClInclude Include="include/StructureBreakable.h" />
+    <ClInclude Include="include/StructureBoxingGlove.h" />
+    <ClInclude Include="include/ItemGold.h" />
+    <ClInclude Include="include/StructureInteractable.h" />
+    <ClInclude Include="include/StructureGoldPile.h" />
+    <ClInclude Include="include/Cloud.h" />
+    <ClInclude Include="include/FightYourFriends.h" />
+    <ClInclude Include="include/FightYourFriendsResourceManager.h" />
+    <ClInclude Include="include/ScoreIndicator.h" />
+    <ClInclude Include="include/StartupScene.h" />
+    <ClInclude Include="include/Tower.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B6AFC105-EAF0-41B3-BD41-75D4570CD35A}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>vox</RootNamespace>
+    <ProjectName>vox - 2012</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\voxSettings.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\voxSettings.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>include;$(ENGINE_DIR)\Source\S-Tengine2\include;$(GLEW_DIR)\include;$(GLFW_DIR)\include;$(GLM_DIR);$(FREETYPE_DIR)\include;$(OPENAL_DIR)\include;$(CPPREST_DIR)\Release\include;$(BOX2D_DIR);$(BULLET_DIR)\src;$(IncludePath)</IncludePath>
+    <SourcePath>src;$(SourcePath)</SourcePath>
+    <OutDir>..\..\Output\$(ProjectName)-$(Configuration)\</OutDir>
+    <IntDir>..\..\Output\junk\$(ProjectName)-$(Configuration)\</IntDir>
+    <LibraryPath>$(GLEW_DIR)\lib\Release\Win32;$(GLFW_DIR)\src\Debug;$(OPENAL_DIR)\libs\Win32;$(CPPREST_DIR)\Binaries\Win32\Debug;$(BOX2D_DIR)\Build\vs2013\bin\x32\Debug;$(FREETYPE_DIR)\objs\vc2012\Win32;$(BULLET_DIR)\lib;$(LibraryPath)</LibraryPath>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>include;$(ENGINE_DIR)\Source\S-Tengine2\include;$(GLEW_DIR)\include;$(GLFW_DIR)\include;$(GLM_DIR);$(OPENAL_DIR)\include;$(BOX2D_DIR);$(FREETYPE_DIR)\include;$(CPPREST_DIR)\Release\include;$(BULLET_DIR)\src;$(IncludePath)</IncludePath>
+    <SourcePath>src;$(SourcePath)</SourcePath>
+    <OutDir>..\..\Output\$(ProjectName)-$(Configuration)\</OutDir>
+    <IntDir>..\..\Output\junk\$(ProjectName)-$(Configuration)\</IntDir>
+    <LibraryPath>$(GLEW_DIR)\lib\Release\Win32;$(GLFW_DIR)\src\Release;$(OPENAL_DIR)\libs\Win32;$(CPPREST_DIR)\Binaries\Win32\Release;$(BOX2D_DIR)\Build\vs2013\bin\x32\Release;$(FREETYPE_DIR)\objs\vc2012\Win32;$(BULLET_DIR)\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BrowseInformation>true</BrowseInformation>
+      <EnablePREfast>false</EnablePREfast>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>true</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;libsndfile-1.lib;OpenAL32.lib;freetype255MTd.lib;cpprest110d_2_5.lib;Box2D.lib;BulletSoftBody_vs2010_debug.lib;BulletDynamics_vs2010_debug.lib;BulletCollision_vs2010_debug.lib;LinearMath_vs2010_debug.lib;S-Tengine2 - 2012d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <PerUserRedirection>true</PerUserRedirection>
+      <IgnoreSpecificDefaultLibraries>msvcrt.lib;</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>$(ENGINE_DIR)\Output\S-Tengine2 - 2012-LibDebug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <Profile>true</Profile>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent />
+    <PostBuildEvent>
+      <Command>copy /Y "$(GLEW_DIR)\bin\Release\Win32\glew32.dll" "$(TargetDir)\glew32.dll"
+copy /Y "$(CPPREST_DIR)\Binaries\Win32\Debug\cpprest110d_2_5.dll" "$(TargetDir)\cpprest110d_2_5.dll"
+copy /Y "$(OPENAL_DIR)\bin\Win32\libsndfile-1.dll" "$(TargetDir)\libsndfile-1.dll"
+copy /Y "$(OPENAL_DIR)\bin\Win32\soft_oal.dll" "$(TargetDir)\OpenAL32.dll"
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;glew32.lib;libsndfile-1.lib;OpenAL32.lib;Box2D.lib;freetype255MT.lib;cpprest110_2_5.lib;BulletSoftBody_vs2010.lib;BulletDynamics_vs2010.lib;BulletCollision_vs2010.lib;LinearMath_vs2010.lib;S-Tengine2 - 2012.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ENGINE_DIR)\Output\S-Tengine2 - 2012-LibRelease;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>msvcrt.lib;</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>copy /Y "$(GLEW_DIR)\bin\Release\Win32\glew32.dll" "$(TargetDir)\glew32.dll"
+copy /Y "$(CPPREST_DIR)\Binaries\Win32\Release\cpprest110_2_5.dll" "$(TargetDir)\cpprest110_2_5.dll"
+copy /Y "$(OPENAL_DIR)\bin\Win32\libsndfile-1.dll" "$(TargetDir)\libsndfile-1.dll"
+copy /Y "$(OPENAL_DIR)\bin\Win32\soft_oal.dll" "$(TargetDir)\OpenAL32.dll"
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

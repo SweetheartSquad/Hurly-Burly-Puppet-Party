@@ -148,7 +148,7 @@ SlayTheDragon::SlayTheDragon(PuppetGame* _game):
 	// create indicators and add to followcam
 	for(PuppetCharacter * p : players){
 		p->createIndicator(p->id);
-		gameCam->addTarget(p->indicator);
+		gameCam->addTarget(p->indicator->mesh);
 	}
 
 	gameCam->useBounds = true;

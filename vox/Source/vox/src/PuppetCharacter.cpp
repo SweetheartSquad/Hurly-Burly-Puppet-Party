@@ -492,7 +492,7 @@ void PuppetCharacter::update(Step* _step){
 	// spray some particles to show hits more
 	if (justTookDamage){
 		if (ps != nullptr){
-			Particle * p = ps->particleSystem->addParticle(rootComponent->getWorldPos(false));
+			Particle * p = ps->particleSystem->addParticle(rootComponent->mesh->getWorldPos(false));
 			p->applyLinearImpulse(vox::NumberUtils::randomFloat(-750, 750), vox::NumberUtils::randomFloat(1000, 1500), p->body->GetPosition().x, p->body->GetPosition().y);
 		}
 		justTookDamage = false;
@@ -509,8 +509,8 @@ void PuppetCharacter::update(Step* _step){
 	}
 
 	if(indicator != nullptr){
-		glm::vec3 iPos = indicator->getWorldPos();
-		glm::vec3 hPos = headgear->getWorldPos() + glm::vec3(0.f, 22.5f, 0.f);
+		glm::vec3 iPos = indicator->mesh->getWorldPos();
+		glm::vec3 hPos = headgear->mesh->getWorldPos() + glm::vec3(0.f, 22.5f, 0.f);
 
 		indicator->setTranslationPhysical((hPos - iPos)*0.1f, true);
 	}

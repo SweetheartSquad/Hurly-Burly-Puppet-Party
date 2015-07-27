@@ -126,22 +126,22 @@ Rapunzel::Rapunzel(PuppetGame* _game):
 	// create indicators and add to followcam
 	for(PuppetCharacter * p : players){
 		p->createIndicator(p->id);
-		gameCam->addTarget(p->indicator);
+		gameCam->addTarget(p->indicator->mesh);
 	}
 	
 	
     addChild(castleCatwalk, 1);
 	tower->setTranslationPhysical(glm::vec3(glm::vec3(60.f, tower->getCorrectedHeight()*0.5f, 0.f)));
-    castleCatwalk->setTranslationPhysical(glm::vec3(tower->getWorldPos().x - castleCatwalk->getCorrectedWidth()*0.5f - 3.5f, tower->getWorldPos().y - tower->getCorrectedHeight() * 0.08, 0));
+    castleCatwalk->setTranslationPhysical(glm::vec3(tower->mesh->getWorldPos().x - castleCatwalk->getCorrectedWidth()*0.5f - 3.5f, tower->mesh->getWorldPos().y - tower->getCorrectedHeight() * 0.08, 0));
 	
-	glm::vec3 catwalkPos = glm::vec3(castleCatwalk->getWorldPos().x, castleCatwalk->getWorldPos().y + castleCatwalk->getCorrectedHeight(), 0.f);
+	glm::vec3 catwalkPos = glm::vec3(castleCatwalk->mesh->getWorldPos().x, castleCatwalk->mesh->getWorldPos().y + castleCatwalk->getCorrectedHeight(), 0.f);
 
 	playerCharacter1->translateComponents(glm::vec3(10.f, 5.f, 0.f));
 	playerCharacter2->translateComponents(glm::vec3(20.f, 5.f, 0.f));
 	playerCharacter3->translateComponents(glm::vec3(30.f, 5.f, 0.f));
 	playerCharacter4->translateComponents(catwalkPos + glm::vec3(0.f, 5.f, 0.f));
 	
-	Lever::towerPos = tower->getWorldPos(false);
+	Lever::towerPos = tower->mesh->getWorldPos(false);
 
 	Hair * hair = new Hair(world, PuppetGame::kGROUND, PuppetGame::kPLAYER, 0);
 	addChild(hair, 1);
@@ -181,7 +181,7 @@ Rapunzel::Rapunzel(PuppetGame* _game):
 	goldPile->translateComponents(catwalkPos - glm::vec3(20.f, -1.5f, 0.f));
 	goldPile->addToLayeredScene(this, 1);
 	goldPile->rootComponent->parents.at(0)->scale(10.0f, 10.0f, 1.0f);
-	gameCam->addTarget(goldPile->rootComponent);
+	gameCam->addTarget(goldPile->rootComponent->mesh);
 	playRandomBackgroundMusic();
 	
 	gameCam->useBounds = true;

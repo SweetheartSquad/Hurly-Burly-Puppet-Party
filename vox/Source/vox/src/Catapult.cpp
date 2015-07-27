@@ -112,7 +112,7 @@ void Catapult::evaluateState(){
 			world->b2world->DestroyJoint(boulderJoint);
 			boulderJoint = nullptr;
 			boulder->catapult = nullptr;
-			((FollowCamera *)rtc->gameCam)->addTarget(boulder->rootComponent);
+			((FollowCamera *)rtc->gameCam)->addTarget(boulder->rootComponent->mesh);
 			boulder->owner = playerWhoTriggered;
 			boulder = nullptr;
 			playerWhoTriggered = nullptr;

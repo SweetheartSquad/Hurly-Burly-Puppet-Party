@@ -16,7 +16,7 @@ StructureBreakable::StructureBreakable(float _maxHealth, Box2DWorld* _world, int
 	scattering(false),
 	destroy(false)
 {
-	particleSystem = new ParticleSystem(PuppetResourceManager::dustParticle, world, 0, 0, 0);
+	particleSystem = new ParticleSystem(PuppetResourceManager::dustParticle->texture, world, 0, 0, 0);
 	particleSystem->componentScale = componentScale;
 	childTransform->addChild(particleSystem);
 	particleSystem->emissionRate = -1;
@@ -28,8 +28,8 @@ void StructureBreakable::update(Step* _step){
 
 	if(dead){
 		for (signed long int j = 0; j < std::rand() % 20 + 100; ++j){
-			Particle * p = particleSystem->addParticle(rootComponent->getWorldPos(false));
-			p->setTranslationPhysical(vox::NumberUtils::randomFloat(getWorldPos().x - rootComponent->getCorrectedWidth(), getWorldPos().x + rootComponent->getCorrectedWidth()), vox::NumberUtils::randomFloat(getWorldPos().y - rootComponent->getCorrectedHeight(), getWorldPos().y + rootComponent->getCorrectedHeight()), 0, true);
+			Particle * p = particleSystem->addParticle(rootComponent->mesh->getWorldPos(false));
+			p->setTranslationPhysical(vox::NumberUtils::randomFloat(rootComponent->mesh->getWorldPos().x - rootComponent->getCorrectedWidth(), rootComponent->mesh->getWorldPos().x + rootComponent->getCorrectedWidth()), vox::NumberUtils::randomFloat(rootComponent->mesh->getWorldPos().y - rootComponent->getCorrectedHeight(), rootComponent->mesh->getWorldPos().y + rootComponent->getCorrectedHeight()), 0, true);
 			p->applyLinearImpulse(vox::NumberUtils::randomFloat(-750, 750), vox::NumberUtils::randomFloat(1000, 1500), p->body->GetPosition().x, p->body->GetPosition().y);
 			
 		}

@@ -31,7 +31,7 @@ PuppetCharacterDragon::PuppetCharacterDragon(bool _ai, Box2DWorld * _world, int1
 	), _ai, _world, _categoryBits, _maskBits, _groupIndex),
 	fireball(nullptr),
 	playerOnFire(nullptr),
-	fireParticles(new ParticleSystem(SlayTheDragonResourceManager::itemFireParticle, _world, 0, 0, _groupIndex)),
+	fireParticles(new ParticleSystem(SlayTheDragonResourceManager::itemFireParticle->texture, _world, 0, 0, _groupIndex)),
 	altitude(60.f)
 {
 	childTransform->addChild(fireParticles, false);
@@ -180,13 +180,13 @@ void PuppetCharacterDragon::update(Step * _step){
 		torso->body->SetTransform(b2Vec2(torso->body->GetPosition().x, altitude), torso->body->GetAngle());
 	}
     if (fireball != nullptr){
-        Particle * p = fireParticles->addParticle(fireball->rootComponent->getWorldPos(false));
+        Particle * p = fireParticles->addParticle(fireball->rootComponent->mesh->getWorldPos(false));
         p->body->SetGravityScale(-0.1f);
         p->applyAngularImpulse(vox::NumberUtils::randomFloat(-25.0f, 25.0f));
         p->setTranslationPhysical(glm::vec3(vox::NumberUtils::randomFloat(-2.f, 2.f), vox::NumberUtils::randomFloat(0.75f, 1.25f), vox::NumberUtils::randomFloat(-2.f, 2.f)), true);
     }
 	if(playerOnFire != nullptr && !playerOnFire->dead){
-        Particle * p = fireParticles->addParticle(playerOnFire->rootComponent->getWorldPos(false));
+        Particle * p = fireParticles->addParticle(playerOnFire->rootComponent->mesh->getWorldPos(false));
         p->body->SetGravityScale(-0.1f);
         p->applyAngularImpulse(vox::NumberUtils::randomFloat(-25.0f, 25.0f));
         p->setTranslationPhysical(glm::vec3(vox::NumberUtils::randomFloat(-2.f, 2.f), vox::NumberUtils::randomFloat(0.75f, 1.25f), vox::NumberUtils::randomFloat(-2.f, 2.f)), true);

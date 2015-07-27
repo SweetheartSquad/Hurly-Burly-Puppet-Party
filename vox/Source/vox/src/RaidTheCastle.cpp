@@ -122,11 +122,11 @@ RaidTheCastle::RaidTheCastle(PuppetGame* _game):
 	// create indicators and add to followcam
 	for(PuppetCharacter * p : players){
 		p->createIndicator(p->id);
-		gameCam->addTarget(p->indicator);
+		gameCam->addTarget(p->indicator->mesh);
 	}
 
-	gameCam->addTarget(catapult->rootComponent);
-	gameCam->addTarget(castle->rootComponent);
+	gameCam->addTarget(catapult->rootComponent->mesh);
+	gameCam->addTarget(castle->rootComponent->mesh);
 
 	gameCam->useBounds = true;
 	gameCam->minBounds.x = 0;
@@ -139,8 +139,8 @@ void RaidTheCastle::update(Step* _step){
 	PuppetScene::update(_step);
 
 	if(!camTargetsRemoved && _step->time - sceneStart > 15.0) {
-		gameCam->removeTarget(castle->rootComponent);
-		gameCam->removeTarget(catapult->rootComponent);
+		gameCam->removeTarget(castle->rootComponent->mesh);
+		gameCam->removeTarget(catapult->rootComponent->mesh);
 		camTargetsRemoved = true;
 	}
 
@@ -151,7 +151,7 @@ void RaidTheCastle::update(Step* _step){
 
 
 	if(castle->state == Castle::state_t::kDEAD){
-		gameCam->addTarget(castle->rootComponent);
+		gameCam->addTarget(castle->rootComponent->mesh);
 		
 		triggerVictoryState();
 	}

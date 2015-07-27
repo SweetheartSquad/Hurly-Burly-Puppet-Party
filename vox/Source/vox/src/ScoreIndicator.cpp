@@ -11,7 +11,7 @@
 
 ScoreIndicator::ScoreIndicator(unsigned long int _id, Box2DWorld * _world) :
 	id(_id),
-	scoreParticles(new ParticleSystem(PuppetResourceManager::scoreParticles.at(0), _world, 0, 0, 0))
+	scoreParticles(new ParticleSystem(PuppetResourceManager::scoreParticles.at(0)->texture, _world, 0, 0, 0))
 {
 	mesh->pushTexture2D(PuppetResourceManager::scoreIndicators.at(id));
 	scoreParticles->componentScale = 0.0025f;

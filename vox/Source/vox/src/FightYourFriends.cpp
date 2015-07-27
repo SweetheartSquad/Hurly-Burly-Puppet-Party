@@ -97,7 +97,7 @@ FightYourFriends::FightYourFriends(PuppetGame* _game):
 	// create indicators and add to followcam
 	for(PuppetCharacter * p : players){
 		p->createIndicator(p->id);
-		gameCam->addTarget(p->indicator);
+		gameCam->addTarget(p->indicator->mesh);
 	}
 
 	gameCam->useBounds = true;
@@ -153,8 +153,8 @@ void FightYourFriends::unload(){
 }
 
 void FightYourFriends::populateBackground(){
-	stageFloor = new MeshEntity(Resource::loadMeshFromObj("../assets/hurly-burly/stageFloor.vox").at(0));
-	stageFront = new MeshEntity(Resource::loadMeshFromObj("../assets/hurly-burly/stageFront.vox").at(0));
+	stageFloor = new MeshEntity(Resource::loadMeshFromObj("assets/hurly-burly/stageFloor.vox").at(0));
+	stageFront = new MeshEntity(Resource::loadMeshFromObj("assets/hurly-burly/stageFront.vox").at(0));
 
 	addChild(stageFloor, 0);
 	addChild(stageFront, 0);

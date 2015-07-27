@@ -10,6 +10,7 @@
 #include "shader/ShaderComponentHsv.h"
 #include "shader/ShaderComponentTint.h"
 #include "shader/ShaderComponentAlpha.h"
+#include "shader/ShaderComponentMVP.h"
 #include "Keyboard.h"
 #include "SoundManager.h"
 #include "Box2DSprite.h"
@@ -87,26 +88,27 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	uiLayer(new UILayer(this, 0,0,0,0))
 {
 	world->b2world->SetContactListener(cl);
-
+	
 	shader->addComponent(new ShaderComponentTexture(shader));
 	shader->addComponent(new ShaderComponentHsv(shader, 0.f, 1.25f, 1.25f));
 	shader->addComponent(new ShaderComponentTint(shader, 0.f, 0.f, 0.f));
 	shader->addComponent(new ShaderComponentAlpha(shader, 1.f));
+	shader->addComponent(new ShaderComponentMVP(shader));
 	shader->compileShader();
 	
 	//Add Audio
-	countdownSoundManager->addNewSound("0", "../assets/hurly-burly/audio/HighCountdown_Zero.ogg");
-	countdownSoundManager->addNewSound("1", "../assets/hurly-burly/audio/silence.ogg");
-	countdownSoundManager->addNewSound("2", "../assets/hurly-burly/audio/HighCountdown_One.ogg");
-	countdownSoundManager->addNewSound("3", "../assets/hurly-burly/audio/HighCountdown_Two.ogg");
-	countdownSoundManager->addNewSound("4", "../assets/hurly-burly/audio/HighCountdown_Three.ogg");
-	countdownSoundManager->addNewSound("5", "../assets/hurly-burly/audio/HighCountdown_Four.ogg");
-	countdownSoundManager->addNewSound("6", "../assets/hurly-burly/audio/HighCountdown_Five.ogg");
+	countdownSoundManager->addNewSound("0", "assets/hurly-burly/audio/HighCountdown_Zero.ogg");
+	countdownSoundManager->addNewSound("1", "assets/hurly-burly/audio/silence.ogg");
+	countdownSoundManager->addNewSound("2", "assets/hurly-burly/audio/HighCountdown_One.ogg");
+	countdownSoundManager->addNewSound("3", "assets/hurly-burly/audio/HighCountdown_Two.ogg");
+	countdownSoundManager->addNewSound("4", "assets/hurly-burly/audio/HighCountdown_Three.ogg");
+	countdownSoundManager->addNewSound("5", "assets/hurly-burly/audio/HighCountdown_Four.ogg");
+	countdownSoundManager->addNewSound("6", "assets/hurly-burly/audio/HighCountdown_Five.ogg");
 
 	//Since these are chosen randomly its easiest to just use numbers as the keys and generate a random number
-	backgroundSoundManager->addNewSound("1", "../assets/hurly-burly/audio/songs/WesternSong.ogg");
-	backgroundSoundManager->addNewSound("2", "../assets/hurly-burly/audio/songs/FastSong.ogg");
-	backgroundSoundManager->addNewSound("3", "../assets/hurly-burly/audio/songs/MelodicaSong.ogg");
+	backgroundSoundManager->addNewSound("1", "assets/hurly-burly/audio/songs/WesternSong.ogg");
+	backgroundSoundManager->addNewSound("2", "assets/hurly-burly/audio/songs/FastSong.ogg");
+	backgroundSoundManager->addNewSound("3", "assets/hurly-burly/audio/songs/MelodicaSong.ogg");
 	
 	if(_fullCurtains){
 		Sprite * spotlight = new Sprite();
@@ -137,15 +139,15 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 	Sprite * curtain = new Sprite();
 	addChild(curtain, 2);
 	float scale = 100;
-	curtain->parents.at(0)->translate(sceneWidth - 29, 1, 5);
-	curtain->parents.at(0)->scale(30, sceneHeight, 1);
+	curtain->parents.at(0)->translate(sceneWidth*0.5f - 29, 1, 5);
+	curtain->parents.at(0)->scale(30, sceneHeight*2.f, 1);
 	curtain->mesh->pushTexture2D(PuppetResourceManager::stageCurtain->texture);
 	curtain->setShader(shader, true);
 	
 	curtain = new Sprite();
 	addChild(curtain, 2);
-	curtain->parents.at(0)->translate(29, 1, 5);
-	curtain->parents.at(0)->scale(-30, sceneHeight, 1);
+	curtain->parents.at(0)->translate(-sceneWidth*0.5f + 29, 1, 5);
+	curtain->parents.at(0)->scale(-30, sceneHeight*2.f, 1);
 	curtain->mesh->pushTexture2D(PuppetResourceManager::stageCurtain->texture);
 	curtain->setShader(shader, true);
 
@@ -251,7 +253,7 @@ PuppetScene::PuppetScene(PuppetGame * _game, float seconds, float _width, float 
 		n->setShader(shader, true);
     }
 
-    particleSystem = new ParticleSystem(PuppetResourceManager::dustParticle, world, 0, 0, 0);
+	particleSystem = new ParticleSystem(PuppetResourceManager::dustParticle->texture, world, 0, 0, 0);
     particleSystem->addToLayeredScene(this, 1);
     addChild(particleSystem, 1);
 	particleSystem->setShader(shader, true);
@@ -389,7 +391,7 @@ void PuppetScene::update(Step * _step){
 		
 		if (item->destroy){
 			for(unsigned long int j = 0; j < std::rand() % 5 + 1; ++j){
-				particleSystem->addParticle(item->rootComponent->getWorldPos(false), PuppetResourceManager::dustParticle);
+				particleSystem->addParticle(item->rootComponent->mesh->getWorldPos(false), PuppetResourceManager::dustParticle->texture);
 			}
 			destroyItem(item);
 			item = nullptr;
@@ -585,7 +587,7 @@ void PuppetScene::destroyItem(Item * _item){
 	// remove from follow cam
 	gameCam->removeTarget(_item);
 	for(signed long int j = _item->components.size()-1; j >= 0; --j){
-		gameCam->removeTarget(*_item->components.at(j));
+		gameCam->removeTarget((*_item->components.at(j))->mesh);
 	}
 	
 	// don't need to remove from item list because that happens in the calling function
@@ -629,8 +631,8 @@ void PuppetScene::playRandomBackgroundMusic(){
 }
 
 void PuppetScene::populateBackground(){
-	stageFloor = new MeshEntity(Resource::loadMeshFromObj("../assets/hurly-burly/stageFloor.vox").at(0));
-	stageFront = new MeshEntity(Resource::loadMeshFromObj("../assets/hurly-burly/stageFront.vox").at(0));
+	stageFloor = new MeshEntity(Resource::loadMeshFromObj("assets/hurly-burly/stageFloor.vox").at(0));
+	stageFront = new MeshEntity(Resource::loadMeshFromObj("assets/hurly-burly/stageFront.vox").at(0));
 
 	addChild(stageFloor, 0);
 	addChild(stageFront, 0);
@@ -675,7 +677,7 @@ void PuppetScene::populateBackground(){
 		MeshEntity * foliage = new MeshEntity(MeshFactory::getPlaneMesh());
 		addChild(foliage, 0);
 		foliage->setShader(shader, true);
-		foliage->parents.at(0)->translate((std::rand()%500/3.f)-25.f, height/2.f, max(-9, -(float)(numFoliage-i)/numFoliage)*8.f - 1.f);
+		foliage->parents.at(0)->translate((std::rand()%500/3.f)-25.f, height/2.f, std::max(-9.f, -(float)(numFoliage-i)/numFoliage)*8.f - 1.f);
 		foliage->parents.at(0)->scale(height, height, 1);
 		int tex = i % 4;
 		switch(tex){
@@ -693,7 +695,7 @@ void PuppetScene::populateBackground(){
 		if(i == 3){
 			RandomGround * randomGround = new RandomGround(world, 100, 0.4f, PuppetResourceManager::puppetScenario->getTextureSampler("PAPER")->textureSampler->texture, 3, 1);
 			addChild(randomGround, 0);
-			randomGround->setTranslationPhysical(0.0f, 0.0f, max(-9, -(float)(numFoliage-i)/numFoliage)*8.f - 1.f);
+			randomGround->setTranslationPhysical(0.0f, 0.0f, std::max(-9.f, -(float)(numFoliage-i)/numFoliage)*8.f - 1.f);
 			randomGround->setShader(shader, true);
 		}
 	}
@@ -706,7 +708,7 @@ void PuppetScene::populateClouds(){
 		float height = vox::NumberUtils::randomFloat(sceneHeight / 4.f, sceneHeight);
 		Cloud * cloud = new Cloud(shader);
 		addChild(cloud, 0);
-		cloud->parents.at(0)->translate(vox::NumberUtils::randomFloat(0, sceneWidth), height, max(-9, -(float)(numClouds-i)/numClouds)*8.f - 1.f);
+		cloud->parents.at(0)->translate(vox::NumberUtils::randomFloat(0, sceneWidth), height, std::max(-9.f, -(float)(numClouds-i)/numClouds)*8.f - 1.f);
 	}
 }
 
